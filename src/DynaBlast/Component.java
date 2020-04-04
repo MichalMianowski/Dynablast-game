@@ -16,13 +16,16 @@ public class Component extends Applet implements Runnable{
     private Image screen;
 
     public static Level level;
+    public static Character character;
 
     public Component() {
         setPreferredSize(size);
     }
 
     public void start() {
+        new Tile();    //load images
         level = new Level();
+        character = new Character(Tile.tileSize, Tile.tileSize);
 
         isRunning = true;
         new Thread(this).start();
@@ -52,10 +55,11 @@ public class Component extends Applet implements Runnable{
     public void render(){
         Graphics g = screen.getGraphics();
 
-        g.setColor(new Color(51,51,51)); //cool grey color 3x51
+        g.setColor(new Color(101,101,101)); //cool grey color 3x51
         g.fillRect(0,0,screen.getWidth(null),screen.getHeight(null));
-        g.setColor(new Color(204,255,255)); //cool grey color 3x51
+//        g.setColor(new Color(204,255,255)); //cool grey color 3x51
         level.render(g);
+        character.render(g);
 
         g = getGraphics();
 

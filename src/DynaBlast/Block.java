@@ -14,7 +14,7 @@ public class Block extends Rectangle {
 
     public void render(Graphics g){
         if(id != Tile.box) {
-            g.fillRect(x, y, width, height);
+            g.drawImage(Tile.tileset, x, y, width, height, null);
         }
     }
 }
