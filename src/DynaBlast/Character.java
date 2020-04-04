@@ -8,12 +8,20 @@ import java.io.File;
 
 public class Character extends Creatures {
     public static BufferedImage charImg;
-
-    public Character(int width, int height){
-        setBounds(x = 40, y = 40, width, height);
-        try {
-            Character.charImg = ImageIO.read(new File("res/StripesMale.png"));
-        } catch (Exception e) { }
+    public Character(char type){
+        setBounds(x = 40, y = 40, Tile.tileSize, Tile.tileSize);
+        if (type == Tile.female_orange){
+            charImg = Tile.tileset_fem_orange;
+        }
+        else if (type == Tile.female_stripes){
+            charImg = Tile.tileset_fem_stripes;
+        }
+        else if (type == Tile.male_orange){
+            charImg = Tile.tileset_m_orange;
+        }
+        else{
+            charImg = Tile.tileset_m_stripes;
+        }
     }
 
 
@@ -23,8 +31,6 @@ public class Character extends Creatures {
 
     public void render(Graphics g){
         g.drawImage(charImg, (int)x, (int)y, null);
-//        g.setColor(new Color(200,200,200));
-//        g.fillRect((int)x, (int)y, (int)width, (int)height);
     }
 
 }
