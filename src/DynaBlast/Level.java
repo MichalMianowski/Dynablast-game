@@ -8,11 +8,13 @@ public class Level {
     public Block[][] block = new Block[15][15];
     ArrayList<Enemy> enemies = new ArrayList();
 
+//lvl testowy
     char[][] lvl_example = new char[15][15];
 
 
     public Level(){
         generateLevel();
+    //lvl testowy
         generateLvlExample();
         loadLevel(lvl_example);
 
@@ -52,7 +54,7 @@ public class Level {
             }
         }
     }
-
+//lvl testowy
     public void generateLvlExample(){
         for(int y=0; y<15; y++){
             for(int x=0; x<15; x++){
@@ -84,6 +86,7 @@ public class Level {
         lvl_example[3][4] = Tile.swat;
     }
 
+//lvl testowy
     public void generateExample(){
         for(int y=0; y<block.length; y++){
             for(int x=0; x<block.length; x++){
