@@ -24,7 +24,7 @@ public class Enemy extends Creatures {
         else if (type == Tile.swat){
             g.drawImage(Tile.tileset_swat, (int)x, (int)y, null);
         }
-        else{
+        else if (type == Tile.guard){
             g.drawImage(Tile.tileset_guard, (int)x, (int)y, null);
         }
     }

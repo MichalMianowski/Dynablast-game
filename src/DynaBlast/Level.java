@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class Level {
     int margin = 20;
+    int timeLeft; //in seconds
     public Block[][] block = new Block[15][15];
     ArrayList<Enemy> enemies = new ArrayList();
 
@@ -13,9 +14,10 @@ public class Level {
 
 
     public Level(){
+        timeLeft = 242;
         generateLevel();
-    //lvl testowy
-        generateLvlExample();
+            //lvl testowy
+            generateLvlExample();
         loadLevel(lvl_example);
 
     }
@@ -54,7 +56,20 @@ public class Level {
             }
         }
     }
-//lvl testowy
+
+    public void tick(){
+
+    }
+    public void render(Graphics g){
+        for(int y=0; y<block.length; y++){
+            for(int x=0; x<block.length; x++){
+                block[x][y].render(g);
+            }
+        }
+    }
+
+
+//lvl testowy_2 char[][]
     public void generateLvlExample(){
         for(int y=0; y<15; y++){
             for(int x=0; x<15; x++){
@@ -84,6 +99,7 @@ public class Level {
             lvl_example[x][9] = Tile.bars;
         lvl_example[3][5] = Tile.army_man;
         lvl_example[3][4] = Tile.swat;
+        lvl_example[11][11] = Tile.ladder;
     }
 
 //lvl testowy
@@ -114,15 +130,6 @@ public class Level {
         block[9][7].id = Tile.bars;
         block[13][13].id = Tile.bars;
     }
-    public void tick(){
 
-    }
-    public void render(Graphics g){
-        for(int y=0; y<block.length; y++){
-            for(int x=0; x<block.length; x++){
-                block[x][y].render(g);
-            }
-        }
-    }
 
 }

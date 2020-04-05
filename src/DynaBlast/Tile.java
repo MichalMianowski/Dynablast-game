@@ -24,7 +24,6 @@ public class Tile {
 
     public static char power = 'P';
 
-    //public static BufferedImage tileset_empty;
     public static BufferedImage tileset_bars;
     public static BufferedImage tileset_ladder;
     public static BufferedImage tileset_unbreakable;
@@ -39,9 +38,9 @@ public class Tile {
     public static BufferedImage tileset_swat;
 
 
-    //tu wczytywać wszystkie kafelki
+    //load all Tiles
     public Tile(){
-        //Tile.tileset_empty = ImageIO.read(new File("res/empty.png"));
+        //blocks
         try {
             Tile.tileset_bars = ImageIO.read(new File("res/bars.png"));
         } catch (Exception e) { }
@@ -52,6 +51,7 @@ public class Tile {
             Tile.tileset_unbreakable = ImageIO.read(new File("res/unbreakable.png"));
         } catch (Exception e) { }
 
+        //characters
         try {
             Tile.tileset_fem_orange = ImageIO.read(new File("res/female_orange.png"));
         } catch (Exception e) { }
@@ -65,6 +65,7 @@ public class Tile {
             Tile.tileset_m_stripes = ImageIO.read(new File("res/male_stripes.png"));
         } catch (Exception e) { }
 
+        //enemies
         try{
             Tile.tileset_guard = ImageIO.read(new File("res/guard.png"));
         } catch (Exception e) { }
@@ -74,8 +75,6 @@ public class Tile {
         try{
             Tile.tileset_swat = ImageIO.read(new File("res/swat.png"));
         } catch (Exception e) { }
-
-
 
     }
 }
