@@ -9,16 +9,21 @@ public class Tile {
     public static int tileSize = 20;
 
     public static char empty = 'E';
+    public static char unbreakable = 'U';
     public static char bars = 'B';
     public static char ladder = 'L';
-    public static char unbreakable = 'U';
 
     public static char female_orange = 'F';
     public static char female_stripes = 'f';
     public static char male_orange = 'M';
     public static char male_stripes = 'm';
 
-    //chyba trzeba wrzucić kilka grafik
+    public static char guard = 'G';
+    public static char army_man = 'A';
+    public static char swat = 'S';
+
+    public static char power = 'P';
+
     //public static BufferedImage tileset_empty;
     public static BufferedImage tileset_bars;
     public static BufferedImage tileset_ladder;
@@ -29,21 +34,48 @@ public class Tile {
     public static BufferedImage tileset_m_orange;
     public static BufferedImage tileset_m_stripes;
 
+    public static BufferedImage tileset_guard;
+    public static BufferedImage tileset_army_man;
+    public static BufferedImage tileset_swat;
 
 
     //tu wczytywać wszystkie kafelki
     public Tile(){
+        //Tile.tileset_empty = ImageIO.read(new File("res/empty.png"));
         try {
-            //Tile.tileset_empty = ImageIO.read(new File("res/empty.png"));
             Tile.tileset_bars = ImageIO.read(new File("res/bars.png"));
-            Tile.tileset_ladder = ImageIO.read(new File("res/ladder.png"));
-            Tile.tileset_unbreakable = ImageIO.read(new File("res/unbreakable.png"));
-
-            Tile.tileset_fem_orange = ImageIO.read(new File("res/female_orange.png"));
-            Tile.tileset_fem_stripes = ImageIO.read(new File("res/female_stripes.png"));
-            Tile.tileset_m_orange = ImageIO.read(new File("res/male_orange.png"));
-            Tile.tileset_m_stripes = ImageIO.read(new File("res/male_stripes.png"));
-
         } catch (Exception e) { }
+        try {
+            Tile.tileset_ladder = ImageIO.read(new File("res/ladder.png"));
+        } catch (Exception e) { }
+        try {
+            Tile.tileset_unbreakable = ImageIO.read(new File("res/unbreakable.png"));
+        } catch (Exception e) { }
+
+        try {
+            Tile.tileset_fem_orange = ImageIO.read(new File("res/female_orange.png"));
+        } catch (Exception e) { }
+        try {
+            Tile.tileset_fem_stripes = ImageIO.read(new File("res/female_stripes.png"));
+        } catch (Exception e) { }
+        try {
+            Tile.tileset_m_orange = ImageIO.read(new File("res/male_orange.png"));
+        } catch (Exception e) { }
+        try{
+            Tile.tileset_m_stripes = ImageIO.read(new File("res/male_stripes.png"));
+        } catch (Exception e) { }
+
+        try{
+            Tile.tileset_guard = ImageIO.read(new File("res/guard.png"));
+        } catch (Exception e) { }
+        try{
+            Tile.tileset_army_man = ImageIO.read(new File("res/army_man.png"));
+        } catch (Exception e) { }
+        try{
+            Tile.tileset_swat = ImageIO.read(new File("res/swat.png"));
+        } catch (Exception e) { }
+
+
+
     }
 }

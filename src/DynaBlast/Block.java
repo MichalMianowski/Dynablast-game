@@ -19,7 +19,7 @@ public class Block extends Rectangle {
             //g.drawImage(Tile.tileset_empty, x, y, width, height, null);
         }
         else if(id == Tile.unbreakable) {
-                g.drawImage(Tile.tileset_unbreakable, x, y, width, height, null);
+            g.drawImage(Tile.tileset_unbreakable, x, y, width, height, null);
         }
         else if(id == Tile.bars){
             g.drawImage(Tile.tileset_bars, x, y, width, height, null);

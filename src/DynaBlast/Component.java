@@ -62,6 +62,7 @@ public class Component extends Applet implements Runnable{
 //        g.setColor(new Color(204,255,255)); //cool grey color 3x51
         level.render(g);
         character.render(g);
+        level.enemies.forEach((en) -> en.render(screen.getGraphics()));
 
         g = getGraphics();
 
