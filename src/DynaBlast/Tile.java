@@ -1,3 +1,6 @@
+/**
+ * Michal Mianowski & Piotr Strzaska
+ */
 package DynaBlast;
 
 import javax.imageio.ImageIO;
@@ -5,6 +8,12 @@ import java.awt.image.*;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Class storing coded names of blocks, character's skins and other items
+ * also stores size of standard tile in game
+ * also stores buffered images of each item in game loaded from .png files in "/res/..." folder
+ *
+ */
 public class Tile {
     public static int tileSize = 20;
 
@@ -38,17 +47,19 @@ public class Tile {
     public static BufferedImage tileset_swat;
 
 
-    //load all Tiles
+    /**
+     * create object storing all buffered game's images
+     */
     public Tile(){
         //blocks
+        try {
+            Tile.tileset_unbreakable = ImageIO.read(new File("res/unbreakable.png"));
+        } catch (Exception e) { }
         try {
             Tile.tileset_bars = ImageIO.read(new File("res/bars.png"));
         } catch (Exception e) { }
         try {
             Tile.tileset_ladder = ImageIO.read(new File("res/ladder.png"));
-        } catch (Exception e) { }
-        try {
-            Tile.tileset_unbreakable = ImageIO.read(new File("res/unbreakable.png"));
         } catch (Exception e) { }
 
         //characters

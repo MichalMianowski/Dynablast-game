@@ -1,7 +1,6 @@
 /**
  * Michal Mianowski & Piotr Strzaska
  */
-
 package DynaBlast;
 
 import java.awt.*;
@@ -18,7 +17,7 @@ import java.io.File;
  */
 public class Level {
     /** margin from left and top of the window */
-    int margin = 20;
+    public static int margin = 20;
     /** timer for level in seconds */
     int timeLeft; //in seconds
     /** two dimensions table of @Block containing all level blocks */
@@ -66,8 +65,7 @@ public class Level {
             while (sc.hasNext()) {
                 for (int i = 0; i < 15; i++) {
                     for (int j = 0; j < 15; j++) {
-                        blockList[i][j] = sc.next().charAt(0);
-                        System.out.println(blockList[i][j]);
+                        blockList[j][i] = sc.next().charAt(0);
                     }
                 }
                 n++;
@@ -79,7 +77,11 @@ public class Level {
         }
     }
 
-    /** according to blockList set appropriate Block type to each level's block */
+    /**
+     * according to blockList set appropriate Block type to each level's block
+     *
+     * @param lvl two dimensions table containing data about level coded in chars
+     */
     public void loadLevel(char[][] lvl) {
         for (int y = 0; y < block.length; y++) {
             for (int x = 0; x < block.length; x++) {
@@ -106,7 +108,10 @@ public class Level {
 
     }
 
-    /** render each block in two dimensions block table */
+    /** render each block in two dimensions block table
+     *
+     * @param g Graphic to which render images
+     */
     public void render(Graphics g) {
         for (int y = 0; y < block.length; y++) {
             for (int x = 0; x < block.length; x++) {
