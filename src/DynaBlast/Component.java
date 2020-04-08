@@ -13,7 +13,7 @@ public class Component extends JPanel implements Runnable{
     private static int pixelSize = 2;
     /** @param size size of the game window */
     public static Dimension size = new Dimension(860,680);
-
+    /** @param pixel  */
     public static Dimension pixel = new Dimension(size.width / pixelSize, size.height / pixelSize);
     /** @param name name of the game window */
     public static String name = "Dyna Blaster - Escape from jail";
