@@ -9,19 +9,15 @@ import java.awt.*;
  */
 public class Component extends JPanel implements Runnable{
     private static final long serialVersionUID = 1L;
-    /** Parameters of the gamescreen
-     *
-     * @param pixelSize size of pixel in-game
-     * @param size size of the game window
-     * @param pixel
-     * @param name name of the game window
-     * @param isRunning specifies whether the game is running or not
-     */
+    /** @param pixelSize size of pixel in-game */
     private static int pixelSize = 2;
-
+    /** @param size size of the game window */
     public static Dimension size = new Dimension(860,680);
+
     public static Dimension pixel = new Dimension(size.width / pixelSize, size.height / pixelSize);
+    /** @param name name of the game window */
     public static String name = "Dyna Blaster - Escape from jail";
+    /** @param isRunning specifies whether the game is running or not */
     public static boolean isRunning = false;
 
     /** On this, the graphics are being drawn */
@@ -55,8 +51,6 @@ public class Component extends JPanel implements Runnable{
     public void tick(){}
 
     /** Function that draws the game objects: background, level layout, enemies and player
-     *
-     * @param 'g' Graphic to which render images
      */
     public void render(){
         Graphics g = screen.getGraphics();
@@ -72,7 +66,7 @@ public class Component extends JPanel implements Runnable{
         g.dispose();
     }
 
-    /** Function that "runs" the game, so */
+    /** Function that "runs" the game, makes the updating its state possible */
     public void run(){
         screen = createVolatileImage(pixel.width, pixel.height); //Volatile to give access to GPU
 
@@ -85,7 +79,9 @@ public class Component extends JPanel implements Runnable{
         }
     }
 
-    /** Functions painting the background of gamescreen */
+    /** Functions painting the background of gamescreen 
+    *   @param 'g' Graphic to which render images
+    */
     public void genBackground(Graphics g){
         //general background
         g.setColor(new Color(51,51,51)); //cool grey color 3x51
@@ -95,7 +91,9 @@ public class Component extends JPanel implements Runnable{
         g.fillRect(20,20,Tile.tileSize * 15,Tile.tileSize * 15);
     }
 
-    /** Function generating and drawing info about game parameters, such as time left, lives left and current score */
+    /** Function generating and drawing info about game parameters, such as time left, lives left and current score
+    *   @param 'g' Graphic to which render images
+    */
     public void gameplayInfo(Graphics g){
         g.setColor(new Color(220,220,220));
         g.setFont(new Font("TimesRoman", Font.BOLD, 13));
