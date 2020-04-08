@@ -80,7 +80,7 @@ public class Component extends JPanel implements Runnable{
     }
 
     /** Functions painting the background of gamescreen 
-    *   @param 'g' Graphic to which render images
+    *   @param g Graphic to which render images
     */
     public void genBackground(Graphics g){
         //general background
@@ -92,7 +92,7 @@ public class Component extends JPanel implements Runnable{
     }
 
     /** Function generating and drawing info about game parameters, such as time left, lives left and current score
-    *   @param 'g' Graphic to which render images
+    *   @param g Graphic to which render images
     */
     public void gameplayInfo(Graphics g){
         g.setColor(new Color(220,220,220));
