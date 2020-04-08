@@ -1,11 +1,22 @@
 package DynaBlast;
 
-import java.applet.*;
 import javax.swing.*;
 import java.awt.*;
 
-public class Component extends Applet implements Runnable{
+/** Class that creates gameplay screen
+ * class extends JPanel and implements Runnable for gaming performance
+ * creates the level layout with all tiles and enemies, then the character model
+ */
+public class Component extends JPanel implements Runnable{
     private static final long serialVersionUID = 1L;
+    /** Parameters of the gamescreen
+     *
+     * @param pixelSize size of pixel in-game
+     * @param size size of the game window
+     * @param pixel
+     * @param name name of the game window
+     * @param isRunning specifies whether the game is running or not
+     */
     private static int pixelSize = 2;
 
     public static Dimension size = new Dimension(860,680);
@@ -13,45 +24,47 @@ public class Component extends Applet implements Runnable{
     public static String name = "Dyna Blaster - Escape from jail";
     public static boolean isRunning = false;
 
+    /** On this, the graphics are being drawn */
     private Image screen;
 
+    /** Class instances that are to be co-created along with game window */
     public static Level level;
     public static Character character;
 
+    /** Constructor of class, that also sets size of the window*/
     public Component() {
         setPreferredSize(size);
     }
 
+    /** Function that starts (generates) the game infrastructure along with enemies and character */
     public void start() {
         new Tile();    //load images
         level = new Level();
         character = new Character(Tile.male_stripes);
-
         isRunning = true;
-        new Thread(this).start();
+        new Thread( this).start();
     }
 
+    /** Function that stops the game */
     public void stop() {
         isRunning = false;
     }
 
     public static void main(String args[]){
-        Component component = new Component();
-
-        JFrame frame = new JFrame(name);
-        frame.add(component);
-        frame.pack();
-        frame.setResizable(false);
-        frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-
-        component.start();
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new Menu();
+            }
+        });
     }
 
-    public void tick(){
+    public void tick(){}
 
-    }
+    /** Function that draws the game objects: background, level layout, enemies and player
+     *
+     * @param 'g' Graphic to which render images
+     */
     public void render(){
         Graphics g = screen.getGraphics();
         genBackground(g);
@@ -61,13 +74,12 @@ public class Component extends Applet implements Runnable{
         level.enemies.forEach((en) -> en.render(screen.getGraphics()));
 
         gameplayInfo(g);
-
         g = getGraphics();
-
         g.drawImage(screen, 0, 0, size.width, size.height, 0, 0, pixel.width, pixel.height, null);
         g.dispose();
     }
 
+    /** Function that "runs" the game, so */
     public void run(){
         screen = createVolatileImage(pixel.width, pixel.height); //Volatile to give access to GPU
 
@@ -80,6 +92,7 @@ public class Component extends Applet implements Runnable{
         }
     }
 
+    /** Functions painting the background of gamescreen */
     public void genBackground(Graphics g){
         //general background
         g.setColor(new Color(51,51,51)); //cool grey color 3x51
@@ -88,6 +101,8 @@ public class Component extends Applet implements Runnable{
         g.setColor(new Color(147, 139, 117));
         g.fillRect(20,20,Tile.tileSize * 15,Tile.tileSize * 15);
     }
+
+    /** Function generating and drawing info about game parameters, such as time left, lives left and current score */
     public void gameplayInfo(Graphics g){
         g.setColor(new Color(220,220,220));
         g.setFont(new Font("TimesRoman", Font.BOLD, 13));
