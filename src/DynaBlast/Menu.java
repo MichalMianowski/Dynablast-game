@@ -47,7 +47,10 @@ public class Menu extends JFrame implements ActionListener{
 
         add(jpanel);
 
-        /** Creating and setting "New game" button */
+        /** First, the new JButton is created and named
+         * Then its font is set and the button is added to panel where it can be pressed
+         * Lastly, its size is set and the button is being set to response to pressing it
+         */
         JButton NewGame = new JButton("New game");
         NewGame.setFont(new Font("font",Font.PLAIN,25));
         this.NewGame = NewGame;
