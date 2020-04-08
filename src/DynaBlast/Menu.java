@@ -17,15 +17,10 @@ public class Menu extends JFrame implements ActionListener{
     private JButton BestScores;
     private JButton Exit;
 
-    /** classes that have to be created after pressing specific buttons */
-    Component component;
-
-    /** In constructor, menu window is created along with the buttons */
+    /** In constructor the menu window is created, its size and location are being set, along with background image
+     * along with the panel, on which buttons can be added
+     */
     public Menu() {
-        /** setting basic actions of window such as: exitting on close
-         * as well as parameters, such as size and background image of window
-         * Also creates panel, to which the buttons have to be added
-         */
         super("DynaBlaster");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -46,11 +41,26 @@ public class Menu extends JFrame implements ActionListener{
         jpanel.add(jl);
 
         add(jpanel);
+        setVisible(true);
+    }
 
-        /** First, the new JButton is created and named
-         * Then its font is set and the button is added to panel where it can be pressed
-         * Lastly, its size is set and the button is being set to response to pressing it
-         */
+    /** Main function of the class, that creates the whole functioning menu, by first creating its parts
+     *  and then assembling them together
+     */
+    public static void main (String args[]){
+        Menu menu = new Menu();
+        menu.CreateNewGameButton();
+        menu.CreateOptionsButton();
+        menu.CreateBestScoresButton();
+        menu.CreateExitButton();
+    }
+
+    /** Function creates the NEW GAME button,
+     *  First, creates new JButton with appropiate name and font
+     *  Then it adds the button to the window's panel
+     *  At last it sets its size and makes it response to pressing it
+     */
+    public void CreateNewGameButton(){
         JButton NewGame = new JButton("New game");
         NewGame.setFont(new Font("font",Font.PLAIN,25));
         this.NewGame = NewGame;
@@ -59,9 +69,14 @@ public class Menu extends JFrame implements ActionListener{
         NewGame.setLocation(450,100);
         NewGame.setPreferredSize(new Dimension(500,50));
         NewGame.addActionListener(this);
+    }
 
-
-        /** Creating and setting "Options" button */
+    /** Function creates the OPTIONS button,
+     *  First, creates new JButton with appropiate name and font
+     *  Then it adds the button to the window's panel
+     *  At last it sets its size and makes it response to pressing it
+     */
+    public void CreateOptionsButton(){
         JButton Options = new JButton("Options");
         Options.setFont(new Font("font",Font.PLAIN,25));
         this.Options = Options;
@@ -69,8 +84,14 @@ public class Menu extends JFrame implements ActionListener{
 
         Options.setPreferredSize(new Dimension(500,50));
         Options.addActionListener(this);
+    }
 
-        /** Creating and setting "Best scores" button */
+    /** Function creates the BEST SCORES button,
+     *  First, creates new JButton with appropiate name and font
+     *  Then it adds the button to the window's panel
+     *  At last it sets its size and makes it response to pressing it
+     */
+    public void CreateBestScoresButton(){
         JButton BestScores = new JButton("Best scores");
         BestScores.setFont(new Font("font",Font.PLAIN,25));
         this.BestScores = BestScores;
@@ -78,8 +99,14 @@ public class Menu extends JFrame implements ActionListener{
 
         BestScores.setPreferredSize(new Dimension(500,50));
         BestScores.addActionListener(this);
+    }
 
-        /** Creating and setting "Exit" button */
+    /** Function creates the EXIT button,
+     *  First, creates new JButton with appropiate name and font
+     *  Then it adds the button to the window's panel
+     *  At last it sets its size and makes it response to pressing it
+     */
+    public void CreateExitButton(){
         JButton Exit = new JButton("Exit");
         Exit.setFont(new Font("font",Font.PLAIN,25));
         this.Exit = Exit;
@@ -88,15 +115,16 @@ public class Menu extends JFrame implements ActionListener{
         Exit.setPreferredSize(new Dimension(500,50));
         Exit.addActionListener(this);
 
-        setVisible(true);
     }
 
-    /** fucntion that specifies what actions are to be performed after pressing specific buttons */
+    /** Fucntion that specifies what actions are to be performed after pressing specific buttons
+    *   If New Game is pressed, create the new instance of the game
+    *   If Exit is pressed, exit the game and close all windows
+    */
     public void actionPerformed(ActionEvent ae) {
         Object o = ae.getSource();
-        /** if "New game" is pressed, create gameplay screen */
         if(o == NewGame) {
-            component = new Component();
+            Component component = new Component();
             JFrame frame = new JFrame(component.name);
             frame.add(component);
             frame.pack();
@@ -108,7 +136,7 @@ public class Menu extends JFrame implements ActionListener{
         } else if(o == Options) {
 
         } else if(o == BestScores) {
-        /** if "Exit" is pressed, close all windows and exit game */
+            
         } else if(o == Exit) {
             System.exit(0);
         }
