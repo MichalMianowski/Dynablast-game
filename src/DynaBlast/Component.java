@@ -9,15 +9,15 @@ import java.awt.*;
  */
 public class Component extends JPanel implements Runnable{
     private static final long serialVersionUID = 1L;
-    /** @param pixelSize size of pixel in-game */
+    /** size of pixel in-game */
     private static int pixelSize = 2;
-    /** @param size size of the game window */
+    /** size of the game window */
     public static Dimension size = new Dimension(860,680);
-    /** @param pixel size of the window shown by in-game pixels */
+    /** size of the window shown by in-game pixels */
     public static Dimension pixel = new Dimension(size.width / pixelSize, size.height / pixelSize);
-    /** @param name name of the game window */
+    /** name of the game window */
     public static String name = "Dyna Blaster - Escape from jail";
-    /** @param isRunning specifies whether the game is running or not */
+    /** specifies whether the game is running or not */
     public static boolean isRunning = false;
 
     /** On this, the graphics are being drawn */
