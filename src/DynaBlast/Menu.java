@@ -11,10 +11,13 @@ import java.awt.event.ActionListener;
  * Can also create and run functions of other classes if specific button is pressed
  */
 public class Menu extends JFrame implements ActionListener{
-    /** Buttons that exist in initial menu */
+    /** Button "New game" that exist in initial menu */
     private JButton NewGame;
+    /** Button "Options" that exist in initial menu */
     private JButton Options;
+    /** Button "Best scores" that exist in initial menu */
     private JButton BestScores;
+    /** Button "Exit" that exist in initial menu */
     private JButton Exit;
 
     /** In constructor the menu window is created, its size and location are being set, along with background image
@@ -120,6 +123,7 @@ public class Menu extends JFrame implements ActionListener{
     /** Fucntion that specifies what actions are to be performed after pressing specific buttons
     *   If New Game is pressed, create the new instance of the game
     *   If Exit is pressed, exit the game and close all windows
+    *   @param ae actions that the program responds to
     */
     public void actionPerformed(ActionEvent ae) {
         Object o = ae.getSource();
