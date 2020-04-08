@@ -50,15 +50,8 @@ public class Component extends JPanel implements Runnable{
         isRunning = false;
     }
 
-    public static void main(String args[]){
-        EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new Menu();
-            }
-        });
-    }
-
+    /** Functions that updates the game's state
+    */
     public void tick(){}
 
     /** Function that draws the game objects: background, level layout, enemies and player
