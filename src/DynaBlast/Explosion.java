@@ -1,12 +1,16 @@
+<<<<<<< HEAD
 /**
  * Michal Mianowski & Piotr Strzaska
  */
+=======
+>>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
 package DynaBlast;
 
 import java.awt.*;
 import java.awt.image.ImageObserver;
 import java.util.ArrayList;
 
+<<<<<<< HEAD
 /**
  * class to service explosions caused by bombs
  * check the length of each explosion arm
@@ -44,6 +48,22 @@ public class Explosion {
      *
      * @param cell cell of the center of explosion
      */
+=======
+public class Explosion {
+    int x, y;
+    int[] cellLoc;
+    public boolean done;
+    int counter;
+    int length = 1;
+    int lengthL = 0;
+    int lengthR = 0;
+    int lengthU = 0;
+    int lengthD = 0;
+    ArrayList<int[]> explosionReach = new ArrayList<>();
+
+    Graphic graph = new Graphic(50, Tile.tileset_bars_death[0], Tile.tileset_bars_death[1], Tile.tileset_bars_death[2], Tile.tileset_bars_death[3]);
+
+>>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
     public Explosion(int[] cell){
         done = false;
         x = Level.margin + cell[0] * Tile.tileSize;
@@ -58,10 +78,13 @@ public class Explosion {
         countVisibility();
     }
 
+<<<<<<< HEAD
     /** render explosion's image on map
      *
      * @param g Graphic to which render images and draw animations
      */
+=======
+>>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
     public void render(Graphics g) {
         g.drawImage(Tile.tileset_explosion_core, (int) x, (int) y, null);
         for(int i = 0; i <= lengthL; i++){
@@ -78,10 +101,13 @@ public class Explosion {
         }
     }
 
+<<<<<<< HEAD
     /** spreading of explosion to each direction
      * saving data to explosionReach list
      * making destruction
      */
+=======
+>>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
     public void go(){
         goLeft();
         goRight();
@@ -91,9 +117,13 @@ public class Explosion {
         destroy();
     }
 
+<<<<<<< HEAD
     /** going to left
      * discover range and making bars destruction
      */
+=======
+
+>>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
     public void goLeft(){
         lengthL = length;
         for(int i = 1; i <= length; i++){
@@ -106,9 +136,12 @@ public class Explosion {
             }
         }
     }
+<<<<<<< HEAD
     /** going to right
      * discover range and making bars destruction
      */
+=======
+>>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
     public void goRight(){
         lengthR = length;
         for(int i = 1; i <= length; i++){
@@ -121,9 +154,12 @@ public class Explosion {
             }
         }
     }
+<<<<<<< HEAD
     /** going to up
      * discover range and making bars destruction
      */
+=======
+>>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
     public void goUp(){
         lengthU = length;
         for(int i = 1; i <= length; i++){
@@ -136,9 +172,12 @@ public class Explosion {
             }
         }
     }
+<<<<<<< HEAD
     /** going to down
      * discover range and making bars destruction
      */
+=======
+>>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
     public void goDown(){
         lengthD = length;
         for(int i = 1; i <= length; i++){
@@ -152,9 +191,12 @@ public class Explosion {
         }
     }
 
+<<<<<<< HEAD
     /**
      * getting range of explosion
      */
+=======
+>>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
     private void getExplosionReach() {
         for(int i = 0; i <= lengthL; i++){
             explosionReach.add(new int[] {cellLoc[0]-i, cellLoc[1]});
@@ -170,9 +212,12 @@ public class Explosion {
         }
     }
 
+<<<<<<< HEAD
     /**
      * counting how long explosion should be visible
      */
+=======
+>>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
     public void countVisibility(){
         counter--;
         if(counter==0){
@@ -180,6 +225,7 @@ public class Explosion {
         }
     }
 
+<<<<<<< HEAD
     /**
      * making a destruction at
      * another bomb
@@ -187,6 +233,8 @@ public class Explosion {
      * character
      * place of escape
      */
+=======
+>>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
     private void destroy() {
         Level.bombs.forEach(bomb -> {
             explosionReach.forEach(reach -> {
@@ -201,6 +249,7 @@ public class Explosion {
         Level.enemies.forEach(enemy -> {
             explosionReach.forEach(reach -> {
                 if((reach[0] == enemy.getCellAtMap()[0])&&(reach[1] == enemy.getCellAtMap()[1])){
+<<<<<<< HEAD
                     enemy.VerticalSpeed = 0;
                     enemy.HorizontalSpeed = 0;
                     if (enemy.type == Tile.guard) {
@@ -213,6 +262,9 @@ public class Explosion {
                         enemy.graph3 = new Graphic(10, Tile.tileset_army_man_death[0], Tile.tileset_army_man_death[1], Tile.tileset_army_man_death[2], Tile.tileset_army_man_death[3]);
                     }
                     enemy.dying = true;
+=======
+                    enemy.die();
+>>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
                 }
             });
         });
@@ -220,6 +272,10 @@ public class Explosion {
         for(int[] reach:explosionReach){
             if((reach[0] == Game.character.getCellAtMap()[0])&&(reach[1] == Game.character.getCellAtMap()[1])){
                     Game.character.exploded();
+<<<<<<< HEAD
+=======
+
+>>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
                     break;
                 }
             };

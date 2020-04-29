@@ -1,6 +1,9 @@
+<<<<<<< HEAD
 /**
  * Michal Mianowski & Piotr Strzaska
  */
+=======
+>>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
 package DynaBlast;
 
 import java.awt.image.BufferedImage;
@@ -16,7 +19,11 @@ public class Graphic{
     /** checks if the frames should be changed */
     private int index = 0;
     /** specifies what frame should be currently displayed */
+<<<<<<< HEAD
     static int count = 0;
+=======
+    private int count = 0;
+>>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
 
     /** first image of animation cycle */
     private BufferedImage img1;
@@ -29,8 +36,11 @@ public class Graphic{
     /** currently displayed image */
     private BufferedImage currentImg;
 
+<<<<<<< HEAD
     public boolean check = false;
 
+=======
+>>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
     /** constructor of the class, that sets images for animation cycle as well as its speed and length of animation cycle
      *
      * @param speed specifies how fast animation should be played
@@ -79,6 +89,7 @@ public class Graphic{
         }
     }
 
+<<<<<<< HEAD
     /**
      * function that changes information about what image should be displayed
      * @param enemy info which enemy will die
@@ -118,6 +129,8 @@ public class Graphic{
         }
     }
 
+=======
+>>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
     /**  function that directly draws animation cycle
      *
      * @param g Graphic to which render images

@@ -20,10 +20,14 @@ public class Level {
     /** timer for level in seconds */
     static int timeLeft = 0; //in seconds
     static int timePoints;
+<<<<<<< HEAD
     /** should the level will be restarted */
     public boolean restart = false;
     /** should be begin win procedure */
     public boolean win = false;
+=======
+    public boolean restart = false;
+>>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
 
     /** two dimensions table of @Block containing all level blocks */
     public static Block[][] block;
@@ -34,10 +38,14 @@ public class Level {
     public static char[][] blockList;
     /** int table with information where will be escape cell */
     public int[] cellOfEscape = new int[2];
+<<<<<<< HEAD
     /** flag of escape visible stage
      * 0 -not, 1 - ready to destroy, 2 - ready to escape
      */
     public int escapeVisible = 0;
+=======
+    public int escapeVisible = 0; //0 -not, 1 - ready to destroy, 2 - ready to escape
+>>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
 
 
 
@@ -105,10 +113,13 @@ public class Level {
         escapeVisibility();
     }
 
+<<<<<<< HEAD
     /**
      * adding bomb to list of bombs at map
      * @param cell in which cell bomb should be placed
      */
+=======
+>>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
     public void addBomb(int[] cell){
         bombs.add(new Bomb(cell));
     }
@@ -131,11 +142,14 @@ public class Level {
         }
     }
 
+<<<<<<< HEAD
     /**
      * restart procedure
      * cleaning enemies, bombs
      * and reloading level
      */
+=======
+>>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
     public void restart(){
         restart = false;
         escapeVisible = 0;
@@ -146,12 +160,16 @@ public class Level {
         loadLevel(blockList);
     }
 
+<<<<<<< HEAD
     /**control visibility of escape place image */
+=======
+>>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
     private void escapeVisibility() {
         if((enemies.size() == 0)&&(escapeVisible == 0)){
             escapeVisible = 1;
         }
     }
+<<<<<<< HEAD
 
     /** procedure after winning the level*/
     public void win() {
@@ -159,6 +177,10 @@ public class Level {
             System.out.println("tadaaa");
             win = true;
         }
+=======
+    public void win() {
+        System.out.println("tadaaa");
+>>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
     }
 
 

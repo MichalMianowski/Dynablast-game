@@ -42,6 +42,7 @@ public class Menu extends JFrame implements ActionListener{
         setContentPane(new JLabel(tlo));
         setLayout(new GridBagLayout());
         c = new GridBagConstraints();
+<<<<<<< HEAD
         music = true;
         Sounds.play(Sounds.MenuMusic);
 
@@ -51,6 +52,11 @@ public class Menu extends JFrame implements ActionListener{
         CreateExitButton();
 
         setVisible(true);
+=======
+        setVisible(true);
+        music = true;
+        Sounds.play(Sounds.MenuMusic);
+>>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
     }
 
     /** Function creates the NEW GAME button,

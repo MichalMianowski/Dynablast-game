@@ -22,6 +22,7 @@ public class Character extends Creatures {
     private static int lives;
     /** player's score */
     static int score;
+<<<<<<< HEAD
     /** type of character */
     char type;
     /** basic movement speed may be edited by factor from config */
@@ -36,6 +37,15 @@ public class Character extends Creatures {
     public static double dirY = 0;
 
     /** graphics needed to animations */
+=======
+    char type;
+    public static double movementSpeed = 1;
+    public static boolean isMovingX = false;
+    public static boolean isMovingY = false;
+    public static double dirX = 0;
+    public static double dirY = 0;
+
+>>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
     Graphic graph1, graph2, graph3, graph4;
 
     /**
@@ -87,9 +97,13 @@ public class Character extends Creatures {
         move();
     }
 
+<<<<<<< HEAD
     /**
      * moving main character according to typed keyboard key
      */
+=======
+
+>>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
     private void move() {
         if (isMovingX) {
             boolean cantMove = false;
@@ -127,26 +141,35 @@ public class Character extends Creatures {
         }
     }
 
+<<<<<<< HEAD
     /**
      * instruction after contact with enemy
      */
+=======
+>>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
     public void captured(){
         System.out.println("You're captured! Exterminate!");
         die();
     }
+<<<<<<< HEAD
 
     /**
      * instruction after contact with explosion
      */
+=======
+>>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
     public void exploded(){
         System.out.println("You're not fireproof!");
         die();
     }
 
+<<<<<<< HEAD
     /**
      * instruction of death
      * common to exploded and captured
      */
+=======
+>>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
     public void die(){
         x = Level.margin + Tile.tileSize;
         y = Level.margin + Tile.tileSize;
@@ -154,9 +177,13 @@ public class Character extends Creatures {
         Game.level.restart = true;
     }
 
+<<<<<<< HEAD
     /**
      * placing bomb at current cell
      */
+=======
+
+>>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
     public void placeBomb() {
         Game.level.addBomb(getCellAtMap());
     }
@@ -187,10 +214,13 @@ public class Character extends Creatures {
         else
             g.drawImage(img, (int) x, (int) y, null);
     }
+<<<<<<< HEAD
 
     /**
      * instructions of moving the character
      */
+=======
+>>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
     private void moveAnimation(){
         if (dirY > 0) {
             graph1.runAnimation();
