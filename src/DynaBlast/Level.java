@@ -20,7 +20,10 @@ public class Level {
     /** timer for level in seconds */
     static int timeLeft = 0; //in seconds
     static int timePoints;
+    /** should the level will be restarted */
     public boolean restart = false;
+    /** should be begin win procedure */
+    public boolean win = false;
 
     /** two dimensions table of @Block containing all level blocks */
     public static Block[][] block;
@@ -31,7 +34,10 @@ public class Level {
     public static char[][] blockList;
     /** int table with information where will be escape cell */
     public int[] cellOfEscape = new int[2];
-    public int escapeVisible = 0; //0 -not, 1 - ready to destroy, 2 - ready to escape
+    /** flag of escape visible stage
+     * 0 -not, 1 - ready to destroy, 2 - ready to escape
+     */
+    public int escapeVisible = 0;
 
 
 
@@ -99,6 +105,10 @@ public class Level {
         escapeVisibility();
     }
 
+    /**
+     * adding bomb to list of bombs at map
+     * @param cell in which cell bomb should be placed
+     */
     public void addBomb(int[] cell){
         bombs.add(new Bomb(cell));
     }
@@ -121,6 +131,11 @@ public class Level {
         }
     }
 
+    /**
+     * restart procedure
+     * cleaning enemies, bombs
+     * and reloading level
+     */
     public void restart(){
         restart = false;
         escapeVisible = 0;
@@ -131,13 +146,19 @@ public class Level {
         loadLevel(blockList);
     }
 
+    /**control visibility of escape place image */
     private void escapeVisibility() {
         if((enemies.size() == 0)&&(escapeVisible == 0)){
             escapeVisible = 1;
         }
     }
+
+    /** procedure after winning the level*/
     public void win() {
-        System.out.println("tadaaa");
+        if (!win) {
+            System.out.println("tadaaa");
+            win = true;
+        }
     }
 
 

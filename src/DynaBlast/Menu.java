@@ -42,9 +42,15 @@ public class Menu extends JFrame implements ActionListener{
         setContentPane(new JLabel(tlo));
         setLayout(new GridBagLayout());
         c = new GridBagConstraints();
-        setVisible(true);
         music = true;
         Sounds.play(Sounds.MenuMusic);
+
+        CreateNewGameButton();
+        CreateOptionsButton();
+        CreateBestScoresButton();
+        CreateExitButton();
+
+        setVisible(true);
     }
 
     /** Function creates the NEW GAME button,

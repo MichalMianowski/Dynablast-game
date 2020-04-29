@@ -16,13 +16,26 @@ import java.awt.*;
 public class Enemy extends Creatures {
     /** contain information about type of the enemy */
     char type;
+    /** speed or vertical move can be changed by speed factor */
     double VerticalSpeed;
+    /** speed or horizontal move can be changed by speed factor */
     double HorizontalSpeed;
+    /** number of lives of enemy
+     * -> some enemies would be killed only after few explosion contacts
+     */
     int lives;
+    /** basic ammount of points gained by killing this enemy
+     * may be eddited by points factor depending of difficulty level
+      */
     int points;
+    /** is this enemy dead if yes he will be removed from enemies list */
     boolean dead = false;
+    /** is he dying if yes play animation of death and turn dead to value true */
+    boolean dying = false;
+    /** should he change direction (because of collision with wall) */
     boolean turn = false;
 
+    /** graphics needed to animations */
     Graphic graph1, graph2, graph3;
 
     /**
@@ -64,15 +77,23 @@ public class Enemy extends Creatures {
         graph1 = new Graphic(10, Tile.tileset_guard[0], Tile.tileset_guard[1], Tile.tileset_guard[2], Tile.tileset_guard[3]);
         graph2 = new Graphic(10, Tile.tileset_swat[0], Tile.tileset_swat[1], Tile.tileset_swat[2], Tile.tileset_swat[3]);
         graph3 = new Graphic(10, Tile.tileset_army_man[0], Tile.tileset_army_man[1], Tile.tileset_army_man[2], Tile.tileset_army_man[3]);
+
     }
 
     /** changes the location of every enemy depending on its type
      * as well as making the animation for every type change with every clock tick
      */
     public void tick(){
-        graph1.runAnimation();
-        graph2.runAnimation();
-        graph3.runAnimation();
+        if (!dying) {
+            graph1.runAnimation();
+            graph2.runAnimation();
+            graph3.runAnimation();
+        }
+        else if (dying){
+            graph1.runAnimationOnce(this);
+            graph2.runAnimationOnce(this);
+            graph3.runAnimationOnce(this);
+        }
 
         if (this.type == Tile.guard) {
             y += this.VerticalSpeed;
@@ -124,11 +145,6 @@ public class Enemy extends Creatures {
         }
     }
 
-    public void die() {
-        dead = true;
-    }
-
-
     /** render image of enemy depending on his type
      * @param g Graphic to which render images and draw animations
      */
@@ -139,8 +155,9 @@ public class Enemy extends Creatures {
         else if (type == Tile.swat){
             graph2.drawAnimation(g, x, y);
         }
-        else if (type == Tile.guard){
+        else if (type == Tile.guard) {
             graph1.drawAnimation(g, x, y);
         }
     }
 }
+

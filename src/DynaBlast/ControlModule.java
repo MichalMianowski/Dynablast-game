@@ -1,9 +1,24 @@
+/**
+ * Michal Mianowski & Piotr Strzaska
+ */
 package DynaBlast;
 
 import javax.swing.*;
 import java.awt.event.*;
 
+/**
+ * class to control main character by keyboard
+ * WASD or ARROWS to move
+ * SPACEBAR to place a bomb
+ */
 public class ControlModule {
+    /**
+     * when key is pressed - start move in this axis
+     * when release - stop move in this axis
+     * placing bombs react only at pressing
+     *
+     * @param thisGame game to control
+     */
     static void useKeyboard(Game thisGame){
 
         InputMap input = thisGame.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
@@ -39,32 +54,32 @@ public class ControlModule {
         action.put("left", new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
                 Character.isMovingX = true;
-                Character.dirX = -Game.character.movementSpeed;
+                Character.dirX = -Character.movementSpeed;
             }
         });
         action.put("right", new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
                 Character.isMovingX = true;
-                Character.dirX = Game.character.movementSpeed;
+                Character.dirX = Character.movementSpeed;
             }
         });
         action.put("up", new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
                 Character.isMovingY = true;
-                Character.dirY = -Game.character.movementSpeed;
+                Character.dirY = -Character.movementSpeed;
             }
         });
         action.put("down", new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
                 Character.isMovingY = true;
-                Character.dirY = Game.character.movementSpeed;
+                Character.dirY = Character.movementSpeed;
             }
         });
 
         //akcje puszczenia klawisza
         action.put("left_released", new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
-                if(Character.dirX == -Game.character.movementSpeed){
+                if(Character.dirX == -Character.movementSpeed){
                     Character.dirX = 0;
                     Character.isMovingX = false;
                 }
@@ -72,7 +87,7 @@ public class ControlModule {
         });
         action.put("right_released", new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
-                if(Character.dirX == Game.character.movementSpeed){
+                if(Character.dirX == Character.movementSpeed){
                     Character.dirX = 0;
                     Character.isMovingX = false;
                 }
@@ -80,7 +95,7 @@ public class ControlModule {
         });
         action.put("up_released", new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
-                if(Character.dirY == -Game.character.movementSpeed){
+                if(Character.dirY == -Character.movementSpeed){
                     Character.dirY = 0;
                     Character.isMovingY = false;
                 }
@@ -88,7 +103,7 @@ public class ControlModule {
         });
         action.put("down_released", new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
-                if(Character.dirY == Game.character.movementSpeed){
+                if(Character.dirY == Character.movementSpeed){
                     Character.dirY = 0;
                     Character.isMovingY = false;
                 }
@@ -99,7 +114,6 @@ public class ControlModule {
         action.put("place_bomb", new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
                 Game.character.placeBomb();
-                System.out.println("bomb placed");
             }
         });
 

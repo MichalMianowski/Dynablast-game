@@ -57,6 +57,13 @@ public class Block extends Rectangle {
             g.drawImage(Tile.tileset_bars, x, y, width, height, null);
         }
     }
+    /**
+     * render escape cell image
+     * ready to break depends on escapeType
+     *
+     * @param g Graphic to which render images
+     * @param escapeType ('l') escape_1 - ready to break, ('L') escape_2 - ready to escape
+     */
     public void render(Graphics g, char escapeType) {
         if (escapeType == Tile.escape_1) {
             g.drawImage(Tile.tileset_escape_1, x, y, width, height, null);

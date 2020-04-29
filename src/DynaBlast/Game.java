@@ -103,13 +103,13 @@ public class Game extends JPanel implements Runnable{
     public void genBackground(Graphics g){
         //general background
         if (color == 'G') {
-            g.setColor(new Color(0,255,0)); //cool grey color 3x51
+            g.setColor(new Color(175, 213, 170)); //cool grey color 3x51
         }
         else if (color == 'Y'){
-            g.setColor(new Color(255,153,51));
+            g.setColor(new Color(108, 145, 194));
         }
         else if (color == 'R'){
-            g.setColor(new Color(255,0,0));
+            g.setColor(new Color(226, 133, 110));
         }
         g.fillRect(0,0,screen.getWidth(null),screen.getHeight(null));
         //jail floor (platform background)
@@ -123,7 +123,7 @@ public class Game extends JPanel implements Runnable{
         g.setFont(new Font("TimesRoman", Font.BOLD, 13));
 
         g.drawString("Time left:", 330, 40);
-        g.drawString(Level.timeLeft /60 + ":" + String.format("%02d",level.timeLeft%60), 330, 60);
+        g.drawString(Level.timeLeft /60 + ":" + String.format("%02d", Level.timeLeft %60), 330, 60);
         g.drawString("Lives left:", 330, 80);
         g.drawString("" + character.getLives(), 330, 100);
         g.drawString("Your score:", 330, 120);

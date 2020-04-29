@@ -22,13 +22,20 @@ public class Character extends Creatures {
     private static int lives;
     /** player's score */
     static int score;
+    /** type of character */
     char type;
+    /** basic movement speed may be edited by factor from config */
     public static double movementSpeed = 1;
+    /** contains info about horizontal move */
     public static boolean isMovingX = false;
+    /** contains info about vertical move */
     public static boolean isMovingY = false;
+    /** amount of distance to move horizontal */
     public static double dirX = 0;
+    /** amount of distance to move vertical */
     public static double dirY = 0;
 
+    /** graphics needed to animations */
     Graphic graph1, graph2, graph3, graph4;
 
     /**
@@ -80,7 +87,9 @@ public class Character extends Creatures {
         move();
     }
 
-
+    /**
+     * moving main character according to typed keyboard key
+     */
     private void move() {
         if (isMovingX) {
             boolean cantMove = false;
@@ -118,15 +127,26 @@ public class Character extends Creatures {
         }
     }
 
+    /**
+     * instruction after contact with enemy
+     */
     public void captured(){
         System.out.println("You're captured! Exterminate!");
         die();
     }
+
+    /**
+     * instruction after contact with explosion
+     */
     public void exploded(){
         System.out.println("You're not fireproof!");
         die();
     }
 
+    /**
+     * instruction of death
+     * common to exploded and captured
+     */
     public void die(){
         x = Level.margin + Tile.tileSize;
         y = Level.margin + Tile.tileSize;
@@ -134,7 +154,9 @@ public class Character extends Creatures {
         Game.level.restart = true;
     }
 
-
+    /**
+     * placing bomb at current cell
+     */
     public void placeBomb() {
         Game.level.addBomb(getCellAtMap());
     }
@@ -165,6 +187,10 @@ public class Character extends Creatures {
         else
             g.drawImage(img, (int) x, (int) y, null);
     }
+
+    /**
+     * instructions of moving the character
+     */
     private void moveAnimation(){
         if (dirY > 0) {
             graph1.runAnimation();

@@ -1,3 +1,6 @@
+/**
+ * Michal Mianowski & Piotr Strzaska
+ */
 package DynaBlast;
 
 /** Main class of the project, that begins all necessary actions */
@@ -7,9 +10,5 @@ public class Boot {
      */
     public static void main (String args[]){
         Menu menu = new Menu();
-        menu.CreateNewGameButton();
-        menu.CreateOptionsButton();
-        menu.CreateBestScoresButton();
-        menu.CreateExitButton();
     }
 }
