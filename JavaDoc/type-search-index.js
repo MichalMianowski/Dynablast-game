@@ -1,1 +1,0 @@
-typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"DynaBlast","l":"Block"},{"p":"DynaBlast","l":"Character"},{"p":"DynaBlast","l":"Component"},{"p":"DynaBlast","l":"Creatures"},{"p":"DynaBlast","l":"Enemy"},{"p":"DynaBlast","l":"Level"},{"p":"DynaBlast","l":"Menu"},{"p":"DynaBlast","l":"Tile"}]

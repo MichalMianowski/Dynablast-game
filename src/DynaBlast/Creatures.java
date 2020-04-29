@@ -3,11 +3,14 @@
  */
 package DynaBlast;
 
+import java.awt.*;
+
 /**
  * parent class for all 'alive' objects such as character and enemies
  * stores information about dimensions of creature and his localisation (in double)
  */
 public class Creatures {
+    double margin = 1;
     /** localisation and dimensions of the creature */
     public double x, y, width, height;
 
@@ -45,4 +48,30 @@ public class Creatures {
         this.width = width;
         this.height = height;
     }
+
+    public Rectangle getBounds() {
+        return new Rectangle((int)(x + margin), (int)(y + margin), (int)(width - 2*margin), (int)(height-2*margin));
+    }
+
+    public int[] getCellAtMap(){
+        int x = (int) (((this.x - Level.margin) + width/2)/Tile.tileSize);
+        int y = (int) (((this.y - Level.margin) + width/2)/Tile.tileSize);
+
+        return new int[] {x, y};
+    }
+    public int[] getCellsHorizontalMove(){
+        int x = (int) (((this.x - Level.margin) + width/2)/Tile.tileSize);
+        int y1 = (int) (((this.y - Level.margin) + width/2 - width/3)/Tile.tileSize);
+        int y2 = (int) (((this.y - Level.margin) + width/2 + width/3)/Tile.tileSize);
+
+        return new int[] {x, y1, y2};
+    }
+    public int[] getCellsVerticalMove(){
+        int x1 = (int) (((this.x - Level.margin) + width/2 - width/5)/Tile.tileSize);
+        int x2 = (int) (((this.x - Level.margin) + width/2 + width/5)/Tile.tileSize);
+        int y = (int) (((this.y - Level.margin) + width/2)/Tile.tileSize);
+
+        return new int[] {x1, x2, y};
+    }
+
 }

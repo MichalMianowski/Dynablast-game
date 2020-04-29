@@ -5,7 +5,6 @@ package DynaBlast;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.io.File;
 
 /**
@@ -19,62 +18,43 @@ public class Level {
     /** margin from left and top of the window */
     public static int margin = 20;
     /** timer for level in seconds */
-    int timeLeft; //in seconds
+    static int timeLeft = 0; //in seconds
+    static int timePoints;
+    public boolean restart = false;
+
     /** two dimensions table of @Block containing all level blocks */
-    public Block[][] block = new Block[15][15];
+    public static Block[][] block;
     /**
      * two dimensions table of chars containing coded data about level plan
      * receive data from external file by @loadLevelFromFile method
      * */
-    public char[][] blockList = new char[15][15];
+    public static char[][] blockList;
+    /** int table with information where will be escape cell */
+    public int[] cellOfEscape = new int[2];
+    public int escapeVisible = 0; //0 -not, 1 - ready to destroy, 2 - ready to escape
 
-    /** information about path to .txt file with level data */
-    public File fileLocation1 = new File("Levels/Poziom_1.txt");
-    /** scanner to read chars from .txt file */
-    public Scanner sc;
+
+
+    static File LevelSize1 = new File("res/config/Levels/Poziom rozmiar.txt");
+    static File LevelLocation1 = new File("res/config/Levels/Poziom_1.txt");
+    static File LevelLocation2 = new File("res/config/Levels/Poziom_2.txt");
+    static File LevelLocation3 = new File("res/config/Levels/Poziom_3.txt");
+    static File LevelLocation4 = new File("res/config/Levels/Poziom_4.txt");
+    static File LevelLocation5 = new File("res/config/Levels/Poziom_5.txt");
+    static File level;
 
     /** ArrayList containing all enemies at this level */
-    ArrayList<Enemy> enemies = new ArrayList();
-
+    static ArrayList<Enemy> enemies = new ArrayList();
+    /** ArrayList containing all bombs unexploded */
+    static ArrayList<Bomb> bombs = new ArrayList();
+    /** ArrayList containing all present explosions */
+    static ArrayList<Explosion> explosions = new ArrayList();
 
     /** Creates object of Level */
     public Level() {
-        timeLeft = 242;
-        generateLevel();
-        loadLevelFromFile();
+        Configurations.generateLevel();
+        Configurations.loadLevelFromFile(level);
         loadLevel(blockList);
-    }
-
-    /** generates block in each cell of @Block table and set appropriate X and Y location */
-    public void generateLevel() {
-        for (int y = 0; y < block.length; y++) {
-            for (int x = 0; x < block.length; x++) {
-                block[x][y] = new Block(new Rectangle(margin + x * Tile.tileSize, margin + y * Tile.tileSize, Tile.tileSize, Tile.tileSize), Tile.empty);
-            }
-        }
-    }
-
-    /**
-     * loads level data from txt file
-     * loads to two dimensions char table @blockList
-     */
-    public void loadLevelFromFile() {
-        int n = 0;
-        try {
-            sc = new Scanner(fileLocation1);
-            while (sc.hasNext()) {
-                for (int i = 0; i < 15; i++) {
-                    for (int j = 0; j < 15; j++) {
-                        blockList[j][i] = sc.next().charAt(0);
-                    }
-                }
-                n++;
-            }
-            sc.close();
-        } catch (Exception e) {
-            System.out.println("Blad wczytywania pliku");
-            e.printStackTrace();
-        }
     }
 
     /**
@@ -90,8 +70,10 @@ public class Level {
                     block[x][y].id = Tile.unbreakable;
                 } else if (lvl[x][y] == Tile.bars) {
                     block[x][y].id = Tile.bars;
-                } else if (lvl[x][y] == Tile.ladder) {
-                    block[x][y].id = Tile.ladder;
+                } else if (lvl[x][y] == Tile.escape_2) {
+                    System.out.println("wczytano drabinę");
+                    cellOfEscape[0] = x;
+                    cellOfEscape[1] = y;
                 } else if (lvl[x][y] == Tile.guard) {
                     enemies.add(new Enemy(Tile.guard, margin + x * Tile.tileSize, margin + y * Tile.tileSize));
                 } else if (lvl[x][y] == Tile.army_man) {
@@ -103,9 +85,22 @@ public class Level {
         }
     }
 
-
     public void tick() {
+        if(restart){ restart();}
+        CollisionChecker.isContactCharacterEnemy(enemies, Game.character);
 
+        bombs.removeIf(bomb -> bomb.stage < -1);
+        bombs.forEach(Bomb::tick);
+
+        explosions.removeIf(explosion -> explosion.done);
+        explosions.forEach(Explosion::tick);
+
+        enemies.removeIf(enemy -> enemy.dead);
+        escapeVisibility();
+    }
+
+    public void addBomb(int[] cell){
+        bombs.add(new Bomb(cell));
     }
 
     /** render each block in two dimensions block table
@@ -118,6 +113,32 @@ public class Level {
                 block[x][y].render(g);
             }
         }
+        if(escapeVisible == 1){
+            block[cellOfEscape[0]][cellOfEscape[1]].render(g, Tile.escape_1);
+        }
+        else if(escapeVisible == 2){
+            block[cellOfEscape[0]][cellOfEscape[1]].render(g, Tile.escape_2);
+        }
     }
+
+    public void restart(){
+        restart = false;
+        escapeVisible = 0;
+        bombs.clear();
+        Level.enemies.clear();
+        Configurations.generateLevel();
+        Configurations.loadLevelFromFile(level);
+        loadLevel(blockList);
+    }
+
+    private void escapeVisibility() {
+        if((enemies.size() == 0)&&(escapeVisible == 0)){
+            escapeVisible = 1;
+        }
+    }
+    public void win() {
+        System.out.println("tadaaa");
+    }
+
 
 }
