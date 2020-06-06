@@ -27,6 +27,7 @@ public class Game extends JPanel implements Runnable{
     public static boolean isRunning = false;
     public static boolean music = true;
     public static boolean sound = true;
+    int k = 0;
 
     /** On this, the graphics are being drawn */
     private Image screen;
@@ -48,7 +49,7 @@ public class Game extends JPanel implements Runnable{
     public void start() {
         new Tile();    //load images
         level = new Level();
-        character = new Character(Tile.male_orange, Configurations.lives);
+        character = new Character(Tile.female_stripes, Configurations.lives);
         isRunning = true;
         new Thread( this).start();
     }
@@ -64,6 +65,15 @@ public class Game extends JPanel implements Runnable{
         Level.enemies.forEach(Enemy::tick);
         character.tick();
         level.tick();
+        k++;
+        if (k==122){
+            Level.timeLeft -=1;
+            k=0;
+        }
+        if (Level.timeLeft == -1){
+            character.TimeRunOut();
+            Level.timeLeft = Configurations.time;
+        }
     }
 
     /** Function that draws the game objects: background, level layout, enemies, bombs, explosions and player
@@ -123,11 +133,7 @@ public class Game extends JPanel implements Runnable{
         g.setFont(new Font("TimesRoman", Font.BOLD, 13));
 
         g.drawString("Time left:", 330, 40);
-<<<<<<< HEAD
         g.drawString(Level.timeLeft /60 + ":" + String.format("%02d", Level.timeLeft %60), 330, 60);
-=======
-        g.drawString(Level.timeLeft /60 + ":" + String.format("%02d",level.timeLeft%60), 330, 60);
->>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
         g.drawString("Lives left:", 330, 80);
         g.drawString("" + character.getLives(), 330, 100);
         g.drawString("Your score:", 330, 120);
