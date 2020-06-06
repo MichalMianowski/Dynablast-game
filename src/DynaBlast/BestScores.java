@@ -72,9 +72,7 @@ public class BestScores extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent ae) {
         Object o = ae.getSource();
         if (o == ReturnToMenu){
-            frame.dispose();
-            Sounds.audioClip.close();
-            Sounds.play(Sounds.MenuMusic);
+            getDefaultCloseOperation();
         }
     }
 }
