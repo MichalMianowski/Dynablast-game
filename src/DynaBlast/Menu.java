@@ -23,6 +23,10 @@ public class Menu extends JFrame implements ActionListener{
     private JButton Options;
     private JButton BestScores;
     private JButton Exit;
+    static Game game;
+    static int levelNumber;
+    static int Difficulty;
+
 
     /** specifies constraints for components that are laid out using the GridBagLayout class */
     GridBagConstraints c;
@@ -37,26 +41,16 @@ public class Menu extends JFrame implements ActionListener{
         setPreferredSize(new Dimension(1080, 640));
         setSize(1080,640);
         setLocation(400, 150);
+        setResizable(true);
 
         ImageIcon tlo = new ImageIcon("res/Images/background.png");
         setContentPane(new JLabel(tlo));
         setLayout(new GridBagLayout());
         c = new GridBagConstraints();
-<<<<<<< HEAD
-        music = true;
-        Sounds.play(Sounds.MenuMusic);
 
-        CreateNewGameButton();
-        CreateOptionsButton();
-        CreateBestScoresButton();
-        CreateExitButton();
-
-        setVisible(true);
-=======
         setVisible(true);
         music = true;
         Sounds.play(Sounds.MenuMusic);
->>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
     }
 
     /** Function creates the NEW GAME button,
@@ -140,8 +134,8 @@ public class Menu extends JFrame implements ActionListener{
             }
             setVisible(false);
             Sounds.audioClip.close();
-            Game game = new Game(Game.music);
-            frame1 = new JFrame(game.name);
+            game = new Game(Game.music);
+            frame1 = new JFrame(Game.name);
             JFrame finalFrame = frame1;
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
@@ -169,52 +163,40 @@ public class Menu extends JFrame implements ActionListener{
                     null,
                     difficulty,
                     difficulty[2]);
+            levelNumber = 1;
+            Level.enemies.clear();
+            Level.level = Level.LevelLocation1;
             if (a == JOptionPane.YES_OPTION) {
-                Level.enemies.clear();
-                Level.level = Level.LevelLocation1;
                 Configurations.loadDifficulty(Configurations.Difficulty1);
-                game.start();
+                Difficulty = 1;
             } else if (a == JOptionPane.NO_OPTION) {
-                Level.enemies.clear();
-                Level.level = Level.LevelLocation3;
                 Configurations.loadDifficulty(Configurations.Difficulty2);
-                game.start();
+                Difficulty = 2;
             } else if (a == JOptionPane.CANCEL_OPTION) {
-                Level.enemies.clear();
-                Level.level = Level.LevelLocation5;
                 Configurations.loadDifficulty(Configurations.Difficulty3);
-                game.start();
+                Difficulty = 3;
             }
+            game.start();
             frame1.setVisible(true);
         } else if (o == Options) {
-//            if (Menu.sound) {
-//                Sounds.play(Sounds.ButtonClick);
-//            }
-//            setVisible(false);
-//            JFrame finalFrame = frame1;
-//            SwingUtilities.invokeLater(new Runnable() {
-//                @Override
-//                public void run() {
-//                    Do(finalFrame);
-//                }
-//            });
-//            Options options = new Options();
-//            options.create1(frame1);
+            if (Menu.sound) {
+                Sounds.play(Sounds.ButtonClick);
+            }
+            setVisible(false);
+            JFrame finalFrame = frame1;
+            SwingUtilities.invokeLater(() -> Do(finalFrame));
+            Options options = new Options();
+            options.create1(frame1);
         } else if (o == BestScores) {
-//            if (Menu.sound) {
-//                Sounds.play(Sounds.ButtonClick);
-//            }
-//            setVisible(false);
-//            JFrame finalFrame = frame1;
-//            SwingUtilities.invokeLater(new Runnable() {
-//                @Override
-//                public void run() {
-//                    Do(finalFrame);
-//                }
-//            });
-//            BestScores bestScores = new BestScores();
-//            bestScores.frame = frame1;
-//            bestScores.go();
+            if (Menu.sound) {
+                Sounds.play(Sounds.ButtonClick);
+            }
+            setVisible(false);
+            JFrame finalFrame = frame1;
+            SwingUtilities.invokeLater(() -> Do(finalFrame));
+            BestScores bestScores = new BestScores();
+            bestScores.frame = frame1;
+            bestScores.go();
         }
 
         /** if "Exit" is pressed, close all windows and exit game */
