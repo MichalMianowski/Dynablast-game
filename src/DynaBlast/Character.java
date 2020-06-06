@@ -5,6 +5,7 @@ package DynaBlast;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.sql.SQLOutput;
 
 /**
  *  Class representing player's character
@@ -22,7 +23,6 @@ public class Character extends Creatures {
     private static int lives;
     /** player's score */
     static int score;
-<<<<<<< HEAD
     /** type of character */
     char type;
     /** basic movement speed may be edited by factor from config */
@@ -37,15 +37,6 @@ public class Character extends Creatures {
     public static double dirY = 0;
 
     /** graphics needed to animations */
-=======
-    char type;
-    public static double movementSpeed = 1;
-    public static boolean isMovingX = false;
-    public static boolean isMovingY = false;
-    public static double dirX = 0;
-    public static double dirY = 0;
-
->>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
     Graphic graph1, graph2, graph3, graph4;
 
     /**
@@ -62,10 +53,18 @@ public class Character extends Creatures {
         setBounds(x = Level.margin + Tile.tileSize, y = Level.margin + Tile.tileSize, Tile.tileSize, Tile.tileSize);
 
         if (type == Tile.female_orange){
-            img = Tile.tileset_fem_orange;
+            graph1 = new Graphic(15, Tile.tileset_fem_orange_front[0], Tile.tileset_fem_orange_front[1], Tile.tileset_fem_orange_front[2], Tile.tileset_fem_orange_front[3]);
+            graph2 = new Graphic(15, Tile.tileset_fem_orange_back[0], Tile.tileset_fem_orange_back[1], Tile.tileset_fem_orange_back[2], Tile.tileset_fem_orange_back[3]);
+            graph3 = new Graphic(15, Tile.tileset_fem_orange_right[0], Tile.tileset_fem_orange_right[1], Tile.tileset_fem_orange_right[2], Tile.tileset_fem_orange_right[3]);
+            graph4 = new Graphic(15, Tile.tileset_fem_orange_left[0], Tile.tileset_fem_orange_left[1], Tile.tileset_fem_orange_left[2], Tile.tileset_fem_orange_left[3]);
+            img = Tile.tileset_fem_orange_front[0];
         }
         else if (type == Tile.female_stripes){
-            img = Tile.tileset_fem_stripes;
+            graph1 = new Graphic(15, Tile.tileset_fem_stripes_front[0], Tile.tileset_fem_stripes_front[1], Tile.tileset_fem_stripes_front[2], Tile.tileset_fem_stripes_front[3]);
+            graph2 = new Graphic(15, Tile.tileset_fem_stripes_back[0], Tile.tileset_fem_stripes_back[1], Tile.tileset_fem_stripes_back[2], Tile.tileset_fem_stripes_back[3]);
+            graph3 = new Graphic(15, Tile.tileset_fem_stripes_right[0], Tile.tileset_fem_stripes_right[1], Tile.tileset_fem_stripes_right[2], Tile.tileset_fem_stripes_right[3]);
+            graph4 = new Graphic(15, Tile.tileset_fem_stripes_left[0], Tile.tileset_fem_stripes_left[1], Tile.tileset_fem_stripes_left[2], Tile.tileset_fem_stripes_left[3]);
+            img = Tile.tileset_fem_stripes_front[0];
         }
         else if (type == Tile.male_orange){
             graph1 = new Graphic(15, Tile.tileset_m_orange_front[0], Tile.tileset_m_orange_front[1], Tile.tileset_m_orange_front[2], Tile.tileset_m_orange_front[3]);
@@ -74,11 +73,16 @@ public class Character extends Creatures {
             graph4 = new Graphic(15, Tile.tileset_m_orange_left[0], Tile.tileset_m_orange_left[1], Tile.tileset_m_orange_left[2], Tile.tileset_m_orange_left[3]);
             img = Tile.tileset_m_orange_front[0];
         }
-        else{
-            img = Tile.tileset_m_stripes;
+        else if (type == Tile.male_stripes){
+            graph1 = new Graphic(15, Tile.tileset_m_stripes_front[0], Tile.tileset_m_stripes_front[1], Tile.tileset_m_stripes_front[2], Tile.tileset_m_stripes_front[3]);
+            graph2 = new Graphic(15, Tile.tileset_m_stripes_back[0], Tile.tileset_m_stripes_back[1], Tile.tileset_m_stripes_back[2], Tile.tileset_m_stripes_back[3]);
+            graph3 = new Graphic(15, Tile.tileset_m_stripes_right[0], Tile.tileset_m_stripes_right[1], Tile.tileset_m_stripes_right[2], Tile.tileset_m_stripes_right[3]);
+            graph4 = new Graphic(15, Tile.tileset_m_stripes_left[0], Tile.tileset_m_stripes_left[1], Tile.tileset_m_stripes_left[2], Tile.tileset_m_stripes_left[3]);
+            img = Tile.tileset_m_stripes_front[0];
         }
 
         Character.lives = lives;
+        Character.score = 0;
     }
 
     /** @return number of player's lives */
@@ -97,13 +101,9 @@ public class Character extends Creatures {
         move();
     }
 
-<<<<<<< HEAD
     /**
      * moving main character according to typed keyboard key
      */
-=======
-
->>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
     private void move() {
         if (isMovingX) {
             boolean cantMove = false;
@@ -141,35 +141,31 @@ public class Character extends Creatures {
         }
     }
 
-<<<<<<< HEAD
     /**
      * instruction after contact with enemy
      */
-=======
->>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
     public void captured(){
         System.out.println("You're captured! Exterminate!");
         die();
     }
-<<<<<<< HEAD
 
     /**
      * instruction after contact with explosion
      */
-=======
->>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
     public void exploded(){
         System.out.println("You're not fireproof!");
         die();
     }
 
-<<<<<<< HEAD
+    public void TimeRunOut(){
+        System.out.println("You didn't manage to escape in time");
+        die();
+    }
+
     /**
      * instruction of death
      * common to exploded and captured
      */
-=======
->>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
     public void die(){
         x = Level.margin + Tile.tileSize;
         y = Level.margin + Tile.tileSize;
@@ -177,13 +173,9 @@ public class Character extends Creatures {
         Game.level.restart = true;
     }
 
-<<<<<<< HEAD
     /**
      * placing bomb at current cell
      */
-=======
-
->>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
     public void placeBomb() {
         Game.level.addBomb(getCellAtMap());
     }
@@ -194,7 +186,6 @@ public class Character extends Creatures {
      * @param g Graphic to which render images and draw animations
      */
     public void render(Graphics g){
-        if (this.type == Tile.male_orange) {
             if (dirY == 0 && dirX == 0){
                 g.drawImage(img, (int) x, (int) y, null);
             }
@@ -211,16 +202,10 @@ public class Character extends Creatures {
                 graph4.drawAnimation(g, x, y);
             }
         }
-        else
-            g.drawImage(img, (int) x, (int) y, null);
-    }
-<<<<<<< HEAD
 
     /**
      * instructions of moving the character
      */
-=======
->>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
     private void moveAnimation(){
         if (dirY > 0) {
             graph1.runAnimation();
@@ -235,5 +220,4 @@ public class Character extends Creatures {
             graph4.runAnimation();
         }
     }
-
 }
