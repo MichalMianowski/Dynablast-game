@@ -49,42 +49,35 @@ public class Creatures {
         this.height = height;
     }
 
-<<<<<<< HEAD
     /**
      * getting rectangle to collision check
      * rectangle is a little bit smaller than game cell
      *
      * @return rectangle of smaller bounds of creature
      */
-=======
->>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
+
     public Rectangle getBounds() {
         return new Rectangle((int)(x + margin), (int)(y + margin), (int)(width - 2*margin), (int)(height-2*margin));
     }
 
-<<<<<<< HEAD
     /**
      * getting cells index where is middle point of the creature
      *
      * @return
      */
-=======
->>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
     public int[] getCellAtMap(){
         int x = (int) (((this.x - Level.margin) + width/2)/Tile.tileSize);
         int y = (int) (((this.y - Level.margin) + width/2)/Tile.tileSize);
 
         return new int[] {x, y};
     }
-<<<<<<< HEAD
 
     /**
      * getting 2 points of creature to collision detection in horizontal move
      *
      * @return int table with coordinates x, y1, y2 (because x is the same for both points)
      */
-=======
->>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
+
     public int[] getCellsHorizontalMove(){
         int x = (int) (((this.x - Level.margin) + width/2)/Tile.tileSize);
         int y1 = (int) (((this.y - Level.margin) + width/2 - width/3)/Tile.tileSize);
@@ -92,14 +85,13 @@ public class Creatures {
 
         return new int[] {x, y1, y2};
     }
-<<<<<<< HEAD
+
     /**
      * getting 2 points of creature to collision detection in vertical move
      *
      * @return int table with coordinates x1, x2, y (because y is the same for both points)
      */
-=======
->>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
+
     public int[] getCellsVerticalMove(){
         int x1 = (int) (((this.x - Level.margin) + width/2 - width/5)/Tile.tileSize);
         int x2 = (int) (((this.x - Level.margin) + width/2 + width/5)/Tile.tileSize);
