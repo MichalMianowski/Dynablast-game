@@ -1,20 +1,16 @@
-<<<<<<< HEAD
 /**
  * Michal Mianowski & Piotr Strzaska
  */
 package DynaBlast;
-=======
-package DynaBlast;
+
 //
 // Source code recreated from a .class file by IntelliJ IDEA
 // (powered by Fernflower decompiler)
 //
->>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
 
 import java.awt.Graphics;
 import java.awt.image.ImageObserver;
 
-<<<<<<< HEAD
 /**
  * Class of bombs created by main character
  * contains coordinates x & y
@@ -24,8 +20,7 @@ import java.awt.image.ImageObserver;
  *
  * Block almost always have @Tile size
  */
-=======
->>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
+
 public class Bomb {
     int x;
     int y;
@@ -33,26 +28,22 @@ public class Bomb {
     int counter;
     int[] cellLoc;
 
-<<<<<<< HEAD
     /**
      * creates bomb in given cell
      * @param cell cell at map where to place bomb
      */
-=======
->>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
+
     public Bomb(int[] cell) {
         this.x = Level.margin + cell[0] * Tile.tileSize;
         this.y = Level.margin + cell[1] * Tile.tileSize;
         this.cellLoc = cell.clone();
     }
 
-<<<<<<< HEAD
     /**
      * render bomb image
      * @param g Graphic to which render images
      */
-=======
->>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
+
     public void render(Graphics g) {
         if (this.stage == 4) {
             g.drawImage(Tile.tileset_bomb[3], this.x, this.y, (ImageObserver)null);
@@ -71,12 +62,9 @@ public class Bomb {
         this.countDown();
     }
 
-<<<<<<< HEAD
     /**
      * counting down to explosion
      */
-=======
->>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
     private void countDown() {
         ++this.counter;
         if (this.stage != 0) {
@@ -91,12 +79,9 @@ public class Bomb {
 
     }
 
-<<<<<<< HEAD
     /**
      * initiate explosion
      */
-=======
->>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
     private void explode() {
         Level.explosions.add(new Explosion(cellLoc));
     }
