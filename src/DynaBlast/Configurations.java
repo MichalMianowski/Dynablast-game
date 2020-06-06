@@ -106,6 +106,7 @@ public class Configurations {
             e.printStackTrace();
         }
 
+        pointsMultiplier = pointsMultiplier/100;
         speedMultiplier = speedMultiplier/100;
         Level.timePoints = timePoints;
         Level.timeLeft = time;
