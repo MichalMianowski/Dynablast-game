@@ -38,9 +38,27 @@ public class Tile {
     public static BufferedImage tileset_escape_2;
     public static BufferedImage tileset_unbreakable;
 
-    public static BufferedImage tileset_fem_orange;
-    public static BufferedImage tileset_fem_stripes;
-    public static BufferedImage tileset_m_stripes;
+    public static BufferedImage[] tileset_fem_orange_front = new BufferedImage[4];
+    public static BufferedImage[] tileset_fem_orange_back = new BufferedImage[4];
+    public static BufferedImage[] tileset_fem_orange_left = new BufferedImage[4];
+    public static BufferedImage[] tileset_fem_orange_right = new BufferedImage[4];
+    public static BufferedImage[] tileset_fem_orange_death = new BufferedImage[4];
+    public static BufferedImage[] tileset_fem_orange_found = new BufferedImage[4];
+
+    public static BufferedImage[] tileset_fem_stripes_front = new BufferedImage[4];
+    public static BufferedImage[] tileset_fem_stripes_back = new BufferedImage[4];
+    public static BufferedImage[] tileset_fem_stripes_left = new BufferedImage[4];
+    public static BufferedImage[] tileset_fem_stripes_right = new BufferedImage[4];
+    public static BufferedImage[] tileset_fem_stripes_death = new BufferedImage[4];
+    public static BufferedImage[] tileset_fem_stripes_found = new BufferedImage[4];
+
+    public static BufferedImage[] tileset_m_stripes_front = new BufferedImage[4];
+    public static BufferedImage[] tileset_m_stripes_back = new BufferedImage[4];
+    public static BufferedImage[] tileset_m_stripes_left = new BufferedImage[4];
+    public static BufferedImage[] tileset_m_stripes_right = new BufferedImage[4];
+    public static BufferedImage[] tileset_m_stripes_death = new BufferedImage[4];
+    public static BufferedImage[] tileset_m_stripes_found = new BufferedImage[4];
+
     public static BufferedImage[] tileset_m_orange_front = new BufferedImage[4];
     public static BufferedImage[] tileset_m_orange_back = new BufferedImage[4];
     public static BufferedImage[] tileset_m_orange_left = new BufferedImage[4];
@@ -87,10 +105,66 @@ public class Tile {
 
         //characters
         try {
-            Tile.tileset_fem_orange = ImageIO.read(new File("res/Images/female_orange.png"));
+            Tile.tileset_fem_orange_front[0] = ImageIO.read(new File("res/Images/female_orange_front2.png"));
+            Tile.tileset_fem_orange_front[1] = ImageIO.read(new File("res/Images/female_orange_front1.png"));
+            Tile.tileset_fem_orange_front[2] = ImageIO.read(new File("res/Images/female_orange_front2.png"));
+            Tile.tileset_fem_orange_front[3] = ImageIO.read(new File("res/Images/female_orange_front3.png"));
+
+            Tile.tileset_fem_orange_back[0] = ImageIO.read(new File("res/Images/female_orange_back2.png"));
+            Tile.tileset_fem_orange_back[1] = ImageIO.read(new File("res/Images/female_orange_back1.png"));
+            Tile.tileset_fem_orange_back[2] = ImageIO.read(new File("res/Images/female_orange_back2.png"));
+            Tile.tileset_fem_orange_back[3] = ImageIO.read(new File("res/Images/female_orange_back3.png"));
+
+            Tile.tileset_fem_orange_left[0] = ImageIO.read(new File("res/Images/female_orange_left2.png"));
+            Tile.tileset_fem_orange_left[1] = ImageIO.read(new File("res/Images/female_orange_left1.png"));
+            Tile.tileset_fem_orange_left[2] = ImageIO.read(new File("res/Images/female_orange_left2.png"));
+            Tile.tileset_fem_orange_left[3] = ImageIO.read(new File("res/Images/female_orange_left3.png"));
+
+            Tile.tileset_fem_orange_right[0] = ImageIO.read(new File("res/Images/female_orange_right2.png"));
+            Tile.tileset_fem_orange_right[1] = ImageIO.read(new File("res/Images/female_orange_right1.png"));
+            Tile.tileset_fem_orange_right[2] = ImageIO.read(new File("res/Images/female_orange_right2.png"));
+            Tile.tileset_fem_orange_right[3] = ImageIO.read(new File("res/Images/female_orange_right3.png"));
+
+            Tile.tileset_fem_orange_death[0] = ImageIO.read(new File("res/Images/female_orange_death1.png"));
+            Tile.tileset_fem_orange_death[1] = ImageIO.read(new File("res/Images/female_orange_death2.png"));
+            Tile.tileset_fem_orange_death[2] = ImageIO.read(new File("res/Images/female_orange_death3oops.png"));
+            Tile.tileset_fem_orange_death[3] = ImageIO.read(new File("res/Images/female_orange_death3oops.png"));
+
+            Tile.tileset_fem_orange_found[0] = ImageIO.read(new File("res/Images/female_orange_death1.png"));
+            Tile.tileset_fem_orange_found[1] = ImageIO.read(new File("res/Images/female_orange_death2.png"));
+            Tile.tileset_fem_orange_found[2] = ImageIO.read(new File("res/Images/female_orange_death3found.png"));
+            Tile.tileset_fem_orange_found[3] = ImageIO.read(new File("res/Images/female_orange_death3found.png"));
         } catch (Exception e) { }
         try {
-            Tile.tileset_fem_stripes = ImageIO.read(new File("res/Images/female_stripes.png"));
+            Tile.tileset_fem_stripes_front[0] = ImageIO.read(new File("res/Images/female_stripes_front2.png"));
+            Tile.tileset_fem_stripes_front[1] = ImageIO.read(new File("res/Images/female_stripes_front1.png"));
+            Tile.tileset_fem_stripes_front[2] = ImageIO.read(new File("res/Images/female_stripes_front2.png"));
+            Tile.tileset_fem_stripes_front[3] = ImageIO.read(new File("res/Images/female_stripes_front3.png"));
+
+            Tile.tileset_fem_stripes_back[0] = ImageIO.read(new File("res/Images/female_stripes_back2.png"));
+            Tile.tileset_fem_stripes_back[1] = ImageIO.read(new File("res/Images/female_stripes_back1.png"));
+            Tile.tileset_fem_stripes_back[2] = ImageIO.read(new File("res/Images/female_stripes_back2.png"));
+            Tile.tileset_fem_stripes_back[3] = ImageIO.read(new File("res/Images/female_stripes_back3.png"));
+
+            Tile.tileset_fem_stripes_left[0] = ImageIO.read(new File("res/Images/female_stripes_left2.png"));
+            Tile.tileset_fem_stripes_left[1] = ImageIO.read(new File("res/Images/female_stripes_left1.png"));
+            Tile.tileset_fem_stripes_left[2] = ImageIO.read(new File("res/Images/female_stripes_left2.png"));
+            Tile.tileset_fem_stripes_left[3] = ImageIO.read(new File("res/Images/female_stripes_left3.png"));
+
+            Tile.tileset_fem_stripes_right[0] = ImageIO.read(new File("res/Images/female_stripes_right2.png"));
+            Tile.tileset_fem_stripes_right[1] = ImageIO.read(new File("res/Images/female_stripes_right1.png"));
+            Tile.tileset_fem_stripes_right[2] = ImageIO.read(new File("res/Images/female_stripes_right2.png"));
+            Tile.tileset_fem_stripes_right[3] = ImageIO.read(new File("res/Images/female_stripes_right3.png"));
+
+            Tile.tileset_fem_stripes_death[0] = ImageIO.read(new File("res/Images/female_stripes_death1.png"));
+            Tile.tileset_fem_stripes_death[1] = ImageIO.read(new File("res/Images/female_stripes_death2.png"));
+            Tile.tileset_fem_stripes_death[2] = ImageIO.read(new File("res/Images/female_stripes_death3oops.png"));
+            Tile.tileset_fem_stripes_death[3] = ImageIO.read(new File("res/Images/female_stripes_death3oops.png"));
+
+            Tile.tileset_fem_stripes_found[0] = ImageIO.read(new File("res/Images/female_stripes_death1.png"));
+            Tile.tileset_fem_stripes_found[1] = ImageIO.read(new File("res/Images/female_stripes_death2.png"));
+            Tile.tileset_fem_stripes_found[2] = ImageIO.read(new File("res/Images/female_stripes_death3found.png"));
+            Tile.tileset_fem_stripes_found[3] = ImageIO.read(new File("res/Images/female_stripes_death3found.png"));
         } catch (Exception e) { }
         try {
             Tile.tileset_m_orange_front[0] = ImageIO.read(new File("res/Images/male_orange_front2.png"));
@@ -115,16 +189,44 @@ public class Tile {
 
             Tile.tileset_m_orange_death[0] = ImageIO.read(new File("res/Images/male_orange_death1.png"));
             Tile.tileset_m_orange_death[1] = ImageIO.read(new File("res/Images/male_orange_death2.png"));
-            Tile.tileset_m_orange_death[2] = ImageIO.read(new File("res/Images/male_orange_death3.png"));
+            Tile.tileset_m_orange_death[2] = ImageIO.read(new File("res/Images/male_orange_death3oops.png"));
             Tile.tileset_m_orange_death[3] = ImageIO.read(new File("res/Images/male_orange_death3oops.png"));
 
             Tile.tileset_m_orange_found[0] = ImageIO.read(new File("res/Images/male_orange_death1.png"));
             Tile.tileset_m_orange_found[1] = ImageIO.read(new File("res/Images/male_orange_death2.png"));
-            Tile.tileset_m_orange_found[2] = ImageIO.read(new File("res/Images/male_orange_death3.png"));
+            Tile.tileset_m_orange_found[2] = ImageIO.read(new File("res/Images/male_orange_death3found.png"));
             Tile.tileset_m_orange_found[3] = ImageIO.read(new File("res/Images/male_orange_death3found.png"));
         } catch (Exception e) { }
         try{
-            Tile.tileset_m_stripes = ImageIO.read(new File("res/Images/male_stripes.png"));
+            Tile.tileset_m_stripes_front[0] = ImageIO.read(new File("res/Images/male_stripes_front2.png"));
+            Tile.tileset_m_stripes_front[1] = ImageIO.read(new File("res/Images/male_stripes_front1.png"));
+            Tile.tileset_m_stripes_front[2] = ImageIO.read(new File("res/Images/male_stripes_front2.png"));
+            Tile.tileset_m_stripes_front[3] = ImageIO.read(new File("res/Images/male_stripes_front3.png"));
+
+            Tile.tileset_m_stripes_back[0] = ImageIO.read(new File("res/Images/male_stripes_back2.png"));
+            Tile.tileset_m_stripes_back[1] = ImageIO.read(new File("res/Images/male_stripes_back1.png"));
+            Tile.tileset_m_stripes_back[2] = ImageIO.read(new File("res/Images/male_stripes_back2.png"));
+            Tile.tileset_m_stripes_back[3] = ImageIO.read(new File("res/Images/male_stripes_back3.png"));
+
+            Tile.tileset_m_stripes_left[0] = ImageIO.read(new File("res/Images/male_stripes_left2.png"));
+            Tile.tileset_m_stripes_left[1] = ImageIO.read(new File("res/Images/male_stripes_left1.png"));
+            Tile.tileset_m_stripes_left[2] = ImageIO.read(new File("res/Images/male_stripes_left2.png"));
+            Tile.tileset_m_stripes_left[3] = ImageIO.read(new File("res/Images/male_stripes_left3.png"));
+
+            Tile.tileset_m_stripes_right[0] = ImageIO.read(new File("res/Images/male_stripes_right2.png"));
+            Tile.tileset_m_stripes_right[1] = ImageIO.read(new File("res/Images/male_stripes_right1.png"));
+            Tile.tileset_m_stripes_right[2] = ImageIO.read(new File("res/Images/male_stripes_right2.png"));
+            Tile.tileset_m_stripes_right[3] = ImageIO.read(new File("res/Images/male_stripes_right3.png"));
+
+            Tile.tileset_m_stripes_death[0] = ImageIO.read(new File("res/Images/male_stripes_death1.png"));
+            Tile.tileset_m_stripes_death[1] = ImageIO.read(new File("res/Images/male_stripes_death2.png"));
+            Tile.tileset_m_stripes_death[2] = ImageIO.read(new File("res/Images/male_stripes_death3oops.png"));
+            Tile.tileset_m_stripes_death[3] = ImageIO.read(new File("res/Images/male_stripes_death3oops.png"));
+
+            Tile.tileset_m_stripes_found[0] = ImageIO.read(new File("res/Images/male_stripes_death1.png"));
+            Tile.tileset_m_stripes_found[1] = ImageIO.read(new File("res/Images/male_stripes_death2.png"));
+            Tile.tileset_m_stripes_found[2] = ImageIO.read(new File("res/Images/male_stripes_death3found.png"));
+            Tile.tileset_m_stripes_found[3] = ImageIO.read(new File("res/Images/male_stripes_death3found.png"));
         } catch (Exception e) { }
 
         //enemies
