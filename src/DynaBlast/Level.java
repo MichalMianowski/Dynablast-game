@@ -178,8 +178,36 @@ public class Level {
             win = true;
         }
 =======
-    public void win() {
-        System.out.println("tadaaa");
+     public void win() {
+        int points1 = Game.character.getScore();
+        int points2 = Level.timeLeft*timePoints;
+        int points = points1 + points2;
+        if (!win) {
+            System.out.println("tadaaa");
+            win = true;
+            Level.enemies.clear();
+            switch (Menu.levelNumber) {
+                case 1:
+                    Level.level = Level.LevelLocation2;
+                case 2:
+                    Level.level = Level.LevelLocation2;
+                case 3:
+                    Level.level = Level.LevelLocation3;
+                case 4:
+                    Level.level = Level.LevelLocation4;
+            }
+            if (Menu.Difficulty == 1){
+                Configurations.loadDifficulty(Configurations.Difficulty1);
+            }
+            else if (Menu.Difficulty == 2){
+                Configurations.loadDifficulty(Configurations.Difficulty2);
+            }
+            else if (Menu.Difficulty == 3){
+                Configurations.loadDifficulty(Configurations.Difficulty3);
+            }
+            Menu.game.start();
+            Character.score = points;
+        }
 >>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
     }
 
