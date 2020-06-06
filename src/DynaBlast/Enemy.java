@@ -3,7 +3,6 @@
  */
 package DynaBlast;
 
-
 import java.awt.*;
 
 /**
@@ -16,7 +15,6 @@ import java.awt.*;
 public class Enemy extends Creatures {
     /** contain information about type of the enemy */
     char type;
-<<<<<<< HEAD
     /** speed or vertical move can be changed by speed factor */
     double VerticalSpeed;
     /** speed or horizontal move can be changed by speed factor */
@@ -28,7 +26,7 @@ public class Enemy extends Creatures {
     /** basic ammount of points gained by killing this enemy
      * may be eddited by points factor depending of difficulty level
       */
-    int points;
+    float points;
     /** is this enemy dead if yes he will be removed from enemies list */
     boolean dead = false;
     /** is he dying if yes play animation of death and turn dead to value true */
@@ -37,15 +35,7 @@ public class Enemy extends Creatures {
     boolean turn = false;
 
     /** graphics needed to animations */
-=======
-    double VerticalSpeed;
-    double HorizontalSpeed;
-    int lives;
-    int points;
-    boolean dead = false;
-    boolean turn = false;
 
->>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
     Graphic graph1, graph2, graph3;
 
     /**
@@ -67,19 +57,16 @@ public class Enemy extends Creatures {
             this.HorizontalSpeed = 0.5 * Configurations.speedMultiplier;
             this.VerticalSpeed = 0.5 * Configurations.speedMultiplier;
             this.lives = 2;
-            this.points = 200;
         }
         else if (this.type == Tile.swat){
-            this.HorizontalSpeed = 0.4 * Configurations.speedMultiplier;
-            this.VerticalSpeed = 0.4 * Configurations.speedMultiplier;
+            this.HorizontalSpeed = 0.5 * Configurations.speedMultiplier;
+            this.VerticalSpeed = 0.5 * Configurations.speedMultiplier;
             this.lives = 1;
-            this.points = 150;
         }
         else {
             this.HorizontalSpeed = 0.35 * Configurations.speedMultiplier;
             this.VerticalSpeed = 0.35 * Configurations.speedMultiplier;
             this.lives = 1;
-            this.points = 100;
         }
         x = x0;
         y = y0;
@@ -87,17 +74,12 @@ public class Enemy extends Creatures {
         graph1 = new Graphic(10, Tile.tileset_guard[0], Tile.tileset_guard[1], Tile.tileset_guard[2], Tile.tileset_guard[3]);
         graph2 = new Graphic(10, Tile.tileset_swat[0], Tile.tileset_swat[1], Tile.tileset_swat[2], Tile.tileset_swat[3]);
         graph3 = new Graphic(10, Tile.tileset_army_man[0], Tile.tileset_army_man[1], Tile.tileset_army_man[2], Tile.tileset_army_man[3]);
-<<<<<<< HEAD
-
-=======
->>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
     }
 
     /** changes the location of every enemy depending on its type
      * as well as making the animation for every type change with every clock tick
      */
     public void tick(){
-<<<<<<< HEAD
         if (!dying) {
             graph1.runAnimation();
             graph2.runAnimation();
@@ -108,11 +90,6 @@ public class Enemy extends Creatures {
             graph2.runAnimationOnce(this);
             graph3.runAnimationOnce(this);
         }
-=======
-        graph1.runAnimation();
-        graph2.runAnimation();
-        graph3.runAnimation();
->>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
 
         if (this.type == Tile.guard) {
             y += this.VerticalSpeed;
@@ -164,14 +141,20 @@ public class Enemy extends Creatures {
         }
     }
 
-<<<<<<< HEAD
-=======
     public void die() {
         dead = true;
+        if (this.type == Tile.army_man){
+            Character.score += 200;
+        }
+        else if (this.type == Tile.swat){
+            Character.score += 150;
+        }
+        else if (this.type == Tile.guard){
+            Character.score += 100;
+        }
     }
 
 
->>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
     /** render image of enemy depending on his type
      * @param g Graphic to which render images and draw animations
      */
@@ -182,16 +165,8 @@ public class Enemy extends Creatures {
         else if (type == Tile.swat){
             graph2.drawAnimation(g, x, y);
         }
-<<<<<<< HEAD
         else if (type == Tile.guard) {
-=======
-        else if (type == Tile.guard){
->>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
             graph1.drawAnimation(g, x, y);
         }
     }
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> 12b87d77863e8f3ea5013a8825599a821b710802
