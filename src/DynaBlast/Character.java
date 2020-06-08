@@ -36,6 +36,8 @@ public class Character extends Creatures {
     /** amount of distance to move vertical */
     public static double dirY = 0;
 
+    boolean ifWon = false;
+
     /** graphics needed to animations */
     Graphic graph1, graph2, graph3, graph4;
 
@@ -88,6 +90,10 @@ public class Character extends Creatures {
     /** @return number of player's lives */
     public int getLives(){
         return lives;
+    }
+
+    public void setLives(int LIVE){
+        lives = LIVE;
     }
 
     /** @return player's score */
@@ -169,8 +175,15 @@ public class Character extends Creatures {
     public void die(){
         x = Level.margin + Tile.tileSize;
         y = Level.margin + Tile.tileSize;
-        lives--;
+        if (lives == 1){
+            System.out.println("This was your last chance, criminal scum!");
+            lives--;
+        }
+        else {
+            lives--;
+        }
         Game.level.restart = true;
+        Character.score = Game.BeginPoints;
     }
 
     /**
