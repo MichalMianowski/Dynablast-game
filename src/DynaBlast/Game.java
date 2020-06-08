@@ -24,10 +24,17 @@ public class Game extends JPanel implements Runnable{
     public static Dimension size = new Dimension(860,680);
     public static Dimension pixel = new Dimension(size.width / pixelSize, size.height / pixelSize);
     public static String name = "Dyna Blaster - Escape from jail";
-    public static boolean isRunning = false;
+    public static volatile boolean isRunning = false;
     public static boolean music = true;
     public static boolean sound = true;
-    int k = 0;
+    int counter = 0;
+    static int BeginPoints;
+    static Graphics g;
+    static boolean game = true;
+    int WhichLevel;
+    String WhatDifficulty;
+    static boolean Prologue = true;
+    static boolean Restart = false;
 
     /** On this, the graphics are being drawn */
     private Image screen;
@@ -52,12 +59,15 @@ public class Game extends JPanel implements Runnable{
         character = new Character(Tile.female_stripes, Configurations.lives);
         isRunning = true;
         new Thread( this).start();
+        BeginPoints = Character.score;
+        game = true;
     }
 
 
     /** Function that stops the game */
-    public void stop() {
-        isRunning = false;
+    public static void stop() {
+        isRunning = !isRunning;
+        System.out.println(isRunning);
     }
 
     /** function that makes clock tick and therefore change the state of every enemy, character and for the level itself*/
@@ -65,12 +75,16 @@ public class Game extends JPanel implements Runnable{
         Level.enemies.forEach(Enemy::tick);
         character.tick();
         level.tick();
-        k++;
-        if (k==122){
-            Level.timeLeft -=1;
-            k=0;
+        counter++;
+        if (counter == 122) {
+            Level.timeLeft -= 1;
+            counter = 0;
         }
-        if (Level.timeLeft == -1){
+        if (Level.timeLeft == Configurations.time - 3){
+            Prologue = false;
+            Restart = false;
+        }
+        if (Level.timeLeft == -1) {
             character.TimeRunOut();
             Level.timeLeft = Configurations.time;
         }
@@ -81,14 +95,15 @@ public class Game extends JPanel implements Runnable{
      * @param 'g' Graphic to which render images
      */
     public void render(){
-        Graphics g = screen.getGraphics();
+        g = screen.getGraphics();
         genBackground(g);
-
-        level.render(g);
-        Level.bombs.forEach((bomb) -> bomb.render(screen.getGraphics()));
-        Level.enemies.forEach((en) -> en.render(screen.getGraphics()));
-        character.render(g);
-        Level.explosions.forEach((explosion) -> explosion.render(screen.getGraphics()));
+        if (!Prologue && !Restart) {
+            level.render(g);
+            Level.bombs.forEach((bomb) -> bomb.render(screen.getGraphics()));
+            Level.enemies.forEach((en) -> en.render(screen.getGraphics()));
+            character.render(g);
+            Level.explosions.forEach((explosion) -> explosion.render(screen.getGraphics()));
+        }
 
         gameplayInfo(g);
         g = getGraphics();
@@ -100,32 +115,63 @@ public class Game extends JPanel implements Runnable{
     public void run(){
         screen = createVolatileImage(pixel.width, pixel.height); //Volatile to give access to GPU
 
-        while(isRunning) {
-            tick();
-            render();
-            try{
-                Thread.sleep(5);
-            } catch(Exception ignored) { }
+        while (game) {
+            if (isRunning) {
+                tick();
+                render();
+                try {
+                    Thread.sleep(5);
+                } catch (Exception ignored) {
+                }
+            }
         }
     }
 
     /** Functions painting the background of gamescreen */
     public void genBackground(Graphics g){
         //general background
-        if (color == 'G') {
+        if (Prologue){
+            if (Level.level == Level.LevelLocation1) { WhichLevel = 1;}
+            else if (Level.level == Level.LevelLocation2) { WhichLevel = 2;}
+            else if (Level.level == Level.LevelLocation3) { WhichLevel = 3;}
+            else if (Level.level == Level.LevelLocation4) { WhichLevel = 4;}
+            else if (Level.level == Level.LevelLocation5) { WhichLevel = 5;}
+
+            if (Configurations.timePoints == 3){ WhatDifficulty = "Easy"; }
+            else if (Configurations.timePoints == 6){ WhatDifficulty = "Medium"; }
+            else if (Configurations.timePoints == 10){ WhatDifficulty = "Hard"; }
+
+            g.setColor(new Color(0,0,0));
+            g.fillRect(0,0,screen.getWidth(null),screen.getHeight(null));
+            g.setColor(new Color(255,255,255));
+            g.setFont(new Font("TimesRoman", Font.BOLD, 16));
+            g.drawString("Level " + String.format("%01d", WhichLevel), 190, 160);
+            g.drawString(WhatDifficulty, 197,180);
+        }
+        else if (Restart){
+            g.setColor(new Color(0,0,0));
+            g.fillRect(0,0,screen.getWidth(null),screen.getHeight(null));
+            g.setColor(new Color(255,255,255));
+            g.setFont(new Font("TimesRoman", Font.BOLD, 16));
+            g.drawString("Remaining lives: " + String.format("%01d", character.getLives()), 150, 180);
+        }
+        else {
+            if (color == 'G') {
             g.setColor(new Color(175, 213, 170)); //cool grey color 3x51
-        }
-        else if (color == 'Y'){
+            }
+            else if (color == 'Y'){
             g.setColor(new Color(108, 145, 194));
+            }
+            else if (color == 'R'){
+                g.setColor(new Color(226, 133, 110));
+            }
+            g.fillRect(0,0,screen.getWidth(null),screen.getHeight(null));
+            //jail floor (platform background)
+            g.setColor(new Color(147, 139, 117));
+            g.fillRect(20,20,Tile.tileSize * 15,Tile.tileSize * 15);
         }
-        else if (color == 'R'){
-            g.setColor(new Color(226, 133, 110));
-        }
-        g.fillRect(0,0,screen.getWidth(null),screen.getHeight(null));
-        //jail floor (platform background)
-        g.setColor(new Color(147, 139, 117));
-        g.fillRect(20,20,Tile.tileSize * 15,Tile.tileSize * 15);
     }
+
 
     /** Function generating and drawing info about game parameters, such as time left, lives left and current score */
     public void gameplayInfo(Graphics g){
