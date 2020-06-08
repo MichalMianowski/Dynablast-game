@@ -130,7 +130,7 @@ public class ControlModule {
         action.put("pause", new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
                 //pause
-                System.out.println("game paused");
+                Game.stop();
             }
         });
 
