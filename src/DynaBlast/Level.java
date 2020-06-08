@@ -24,6 +24,8 @@ public class Level {
      */
     static int timeLeft = 0; //in seconds
     static int timePoints;
+    int points;
+    int live;
     /**
      * should the level will be restarted
      */
@@ -100,7 +102,6 @@ public class Level {
                     block[x][y].id = Tile.bars;
                 }
                 else if (lvl[x][y] == Tile.escape_2) {
-                    System.out.println("wczytano drabinę");
                     cellOfEscape[0] = x;
                     cellOfEscape[1] = y;
                 }
@@ -173,6 +174,9 @@ public class Level {
         Configurations.generateLevel();
         Configurations.loadLevelFromFile(level);
         loadLevel(blockList);
+        timeLeft = Configurations.time;
+        Character.score = points;
+        Game.Restart = true;
     }
 
     /**
@@ -189,35 +193,46 @@ public class Level {
      * procedure after winning the level
      */
     public void win() {
-        Thread.interrupted();
         int points1 = Game.character.getScore();
         int points2 = Level.timeLeft*timePoints;
-        int points = points1 + points2;
-        if (!win) {
-            System.out.println("tadaaa");
-            win = true;
-            Level.enemies.clear();
-            switch (Menu.levelNumber) {
-                case 1:
-                    Level.level = Level.LevelLocation2;
-                case 2:
-                    Level.level = Level.LevelLocation2;
-                case 3:
-                    Level.level = Level.LevelLocation3;
-                case 4:
-                    Level.level = Level.LevelLocation4;
-            }
-            if (Menu.Difficulty == 1){
-                Configurations.loadDifficulty(Configurations.Difficulty1);
-            }
-            else if (Menu.Difficulty == 2){
-                Configurations.loadDifficulty(Configurations.Difficulty2);
-            }
-            else if (Menu.Difficulty == 3){
-                Configurations.loadDifficulty(Configurations.Difficulty3);
-            }
-            Menu.game.start();
-            Character.score = points;
+        points = points1 + points2;
+        live = Game.character.getLives();
+        Level.enemies.clear();
+
+        if (Level.level == Level.LevelLocation1) {
+            Level.level = Level.LevelLocation2;
+            Game.level.reset();
         }
+        else if (Level.level == Level.LevelLocation2) {
+            Level.level = Level.LevelLocation3;
+            Game.level.reset();
+        }
+        else if (Level.level == Level.LevelLocation3) {
+            Level.level = Level.LevelLocation4;
+            Game.level.reset();
+        }
+        else if (Level.level == Level.LevelLocation4) {
+            Level.level = Level.LevelLocation5;
+            Game.level.reset();
+        }
+        else if (Level.level == Level.LevelLocation5) {
+            System.out.println("You escaped! Hooray!");
+            Game.game = false;
+        }
+        Game.Prologue = true;
+        Game.Restart = false;
+    }
+
+    public void reset(){
+        bombs.clear();
+        Level.enemies.clear();
+        Configurations.generateLevel();
+        Configurations.loadLevelFromFile(level);
+        loadLevel(blockList);
+        Game.character = new Character(Tile.female_stripes, Configurations.lives);
+        Character.score = points;
+        Game.character.setLives(live);
+        Level.timeLeft = Configurations.time;
+        escapeVisible = 0;
     }
 }
