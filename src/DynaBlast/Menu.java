@@ -24,6 +24,7 @@ public class Menu extends JFrame implements ActionListener{
     private JButton BestScores;
     private JButton Exit;
     static Game game;
+    static JFrame frame1;
     static int levelNumber;
     static int Difficulty;
 
@@ -126,7 +127,7 @@ public class Menu extends JFrame implements ActionListener{
     /** fucntion that specifies what actions are to be performed after pressing specific buttons */
     public void actionPerformed(ActionEvent ae) {
         Object o = ae.getSource();
-        JFrame frame1 = new JFrame();
+        frame1 = new JFrame();
         /** if "New game" is pressed, create gameplay screen */
         if (o == NewGame) {
             if (Menu.sound) {
@@ -148,7 +149,6 @@ public class Menu extends JFrame implements ActionListener{
             frame1.pack();
             frame1.setResizable(false);
             frame1.setLocationRelativeTo(null);
-            frame1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             if (Menu.sound) {
                 Sounds.play(Sounds.ButtonClick);
             }
@@ -169,16 +169,19 @@ public class Menu extends JFrame implements ActionListener{
             if (a == JOptionPane.YES_OPTION) {
                 Configurations.loadDifficulty(Configurations.Difficulty1);
                 Difficulty = 1;
-            } else if (a == JOptionPane.NO_OPTION) {
+            }
+            else if (a == JOptionPane.NO_OPTION) {
                 Configurations.loadDifficulty(Configurations.Difficulty2);
                 Difficulty = 2;
-            } else if (a == JOptionPane.CANCEL_OPTION) {
+            }
+            else if (a == JOptionPane.CANCEL_OPTION) {
                 Configurations.loadDifficulty(Configurations.Difficulty3);
                 Difficulty = 3;
             }
             game.start();
             frame1.setVisible(true);
-        } else if (o == Options) {
+        }
+        else if (o == Options) {
             if (Menu.sound) {
                 Sounds.play(Sounds.ButtonClick);
             }
@@ -187,7 +190,8 @@ public class Menu extends JFrame implements ActionListener{
             SwingUtilities.invokeLater(() -> Do(finalFrame));
             Options options = new Options();
             options.create1(frame1);
-        } else if (o == BestScores) {
+        }
+        else if (o == BestScores) {
             if (Menu.sound) {
                 Sounds.play(Sounds.ButtonClick);
             }
@@ -198,7 +202,6 @@ public class Menu extends JFrame implements ActionListener{
             bestScores.frame = frame1;
             bestScores.go();
         }
-
         /** if "Exit" is pressed, close all windows and exit game */
         else if (o == Exit) {
             frame1 = new JFrame();
