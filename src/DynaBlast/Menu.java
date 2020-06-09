@@ -49,7 +49,7 @@ public class Menu extends JFrame implements ActionListener{
         setLayout(new GridBagLayout());
         c = new GridBagConstraints();
 
-        setVisible(true);
+        //setVisible(true);
         music = true;
         Sounds.play(Sounds.MenuMusic);
     }
@@ -147,7 +147,7 @@ public class Menu extends JFrame implements ActionListener{
 
             frame1.add(game);
             frame1.pack();
-            frame1.setResizable(false);
+            frame1.setResizable(true);
             frame1.setLocationRelativeTo(null);
             if (Menu.sound) {
                 Sounds.play(Sounds.ButtonClick);
@@ -180,6 +180,7 @@ public class Menu extends JFrame implements ActionListener{
             }
             game.start();
             frame1.setVisible(true);
+            frame1.addWindowListener(new MyWindowsListener());
         }
         else if (o == Options) {
             if (Menu.sound) {

@@ -56,7 +56,7 @@ public class Game extends JPanel implements Runnable{
     public void start() {
         new Tile();    //load images
         level = new Level();
-        character = new Character(Tile.female_stripes, Configurations.lives);
+        character = new Character(Tile.male_orange, Configurations.lives);
         isRunning = true;
         new Thread( this).start();
         BeginPoints = Character.score;
@@ -65,9 +65,14 @@ public class Game extends JPanel implements Runnable{
 
 
     /** Function that stops the game */
-    public static void stop() {
+    public static void pauseGame() {
         isRunning = !isRunning;
         System.out.println(isRunning);
+    }
+
+    public static void end() {
+        level.end();
+
     }
 
     /** function that makes clock tick and therefore change the state of every enemy, character and for the level itself*/

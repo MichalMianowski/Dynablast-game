@@ -14,5 +14,6 @@ public class Boot {
         menu.CreateOptionsButton();
         menu.CreateBestScoresButton();
         menu.CreateExitButton();
+        menu.setVisible(true);
     }
 }

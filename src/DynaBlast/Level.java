@@ -235,4 +235,9 @@ public class Level {
         Level.timeLeft = Configurations.time;
         escapeVisible = 0;
     }
+
+    public void end() {
+        bombs.clear();
+        enemies.clear();
+    }
 }
