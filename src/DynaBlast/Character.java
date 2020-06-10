@@ -37,11 +37,8 @@ public class Character extends Creatures {
     public static double dirY = 0;
 
     boolean ifWon = false;
-<<<<<<< HEAD
     static boolean scaled1 = false;
     static boolean scaled2 = false;
-=======
->>>>>>> bf62de06cdcf49869c89a191bd3ee94bdc938d20
 
     /** graphics needed to animations */
     Graphic graph1, graph2, graph3, graph4;
@@ -56,29 +53,22 @@ public class Character extends Creatures {
      *      information about remaining lives of the player
      */
     public Character(char type, int lives){
-<<<<<<< HEAD
         final float FACTOR  = 2f;
         this.type = type;
         setBounds(x = Level.margin + Tile.tileSize, y = Level.margin + Tile.tileSize, Tile.tileSize, Tile.tileSize);
-=======
-        this.type = type;
-        setBounds(x = Level.margin + Tile.tileSize, y = Level.margin + Tile.tileSize, Tile.tileSize, Tile.tileSize);
 
->>>>>>> bf62de06cdcf49869c89a191bd3ee94bdc938d20
         if (type == Tile.female_orange){
             graph1 = new Graphic(15, Tile.tileset_fem_orange_front[0], Tile.tileset_fem_orange_front[1], Tile.tileset_fem_orange_front[2], Tile.tileset_fem_orange_front[3]);
             graph2 = new Graphic(15, Tile.tileset_fem_orange_back[0], Tile.tileset_fem_orange_back[1], Tile.tileset_fem_orange_back[2], Tile.tileset_fem_orange_back[3]);
             graph3 = new Graphic(15, Tile.tileset_fem_orange_right[0], Tile.tileset_fem_orange_right[1], Tile.tileset_fem_orange_right[2], Tile.tileset_fem_orange_right[3]);
             graph4 = new Graphic(15, Tile.tileset_fem_orange_left[0], Tile.tileset_fem_orange_left[1], Tile.tileset_fem_orange_left[2], Tile.tileset_fem_orange_left[3]);
             img = Tile.tileset_fem_orange_front[0];
-<<<<<<< HEAD
+
             int ScaleX1 = (int) (img.getWidth()*FACTOR);
             int ScaleY1 = (int) (img.getHeight()*FACTOR);
             Image img1 = img.getScaledInstance(ScaleX1,ScaleY1,Image.SCALE_SMOOTH);
             img = new BufferedImage(ScaleX1,ScaleY1,BufferedImage.TYPE_INT_ARGB);
             img.getGraphics().drawImage(img1,0,0,null);
-=======
->>>>>>> bf62de06cdcf49869c89a191bd3ee94bdc938d20
         }
         else if (type == Tile.female_stripes){
             graph1 = new Graphic(15, Tile.tileset_fem_stripes_front[0], Tile.tileset_fem_stripes_front[1], Tile.tileset_fem_stripes_front[2], Tile.tileset_fem_stripes_front[3]);
@@ -86,14 +76,12 @@ public class Character extends Creatures {
             graph3 = new Graphic(15, Tile.tileset_fem_stripes_right[0], Tile.tileset_fem_stripes_right[1], Tile.tileset_fem_stripes_right[2], Tile.tileset_fem_stripes_right[3]);
             graph4 = new Graphic(15, Tile.tileset_fem_stripes_left[0], Tile.tileset_fem_stripes_left[1], Tile.tileset_fem_stripes_left[2], Tile.tileset_fem_stripes_left[3]);
             img = Tile.tileset_fem_stripes_front[0];
-<<<<<<< HEAD
+
             int ScaleX1 = (int) (img.getWidth()*FACTOR);
             int ScaleY1 = (int) (img.getHeight()*FACTOR);
             Image img1 = img.getScaledInstance(ScaleX1,ScaleY1,Image.SCALE_SMOOTH);
             img = new BufferedImage(ScaleX1,ScaleY1,BufferedImage.TYPE_INT_ARGB);
             img.getGraphics().drawImage(img1,0,0,null);
-=======
->>>>>>> bf62de06cdcf49869c89a191bd3ee94bdc938d20
         }
         else if (type == Tile.male_orange){
             graph1 = new Graphic(15, Tile.tileset_m_orange_front[0], Tile.tileset_m_orange_front[1], Tile.tileset_m_orange_front[2], Tile.tileset_m_orange_front[3]);
@@ -101,14 +89,12 @@ public class Character extends Creatures {
             graph3 = new Graphic(15, Tile.tileset_m_orange_right[0], Tile.tileset_m_orange_right[1], Tile.tileset_m_orange_right[2], Tile.tileset_m_orange_right[3]);
             graph4 = new Graphic(15, Tile.tileset_m_orange_left[0], Tile.tileset_m_orange_left[1], Tile.tileset_m_orange_left[2], Tile.tileset_m_orange_left[3]);
             img = Tile.tileset_m_orange_front[0];
-<<<<<<< HEAD
+
             int ScaleX1 = (int) (img.getWidth()*FACTOR);
             int ScaleY1 = (int) (img.getHeight()*FACTOR);
             Image img1 = img.getScaledInstance(ScaleX1,ScaleY1,Image.SCALE_SMOOTH);
             img = new BufferedImage(ScaleX1,ScaleY1,BufferedImage.TYPE_INT_ARGB);
             img.getGraphics().drawImage(img1,0,0,null);
-=======
->>>>>>> bf62de06cdcf49869c89a191bd3ee94bdc938d20
         }
         else if (type == Tile.male_stripes){
             graph1 = new Graphic(15, Tile.tileset_m_stripes_front[0], Tile.tileset_m_stripes_front[1], Tile.tileset_m_stripes_front[2], Tile.tileset_m_stripes_front[3]);
@@ -116,14 +102,12 @@ public class Character extends Creatures {
             graph3 = new Graphic(15, Tile.tileset_m_stripes_right[0], Tile.tileset_m_stripes_right[1], Tile.tileset_m_stripes_right[2], Tile.tileset_m_stripes_right[3]);
             graph4 = new Graphic(15, Tile.tileset_m_stripes_left[0], Tile.tileset_m_stripes_left[1], Tile.tileset_m_stripes_left[2], Tile.tileset_m_stripes_left[3]);
             img = Tile.tileset_m_stripes_front[0];
-<<<<<<< HEAD
+
             int ScaleX1 = (int) (img.getWidth()*FACTOR);
             int ScaleY1 = (int) (img.getHeight()*FACTOR);
             Image img1 = img.getScaledInstance(ScaleX1,ScaleY1,Image.SCALE_SMOOTH);
             img = new BufferedImage(ScaleX1,ScaleY1,BufferedImage.TYPE_INT_ARGB);
             img.getGraphics().drawImage(img1,0,0,null);
-=======
->>>>>>> bf62de06cdcf49869c89a191bd3ee94bdc938d20
         }
 
         Character.lives = lives;
@@ -154,11 +138,8 @@ public class Character extends Creatures {
      * moving main character according to typed keyboard key
      */
     private void move() {
-<<<<<<< HEAD
         moveAnimation();
-=======
->>>>>>> bf62de06cdcf49869c89a191bd3ee94bdc938d20
-        if (isMovingX) {
+        if(isMovingX){
             boolean cantMove = false;
             if(dirX == movementSpeed){
                 cantMove = CollisionChecker.isCollidingRight(this);
@@ -172,7 +153,7 @@ public class Character extends Creatures {
             }
         }
 
-        if (isMovingY) {
+        if(isMovingY){
             boolean cantMove = false;
             if(dirY == movementSpeed){
                 cantMove = CollisionChecker.isCollidingDown(this);
@@ -185,10 +166,6 @@ public class Character extends Creatures {
                 y += dirY;
             }
         }
-<<<<<<< HEAD
-=======
-        moveAnimation();
->>>>>>> bf62de06cdcf49869c89a191bd3ee94bdc938d20
 
         if(Game.level.escapeVisible == 2){
             if((getCellAtMap()[0] == Game.level.cellOfEscape[0])&&(getCellAtMap()[1] == Game.level.cellOfEscape[1])){
@@ -226,7 +203,6 @@ public class Character extends Creatures {
         x = Level.margin + Tile.tileSize;
         y = Level.margin + Tile.tileSize;
         if (lives == 1){
-<<<<<<< HEAD
             Game.death = true;
             lives--;
             Level.timeLeft = -2;
@@ -236,17 +212,6 @@ public class Character extends Creatures {
             Game.level.restart = true;
             Character.score = Game.BeginPoints;
         }
-
-=======
-            System.out.println("This was your last chance, criminal scum!");
-            lives--;
-        }
-        else {
-            lives--;
-        }
-        Game.level.restart = true;
-        score = Game.BeginPoints;
->>>>>>> bf62de06cdcf49869c89a191bd3ee94bdc938d20
     }
 
     /**
@@ -254,12 +219,9 @@ public class Character extends Creatures {
      */
     public void placeBomb() {
         Game.level.addBomb(getCellAtMap());
-<<<<<<< HEAD
         if (!scaled1){
             scaled1 = true;
         }
-=======
->>>>>>> bf62de06cdcf49869c89a191bd3ee94bdc938d20
     }
 
 

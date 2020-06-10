@@ -12,11 +12,7 @@ import java.awt.event.ActionListener;
 public class Options extends JFrame implements ActionListener {
     private static final long serialVersionUID = 1L;
     /** size of the frame */
-<<<<<<< HEAD
     public static Dimension size = new Dimension(810,480);
-=======
-    public static Dimension size = new Dimension(1080,640);
->>>>>>> bf62de06cdcf49869c89a191bd3ee94bdc938d20
     /** name of the frame */
     public static String name = "Options";
 
@@ -41,7 +37,6 @@ public class Options extends JFrame implements ActionListener {
         c.weightx = 0.5;
         c.fill = GridBagConstraints.PAGE_END;
         c.gridx = 0;
-<<<<<<< HEAD
         JLabel sound = new JLabel("Sound");
         sound.setFont(sound.getFont().deriveFont(24.0f));
         JLabel music = new JLabel("Music");
@@ -49,16 +44,11 @@ public class Options extends JFrame implements ActionListener {
         frame.pack();
         frame.setSize(size);
         frame.setLocation(400, 50);
-=======
-        frame.pack();
-        frame.setSize(size);
-        frame.setLocation(400, 150);
->>>>>>> bf62de06cdcf49869c89a191bd3ee94bdc938d20
         frame.setName(name);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setLayout(new GridBagLayout());
-<<<<<<< HEAD
+
         c.fill = GridBagConstraints.CENTER;
         c.insets = new Insets(98,0,0,70);
         c.gridy = 1;
@@ -66,10 +56,7 @@ public class Options extends JFrame implements ActionListener {
         c.gridy = 2;
         c.insets = new Insets(30,0,0,70);
         frame.add(music,c);
-=======
-        ImageIcon tlo = new ImageIcon("res/Images/background.png");
-        //frame.setContentPane(new JLabel(tlo));
->>>>>>> bf62de06cdcf49869c89a191bd3ee94bdc938d20
+
         frame.setVisible(true);
         Options.CreateSoundButton(frame);
         Options.CreateMusicButton(frame);
@@ -89,11 +76,7 @@ public class Options extends JFrame implements ActionListener {
         ReturnToMenu.setFont(new Font("font",Font.PLAIN,25));
         Options.ReturnToMenu = ReturnToMenu;
         c.gridy = 3;
-<<<<<<< HEAD
         c.insets = new Insets(180,0,0,550);
-=======
-        c.insets = new Insets(250,0,0,800);
->>>>>>> bf62de06cdcf49869c89a191bd3ee94bdc938d20
         frame.add(ReturnToMenu,c);
     }
 
@@ -104,16 +87,10 @@ public class Options extends JFrame implements ActionListener {
      */
     public static void CreateSoundButton(JFrame frame){
         JToggleButton Sound = new JToggleButton("On");
-<<<<<<< HEAD
         Sound.setPreferredSize(new Dimension(100,100));
         Options.Sound = Sound;
         c.gridy = 1;
         c.insets = new Insets(100,100,0,0);
-=======
-        Options.Sound = Sound;
-        c.gridy = 1;
-        c.insets = new Insets(170,100,0,0);
->>>>>>> bf62de06cdcf49869c89a191bd3ee94bdc938d20
         frame.add(Sound,c);
     }
 

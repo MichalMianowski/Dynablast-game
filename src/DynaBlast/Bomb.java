@@ -3,17 +3,8 @@
  */
 package DynaBlast;
 
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by Fernflower decompiler)
-//
-
-<<<<<<< HEAD
 import java.awt.*;
 import java.awt.image.BufferedImage;
-=======
-import java.awt.Graphics;
->>>>>>> bf62de06cdcf49869c89a191bd3ee94bdc938d20
 import java.awt.image.ImageObserver;
 
 /**
@@ -42,7 +33,6 @@ public class Bomb {
         this.x = Level.margin + cell[0] * Tile.tileSize;
         this.y = Level.margin + cell[1] * Tile.tileSize;
         this.cellLoc = cell.clone();
-<<<<<<< HEAD
         final float FACTOR  = 2f;
 
         if(!Character.scaled1) {
@@ -70,8 +60,6 @@ public class Bomb {
             Tile.tileset_bomb[3] = new BufferedImage(ScaleX4, ScaleY4, BufferedImage.TYPE_INT_ARGB);
             Tile.tileset_bomb[3].getGraphics().drawImage(img4, 0, 0, null);
         }
-=======
->>>>>>> bf62de06cdcf49869c89a191bd3ee94bdc938d20
     }
 
     /**
@@ -119,12 +107,9 @@ public class Bomb {
      */
     private void explode() {
         Level.explosions.add(new Explosion(cellLoc));
-<<<<<<< HEAD
         if (!Character.scaled2){
             Character.scaled2 = true;
         }
-=======
->>>>>>> bf62de06cdcf49869c89a191bd3ee94bdc938d20
     }
 }
 

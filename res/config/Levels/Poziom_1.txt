@@ -1,72 +1,15 @@
 U U U U U U U U U U U U U U U
-
-<<<<<<< HEAD
-
 U M E E B E E B L B E E B P U
-
-
 U E U B U E U B U B U E U E U
-
-
 U E B E B E E P E E E E E E U
-
-
 U B U E U E U B U B U E U E U
-
-
 U B E E B E E G E E E B B B U
-
-
 U E U E U B U E U E U E U E U
-
-
 U B E E E E E B E E E E E E U
-
-
 U P U E U E U E U B U E U B U
-
-
 U B E S E B E E B E E E E E U
-
-
 U E U E U E U E U E U B U B U
-
-
 U E B E B P E E B B E E E E U
-
-
 U E U E U B U E U E U E U E U
-
-
 U E B E B E E G E B E E E B U
-
-
-=======
-U M E E B E E B L B E E B P U
-
-U E U B U E U B U B U E U E U
-
-U E B E B E E P E E E E E E U
-
-U B U E U E U B U B U E U E U
-
-U B E E B E E G E E E B B B U
-
-U E U E U B U E U E U E U E U
-
-U B E E E E E B E E E E E E U
-
-U P U E U E U E U B U E U B U
-
-U B E S E B E E B E E E E E U
-
-U E U E U E U E U E U B U B U
-
-U E B E B P E E B B E E E E U
-
-U E U E U B U E U E U E U E U
-
-U E B E B E E G E B E E E B U
-
->>>>>>> bf62de06cdcf49869c89a191bd3ee94bdc938d20
 U U U U U U U U U U U U U U U
