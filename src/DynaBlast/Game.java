@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 
 /** Class that creates gameplay screen
@@ -14,11 +15,6 @@ public class Game extends JPanel implements Runnable {
     private static final long serialVersionUID = 1L;
     /**
      * Parameters of the gamescreen
-=======
-public class Game extends JPanel implements Runnable{
-    private static final long serialVersionUID = 1L;
-    /** Parameters of the gamescreen
->>>>>>> bf62de06cdcf49869c89a191bd3ee94bdc938d20
      *
      * @param pixelSize size of pixel in-game
      * @param size size of the game window
@@ -83,10 +79,11 @@ public class Game extends JPanel implements Runnable{
         game = true;
     }
 
+
     /**
      * Function that stops the game
      */
-    public static void pauseGame() {
+    public static void stop() {
         isRunning = !isRunning;
     }
 
@@ -117,8 +114,11 @@ public class Game extends JPanel implements Runnable{
      *
      * @param 'g' Graphic to which render images
      */
-    public void render(Graphics g) {
+    public void render(Graphics2D g) {
         g.clearRect(0,0,size.width,size.height);
+        float sx =(1f+(getSize().width-size.width)/(float)size.width);
+        float sy =(1f+(getSize().height-size.height)/(float)size.height);
+        g.scale(sx,sy);
         genBackground(g);
         if (!Prologue && !Restart && !death) {
             level.render(g);
@@ -127,21 +127,25 @@ public class Game extends JPanel implements Runnable{
             character.render(g);
             Level.explosions.forEach((explosion) -> explosion.render(g));
         }
+
         gameplayInfo(g);
     }
 
+    @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
-        render(g);
+        render((Graphics2D)(g));
         g.dispose();
     }
 
+    @Override
     public void addNotify(){
         super.addNotify();
     }
     /**
      * Function that "runs" the game, so ticks the clock for every object in-game and renders them
      */
+    @Override
     public void run() {
         while (game) {
             if (isRunning) {
@@ -268,3 +272,4 @@ public class Game extends JPanel implements Runnable{
         frame.setVisible(true);
     }
 }
+

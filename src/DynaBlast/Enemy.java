@@ -146,6 +146,9 @@ public class Enemy extends Creatures {
 
     public void die() {
         dead = true;
+        if(this.type == Tile.guard){
+            Character.score += this.points;
+        }
     }
 
 
@@ -161,17 +164,6 @@ public class Enemy extends Creatures {
         }
         else if (type == Tile.guard) {
             graph1.drawAnimation(g, x, y);
-        }
-    }
-    public static void grantPoints(Enemy enemy) {
-        if(enemy.dead) {
-            if (enemy.type == Tile.army_man) {
-                Character.score += 200*Configurations.pointsMultiplier;
-            } else if (enemy.type == Tile.swat) {
-                Character.score += 150*Configurations.pointsMultiplier;
-            } else if (enemy.type == Tile.guard) {
-                Character.score += 100*Configurations.pointsMultiplier;
-            }
         }
     }
 }

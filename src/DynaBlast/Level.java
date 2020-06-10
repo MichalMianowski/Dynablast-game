@@ -130,7 +130,6 @@ public class Level {
         explosions.removeIf(explosion -> explosion.done);
         explosions.forEach(Explosion::tick);
 
-        enemies.forEach(Enemy::grantPoints);
         enemies.removeIf(enemy -> enemy.dead);
         escapeVisibility();
     }
@@ -198,8 +197,7 @@ public class Level {
         int points2 = Level.timeLeft*timePoints;
         points = points1 + points2;
         live = Game.character.getLives();
-        enemies.clear();
-        bombs.clear();
+        Level.enemies.clear();
 
         if (Level.level == Level.LevelLocation1) {
             Level.level = Level.LevelLocation2;
