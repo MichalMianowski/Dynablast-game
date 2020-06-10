@@ -146,7 +146,7 @@ public class Menu extends JFrame implements ActionListener{
             frame1.setLayout(new BorderLayout());
             frame1.add(game);
             frame1.setSize(Game.size);
-            frame1.setResizable(false);
+            frame1.setResizable(true);
             frame1.setLocationRelativeTo(null);
             if (Menu.sound) {
                 Sounds.play(Sounds.ButtonClick);

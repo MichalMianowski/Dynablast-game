@@ -88,7 +88,6 @@ public class Explosion {
      * @param g Graphic to which render images and draw animations
      */
     public void render(Graphics g) {
-        //g.drawImage(Tile.tileset_explosion_core, (int) x, (int) y, null);
         for(int i = 0; i <= lengthL; i++){
             g.drawImage(Tile.tileset_explosion_horizontal, (int) x - i * Tile.tileSize, (int) y, null);
         }

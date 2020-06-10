@@ -30,6 +30,7 @@ public class BestScores extends JFrame implements ActionListener {
     public BestScores(){
         setPreferredSize(size);
         setLocation(400, 150);
+
     };
 
     /** main function of the class
