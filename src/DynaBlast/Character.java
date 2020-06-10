@@ -183,7 +183,7 @@ public class Character extends Creatures {
             lives--;
         }
         Game.level.restart = true;
-        Character.score = Game.BeginPoints;
+        score = Game.BeginPoints;
     }
 
     /**
