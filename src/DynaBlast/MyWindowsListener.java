@@ -5,8 +5,7 @@ import java.awt.event.WindowListener;
 
 class MyWindowsListener implements WindowListener {
     public void windowClosing(WindowEvent arg0) {
-        System.out.println("frame1 exit");
-
+        System.exit(0);
         }
 
     public void windowOpened(WindowEvent arg0) {}
