@@ -113,6 +113,10 @@ public class CollisionChecker {
         for(Enemy enemy:enemyArrayList){
             if((enemy.getCellAtMap()[0] == character.getCellAtMap()[0])&&(enemy.getCellAtMap()[1] == character.getCellAtMap()[1])){
                 character.captured();
+<<<<<<< HEAD
+=======
+
+>>>>>>> bf62de06cdcf49869c89a191bd3ee94bdc938d20
                 break;
             }
         }

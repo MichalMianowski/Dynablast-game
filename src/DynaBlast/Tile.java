@@ -15,7 +15,11 @@ import java.io.IOException;
  *
  */
 public class Tile {
+<<<<<<< HEAD
     public static int tileSize = 40;
+=======
+    public static int tileSize = 20;
+>>>>>>> bf62de06cdcf49869c89a191bd3ee94bdc938d20
 
     public static char empty = 'E';
     public static char unbreakable = 'U';

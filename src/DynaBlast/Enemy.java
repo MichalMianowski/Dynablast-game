@@ -56,6 +56,7 @@ public class Enemy extends Creatures {
         if (this.type == Tile.army_man){
             this.HorizontalSpeed = 0.5 * Configurations.speedMultiplier;
             this.VerticalSpeed = 0.5 * Configurations.speedMultiplier;
+<<<<<<< HEAD
             this.lives = 1;
             this.points = 200;
         }
@@ -70,6 +71,19 @@ public class Enemy extends Creatures {
             this.VerticalSpeed = 0.35 * Configurations.speedMultiplier;
             this.lives = 1;
             this.points = 100;
+=======
+            this.lives = 2;
+        }
+        else if (this.type == Tile.swat){
+            this.HorizontalSpeed = 0.5 * Configurations.speedMultiplier;
+            this.VerticalSpeed = 0.5 * Configurations.speedMultiplier;
+            this.lives = 1;
+        }
+        else {
+            this.HorizontalSpeed = 0.35 * Configurations.speedMultiplier;
+            this.VerticalSpeed = 0.35 * Configurations.speedMultiplier;
+            this.lives = 1;
+>>>>>>> bf62de06cdcf49869c89a191bd3ee94bdc938d20
         }
         x = x0;
         y = y0;
@@ -146,9 +160,12 @@ public class Enemy extends Creatures {
 
     public void die() {
         dead = true;
+<<<<<<< HEAD
         if(this.type == Tile.guard){
             Character.score += this.points;
         }
+=======
+>>>>>>> bf62de06cdcf49869c89a191bd3ee94bdc938d20
     }
 
 
@@ -166,4 +183,19 @@ public class Enemy extends Creatures {
             graph1.drawAnimation(g, x, y);
         }
     }
+<<<<<<< HEAD
+=======
+
+    public static void grantPoints(Enemy enemy) {
+        if(enemy.dead) {
+            if (enemy.type == Tile.army_man) {
+                Character.score += 200*Configurations.pointsMultiplier;
+            } else if (enemy.type == Tile.swat) {
+                Character.score += 150*Configurations.pointsMultiplier;
+            } else if (enemy.type == Tile.guard) {
+                Character.score += 100*Configurations.pointsMultiplier;
+            }
+        }
+    }
+>>>>>>> bf62de06cdcf49869c89a191bd3ee94bdc938d20
 }

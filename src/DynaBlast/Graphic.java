@@ -4,8 +4,13 @@
 
 package DynaBlast;
 
+<<<<<<< HEAD
 import java.awt.*;
 import java.awt.image.BufferedImage;
+=======
+import java.awt.image.BufferedImage;
+import java.awt.Graphics;
+>>>>>>> bf62de06cdcf49869c89a191bd3ee94bdc938d20
 
 /** class that is responsible for running and drawing animations for all moving objects */
 public class Graphic{
@@ -42,6 +47,7 @@ public class Graphic{
      * @param img4 fourth image of animation cycle
      */
     public Graphic(int speed, BufferedImage img1, BufferedImage img2, BufferedImage img3, BufferedImage img4){
+<<<<<<< HEAD
         final float FACTOR  = 2f;
         this.speed = speed;
         int ScaleX1 = (int) (img1.getWidth()*FACTOR);
@@ -68,6 +74,13 @@ public class Graphic{
         this.img4 = new BufferedImage(ScaleX4,ScaleY4,BufferedImage.TYPE_INT_ARGB);
         this.img4.getGraphics().drawImage(image4,0,0,null);
 
+=======
+        this.speed = speed;
+        this.img1 = img1;
+        this.img2 = img2;
+        this.img3 = img3;
+        this.img4 = img4;
+>>>>>>> bf62de06cdcf49869c89a191bd3ee94bdc938d20
         frames = 4;
     }
 

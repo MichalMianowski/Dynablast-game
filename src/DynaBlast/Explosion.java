@@ -5,7 +5,10 @@
 package DynaBlast;
 
 import java.awt.*;
+<<<<<<< HEAD
 import java.awt.image.BufferedImage;
+=======
+>>>>>>> bf62de06cdcf49869c89a191bd3ee94bdc938d20
 import java.awt.image.ImageObserver;
 import java.util.ArrayList;
 
@@ -50,6 +53,7 @@ public class Explosion {
     Graphic graph = new Graphic(50, Tile.tileset_bars_death[0], Tile.tileset_bars_death[1], Tile.tileset_bars_death[2], Tile.tileset_bars_death[3]);
 
     public Explosion(int[] cell){
+<<<<<<< HEAD
         final float FACTOR  = 2f;
         if (!Character.scaled2) {
             int ScaleX1 = (int) (Tile.tileset_explosion_core.getWidth() * FACTOR);
@@ -70,6 +74,8 @@ public class Explosion {
             Tile.tileset_explosion_horizontal = new BufferedImage(ScaleX3, ScaleY3, BufferedImage.TYPE_INT_ARGB);
             Tile.tileset_explosion_horizontal.getGraphics().drawImage(img3, 0, 0, null);
         }
+=======
+>>>>>>> bf62de06cdcf49869c89a191bd3ee94bdc938d20
         done = false;
         x = Level.margin + cell[0] * Tile.tileSize;
         y = Level.margin + cell[1] * Tile.tileSize;
@@ -88,6 +94,10 @@ public class Explosion {
      * @param g Graphic to which render images and draw animations
      */
     public void render(Graphics g) {
+<<<<<<< HEAD
+=======
+        g.drawImage(Tile.tileset_explosion_core, (int) x, (int) y, null);
+>>>>>>> bf62de06cdcf49869c89a191bd3ee94bdc938d20
         for(int i = 0; i <= lengthL; i++){
             g.drawImage(Tile.tileset_explosion_horizontal, (int) x - i * Tile.tileSize, (int) y, null);
         }
