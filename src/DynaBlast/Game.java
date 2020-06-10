@@ -15,11 +15,6 @@ public class Game extends JPanel implements Runnable {
     private static final long serialVersionUID = 1L;
     /**
      * Parameters of the gamescreen
-=======
-public class Game extends JPanel implements Runnable{
-    private static final long serialVersionUID = 1L;
-    /** Parameters of the gamescreen
->>>>>>> bf62de06cdcf49869c89a191bd3ee94bdc938d20
      *
      * @param pixelSize size of pixel in-game
      * @param size size of the game window
@@ -122,6 +117,7 @@ public class Game extends JPanel implements Runnable{
         g.clearRect(0,0,size.width,size.height);
         float sx =(1f+(getSize().width-size.width)/(float)size.width);
         float sy =(1f+(getSize().height-size.height)/(float)size.height);
+        g.scale(sx,sy);
         genBackground(g);
         if (!Prologue && !Restart && !death) {
             level.render(g);
@@ -130,12 +126,13 @@ public class Game extends JPanel implements Runnable{
             character.render(g);
             Level.explosions.forEach((explosion) -> explosion.render(g));
         }
+
         gameplayInfo(g);
     }
 
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
-        render((Graphics2D)g);
+        render((Graphics2D)(g));
         g.dispose();
     }
 

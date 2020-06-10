@@ -138,11 +138,11 @@ public class Menu extends JFrame implements ActionListener{
             frame1 = new JFrame(Game.name);
             JFrame finalFrame = frame1;
             SwingUtilities.invokeLater(new Runnable() {
+                @Override
                 public void run() {
                     Do(finalFrame);
                 }
             });
-
             frame1.setLayout(new BorderLayout());
             frame1.add(game);
             frame1.setSize(Game.size);
@@ -233,6 +233,7 @@ public class Menu extends JFrame implements ActionListener{
                     Sounds.audioClip.close();
                     Sounds.play(Sounds.MenuMusic);
                 }
+
             }
         });
     }

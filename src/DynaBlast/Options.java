@@ -48,7 +48,6 @@ public class Options extends JFrame implements ActionListener {
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setLayout(new GridBagLayout());
-
         c.fill = GridBagConstraints.CENTER;
         c.insets = new Insets(98,0,0,70);
         c.gridy = 1;
@@ -56,7 +55,6 @@ public class Options extends JFrame implements ActionListener {
         c.gridy = 2;
         c.insets = new Insets(30,0,0,70);
         frame.add(music,c);
-
         frame.setVisible(true);
         Options.CreateSoundButton(frame);
         Options.CreateMusicButton(frame);

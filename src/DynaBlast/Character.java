@@ -56,14 +56,12 @@ public class Character extends Creatures {
         final float FACTOR  = 2f;
         this.type = type;
         setBounds(x = Level.margin + Tile.tileSize, y = Level.margin + Tile.tileSize, Tile.tileSize, Tile.tileSize);
-
         if (type == Tile.female_orange){
             graph1 = new Graphic(15, Tile.tileset_fem_orange_front[0], Tile.tileset_fem_orange_front[1], Tile.tileset_fem_orange_front[2], Tile.tileset_fem_orange_front[3]);
             graph2 = new Graphic(15, Tile.tileset_fem_orange_back[0], Tile.tileset_fem_orange_back[1], Tile.tileset_fem_orange_back[2], Tile.tileset_fem_orange_back[3]);
             graph3 = new Graphic(15, Tile.tileset_fem_orange_right[0], Tile.tileset_fem_orange_right[1], Tile.tileset_fem_orange_right[2], Tile.tileset_fem_orange_right[3]);
             graph4 = new Graphic(15, Tile.tileset_fem_orange_left[0], Tile.tileset_fem_orange_left[1], Tile.tileset_fem_orange_left[2], Tile.tileset_fem_orange_left[3]);
             img = Tile.tileset_fem_orange_front[0];
-
             int ScaleX1 = (int) (img.getWidth()*FACTOR);
             int ScaleY1 = (int) (img.getHeight()*FACTOR);
             Image img1 = img.getScaledInstance(ScaleX1,ScaleY1,Image.SCALE_SMOOTH);
@@ -76,7 +74,6 @@ public class Character extends Creatures {
             graph3 = new Graphic(15, Tile.tileset_fem_stripes_right[0], Tile.tileset_fem_stripes_right[1], Tile.tileset_fem_stripes_right[2], Tile.tileset_fem_stripes_right[3]);
             graph4 = new Graphic(15, Tile.tileset_fem_stripes_left[0], Tile.tileset_fem_stripes_left[1], Tile.tileset_fem_stripes_left[2], Tile.tileset_fem_stripes_left[3]);
             img = Tile.tileset_fem_stripes_front[0];
-
             int ScaleX1 = (int) (img.getWidth()*FACTOR);
             int ScaleY1 = (int) (img.getHeight()*FACTOR);
             Image img1 = img.getScaledInstance(ScaleX1,ScaleY1,Image.SCALE_SMOOTH);
@@ -89,7 +86,6 @@ public class Character extends Creatures {
             graph3 = new Graphic(15, Tile.tileset_m_orange_right[0], Tile.tileset_m_orange_right[1], Tile.tileset_m_orange_right[2], Tile.tileset_m_orange_right[3]);
             graph4 = new Graphic(15, Tile.tileset_m_orange_left[0], Tile.tileset_m_orange_left[1], Tile.tileset_m_orange_left[2], Tile.tileset_m_orange_left[3]);
             img = Tile.tileset_m_orange_front[0];
-
             int ScaleX1 = (int) (img.getWidth()*FACTOR);
             int ScaleY1 = (int) (img.getHeight()*FACTOR);
             Image img1 = img.getScaledInstance(ScaleX1,ScaleY1,Image.SCALE_SMOOTH);
@@ -102,7 +98,6 @@ public class Character extends Creatures {
             graph3 = new Graphic(15, Tile.tileset_m_stripes_right[0], Tile.tileset_m_stripes_right[1], Tile.tileset_m_stripes_right[2], Tile.tileset_m_stripes_right[3]);
             graph4 = new Graphic(15, Tile.tileset_m_stripes_left[0], Tile.tileset_m_stripes_left[1], Tile.tileset_m_stripes_left[2], Tile.tileset_m_stripes_left[3]);
             img = Tile.tileset_m_stripes_front[0];
-
             int ScaleX1 = (int) (img.getWidth()*FACTOR);
             int ScaleY1 = (int) (img.getHeight()*FACTOR);
             Image img1 = img.getScaledInstance(ScaleX1,ScaleY1,Image.SCALE_SMOOTH);
@@ -139,7 +134,7 @@ public class Character extends Creatures {
      */
     private void move() {
         moveAnimation();
-        if(isMovingX){
+        if (isMovingX) {
             boolean cantMove = false;
             if(dirX == movementSpeed){
                 cantMove = CollisionChecker.isCollidingRight(this);
@@ -153,7 +148,7 @@ public class Character extends Creatures {
             }
         }
 
-        if(isMovingY){
+        if (isMovingY) {
             boolean cantMove = false;
             if(dirY == movementSpeed){
                 cantMove = CollisionChecker.isCollidingDown(this);
