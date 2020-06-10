@@ -138,7 +138,6 @@ public class Menu extends JFrame implements ActionListener{
             frame1 = new JFrame(Game.name);
             JFrame finalFrame = frame1;
             SwingUtilities.invokeLater(new Runnable() {
-                @Override
                 public void run() {
                     Do(finalFrame);
                 }
