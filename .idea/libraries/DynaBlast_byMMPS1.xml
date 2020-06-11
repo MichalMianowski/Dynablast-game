@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="DynaBlast_byMMPS1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/out/artifacts/DynaBlast_byMMPS_jar/DynaBlast_byMMPS.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

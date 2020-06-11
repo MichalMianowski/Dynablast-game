@@ -3,6 +3,8 @@ package DynaBlast;
 import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 
@@ -10,33 +12,57 @@ import java.util.Scanner;
  * and other important informations, not specified in the code
  */
 public class Configurations {
-    /** path to the configuration file for "Easy" difficulty */
+    /**
+     * path to the configuration file for "Easy" difficulty
+     */
     static File Difficulty1 = new File("res/config/Difficulty/1.Easy.txt");
-    /** path to the configuration file for "Medium" difficulty */
+    /**
+     * path to the configuration file for "Medium" difficulty
+     */
     static File Difficulty2 = new File("res/config/Difficulty/2.Medium.txt");
-    /** path to the configuration file for "Hard" difficulty */
+    /**
+     * path to the configuration file for "Hard" difficulty
+     */
     static File Difficulty3 = new File("res/config/Difficulty/3.Hard.txt");
 
-    /** specifies how many times more points killing an enemy gives, depending on difficulty */
+    /**
+     * specifies how many times more points killing an enemy gives, depending on difficulty
+     */
     static float pointsMultiplier = 0;
-    /** specifies how many points should be given for every remaining second on timer while finishing the level */
+    /**
+     * specifies how many points should be given for every remaining second on timer while finishing the level
+     */
     static int timePoints = 0;
-    /** specifies how many seconds there is for finishing the level */
+    /**
+     * specifies how many seconds there is for finishing the level
+     */
     static int time = 0;
-    /** specifies how many times faster the enemies are moving from their basic value */
+    /**
+     * specifies how many times faster the enemies are moving from their basic value
+     */
     static float speedMultiplier = 0;
-    /** specifies the initial value of character's lives */
+    /**
+     * specifies the initial value of character's lives
+     */
     static int lives = 0;
-    /** specifies the color of the background for game screen */
+    /**
+     * specifies the color of the background for game screen
+     */
     static char color = 'a';
-    /** specifies width of level (in blocks) */
+    /**
+     * specifies width of level (in blocks)
+     */
     static int width;
-    /** specifies height of level (in blocks) */
+    /**
+     * specifies height of level (in blocks)
+     */
     static int height;
 
-    /** function, that reads the level layout from files
+    /**
+     * function, that reads the level layout from files
      * first it reads the level size (width and height and blocks) and creates accordingly big two dimensional board
      * then sets the type of every block according to the letter that was read from configuration file
+     *
      * @param file specifies, from what file the informations should be read
      */
     public static void loadLevelFromFile(File file) {
@@ -64,18 +90,21 @@ public class Configurations {
             e.printStackTrace();
         }
     }
-    /** function that creates the level structure according to what was read in "LoadLevelFromFile" function */
+
+    /**
+     * function that creates the level structure according to what was read in "LoadLevelFromFile" function
+     */
     public static void generateLevel() {
         width = 0;
         height = 0;
         try {
             Scanner sc = new Scanner(Level.LevelSize1);
-            while(sc.hasNext()){
+            while (sc.hasNext()) {
                 width = sc.nextInt();
                 height = sc.nextInt();
                 Level.block = new Block[width][height];
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Błąd wczytywania pliku");
             e.printStackTrace();
         }
@@ -86,14 +115,16 @@ public class Configurations {
         }
     }
 
-    /** function that reads all informations about the level difficulty
+    /**
+     * function that reads all informations about the level difficulty
      * and sets the necessary parameters according to read information
+     *
      * @param file specifies from what file the information should be read
      */
-    public static void loadDifficulty(File file){
+    public static void loadDifficulty(File file) {
         try {
             Scanner sc = new Scanner(file);
-            while (sc.hasNext()){
+            while (sc.hasNext()) {
                 pointsMultiplier = sc.nextInt();
                 timePoints = sc.nextInt();
                 time = sc.nextInt();
@@ -106,19 +137,32 @@ public class Configurations {
             e.printStackTrace();
         }
 
-        pointsMultiplier = pointsMultiplier/100;
-        speedMultiplier = speedMultiplier/100;
+        pointsMultiplier = pointsMultiplier / 100;
+        speedMultiplier = speedMultiplier / 100;
         Level.timePoints = timePoints;
         Level.timeLeft = time;
 
-        if (color == 'G'){
+        if (color == 'G') {
             Game.color = 'G';
-        }
-        else if (color == 'Y'){
+        } else if (color == 'Y') {
             Game.color = 'Y';
-        }
-        else if (color == 'R'){
+        } else if (color == 'R') {
             Game.color = 'R';
+        }
+    }
+
+    public static void SubmitScore() {
+        try {
+            FileWriter zapis1 = new FileWriter("res/config/BestScores/Score_names.txt");
+            zapis1.write(ScoreSubmit.name);
+            zapis1.close();
+
+            FileWriter zapis2 = new FileWriter("res/config/BestScores/Score_points.txt");
+            zapis2.write(Integer.toString(Character.score));
+            zapis2.close();
+        } catch (Exception e) {
+            System.out.println("Blad wczytywania pliku");
+            e.printStackTrace();
         }
     }
 }

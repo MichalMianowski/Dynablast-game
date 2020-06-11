@@ -34,20 +34,14 @@ public class Game extends JPanel implements Runnable {
     public static boolean sound = true;
     int counter = 0;
     static int BeginPoints;
-    static Graphics g;
     static boolean game = true;
     int WhichLevel;
     String WhatDifficulty;
     static boolean Prologue = true;
     static boolean Restart = false;
     static boolean death = false;
-    GridBagConstraints c;
     static Thread thread;
-
-    /**
-     * On this, the graphics are being drawn
-     */
-    private BufferedImage screen;
+    static JFrame frame;
 
     /**
      * Class instances that are to be co-created along with game window
@@ -114,10 +108,10 @@ public class Game extends JPanel implements Runnable {
      * @param 'g' Graphic to which render images
      */
     public void render(Graphics2D g) {
-        g.clearRect(0,0,size.width,size.height);
-        float sx =(1f+(getSize().width-size.width)/(float)size.width);
-        float sy =(1f+(getSize().height-size.height)/(float)size.height);
-        g.scale(sx,sy);
+        g.clearRect(0, 0, size.width, size.height);
+        float sx = (1f + (getSize().width - size.width) / (float) size.width);
+        float sy = (1f + (getSize().height - size.height) / (float) size.height);
+        g.scale(sx, sy);
         genBackground(g);
         if (!Prologue && !Restart && !death) {
             level.render(g);
@@ -130,15 +124,16 @@ public class Game extends JPanel implements Runnable {
         gameplayInfo(g);
     }
 
-    protected void paintComponent(Graphics g){
+    protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        render((Graphics2D)(g));
+        render((Graphics2D) (g));
         g.dispose();
     }
 
-    public void addNotify(){
+    public void addNotify() {
         super.addNotify();
     }
+
     /**
      * Function that "runs" the game, so ticks the clock for every object in-game and renders them
      */
@@ -184,29 +179,28 @@ public class Game extends JPanel implements Runnable {
             g.setColor(new Color(0, 0, 0));
             g.fillRect(0, 0, size.width, size.height);
             g.setColor(new Color(255, 255, 255));
-            g.setFont(new Font("TimesRoman", Font.BOLD, 16));
-            g.drawString("Level " + String.format("%01d", WhichLevel), 190, 160);
-            g.drawString(WhatDifficulty, 197, 180);
-        }
-        else if (Restart) {
+            g.setFont(new Font("TimesRoman", Font.BOLD, 32));
+            g.drawString("Level " + String.format("%01d", WhichLevel), 380, 320);
+            g.drawString(WhatDifficulty, 394, 360);
+        } else if (Restart) {
             g.setColor(new Color(0, 0, 0));
             g.fillRect(0, 0, size.width, size.height);
             g.setColor(new Color(255, 255, 255));
-            g.setFont(new Font("TimesRoman", Font.BOLD, 16));
-            g.drawString("Remaining lives: " + String.format("%01d", character.getLives()), 150, 180);
-        }
-        else if (death) {
+            g.setFont(new Font("TimesRoman", Font.BOLD, 32));
+            g.drawString("Remaining lives: " + String.format("%01d", character.getLives()), 300, 360);
+        } else if (death) {
             g.setColor(new Color(0, 0, 0));
             g.fillRect(0, 0, size.width, size.height);
             g.setColor(new Color(255, 255, 255));
-            g.setFont(new Font("TimesRoman", Font.BOLD, 16));
-            g.drawString("This was your last chance,", 125, 180);
-            g.drawString("criminal scum", 160, 200);
+            g.setFont(new Font("TimesRoman", Font.BOLD, 32));
+            g.drawString("This was your last chance,", 250, 360);
+            g.drawString("criminal scum", 320, 400);
             if (Level.timeLeft <= -6) {
-                submitScore();
+                frame = new JFrame();
+                ScoreSubmit submit = new ScoreSubmit();
+                submit.submitScore(frame);
             }
-        }
-        else {
+        } else {
             if (color == 'G') {
                 g.setColor(new Color(175, 213, 170)); //cool grey color 3x51
             } else if (color == 'Y') {
@@ -222,8 +216,10 @@ public class Game extends JPanel implements Runnable {
     }
 
 
-    /** Function generating and drawing info about game parameters, such as time left, lives left and current score */
-    public void gameplayInfo (Graphics g){
+    /**
+     * Function generating and drawing info about game parameters, such as time left, lives left and current score
+     */
+    public void gameplayInfo(Graphics g) {
         g.setColor(new Color(0, 0, 0));
         g.setFont(new Font("TimesRoman", Font.BOLD, 26));
         g.drawString("Time left:", 660, 80);
@@ -234,37 +230,4 @@ public class Game extends JPanel implements Runnable {
         g.drawString("" + character.getScore() + " points", 660, 280);
     }
 
-    public void submitScore(){
-        game = false;
-        Menu.frame1.dispose();
-        c = new GridBagConstraints();
-        c.weightx = 0.5;
-        c.fill = GridBagConstraints.PAGE_END;
-        c.gridx = 0;
-        JFrame frame = new JFrame();
-        JPanel panel = new JPanel();
-        panel.setLayout(new GridBagLayout());
-
-        JLabel label = new JLabel("Enter your name to be remembered at Best Scores");
-        c.gridy = 1;
-        c.insets = new Insets(100,0,0,0);
-        panel.add(label);
-
-        JTextField field = new JTextField();
-        field.setBounds(50,100, 200,30);
-        c.gridy = 2;
-        c.insets = new Insets(150,0,0,0);
-        panel.add(field);
-
-        JButton button = new JButton();
-        button.setText("Submit");
-        c.gridy = 3;
-        c.insets = new Insets(200,0,0,0);
-        panel.add(button);
-
-        frame.setSize(500,300);
-        frame.setLocationRelativeTo(null);
-        frame.add(panel);
-        frame.setVisible(true);
-    }
 }
