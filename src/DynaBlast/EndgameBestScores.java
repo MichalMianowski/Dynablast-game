@@ -13,33 +13,33 @@ import java.awt.event.ActionListener;
  *  Class extends JFrame and implements ActionListener, to react
  *  to pressing buttons.
  */
-public class BestScores extends BestScoresTableAbs {
+public class EndgameBestScores extends BestScoresTableAbs {
+
     /**
      * basic constructor of the class *
      * sets it's size and location
      *
      * @param frame
      */
-    public BestScores(JFrame frame) {
+    public EndgameBestScores(JFrame frame) {
         super(frame);
     }
 
-     /** Function creates the Return to menu button,
+    /** Function creates the Return to menu button,
      *  First, creates new JButton with appropriate name and font
      *  Then it adds the button to the window's panel
      *  At last it sets its size and makes it response to pressing it
      */
-     public void CreateExitButton(JFrame frame){
-         buttonText = "Return to menu";
-         super.CreateExitButton(frame);
-     }
+    public void CreateExitButton(JFrame frame){
+        buttonText = "End Game";
+        super.CreateExitButton(frame);
+    }
 
     /** specifies what actions are to be performed after pressing buttons */
     public void actionPerformed(ActionEvent ae) {
         Object o = ae.getSource();
         if (o == ReturnToMenu){
-            this.dispose();
-            frame1.setVisible(true);
+            System.exit(0);
         }
     }
 }

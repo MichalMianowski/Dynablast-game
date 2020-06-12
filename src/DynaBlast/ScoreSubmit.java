@@ -56,7 +56,8 @@ public class ScoreSubmit extends JFrame implements ActionListener {
         JPanel panel = new JPanel();
         panel.setLayout(new GridBagLayout());
 
-        JLabel label1 = new JLabel("Enter your name to be remembered at Best Scores");
+        JLabel label1 = new JLabel("Enter your name");
+        label1.setFont(new Font("font",Font.PLAIN,20));
         c.gridy = 1;
         c.insets = new Insets(10, 0, 0, 0);
         panel.add(label1, c);
@@ -74,7 +75,7 @@ public class ScoreSubmit extends JFrame implements ActionListener {
 
         frame.setSize(400, 250);
         frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         frame.add(panel);
         createButton(panel);
         button.addActionListener(this);
@@ -114,8 +115,7 @@ public class ScoreSubmit extends JFrame implements ActionListener {
                 e.printStackTrace();
             }
 
-            BestScores endGameBestScores = new BestScores(this);
-//                BestScores.frame = this;
+            EndgameBestScores endGameBestScores = new EndgameBestScores(this);
             endGameBestScores.go();
         }
     }
