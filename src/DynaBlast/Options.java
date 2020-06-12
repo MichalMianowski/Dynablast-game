@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 public class Options extends JFrame implements ActionListener {
     private static final long serialVersionUID = 1L;
     /** size of the frame */
-    public static Dimension size = new Dimension(1200,660);
+    public static Dimension size = new Dimension(950,560);
     /** name of the frame */
     public static String name = "Options";
 
@@ -24,6 +24,7 @@ public class Options extends JFrame implements ActionListener {
     private static JRadioButton Skin2;
     private static JRadioButton Skin3;
     private static JRadioButton Skin4;
+    private static JLabel skin;
 
     /** specifies constraints for components that are laid out using the GridBagLayout class */
     static GridBagConstraints c;
@@ -38,13 +39,7 @@ public class Options extends JFrame implements ActionListener {
      */
     public void create1(JFrame frame){
         c = new GridBagConstraints();
-        c.fill = GridBagConstraints.PAGE_END;
-        c.gridx = 0;
         frame.setPreferredSize(size);
-        JLabel sound = new JLabel("Sound");
-        sound.setFont(sound.getFont().deriveFont(24.0f));
-        JLabel music = new JLabel("Music");
-        music.setFont(sound.getFont().deriveFont(24.0f));
         frame.pack();
         frame.setSize(size);
         frame.setLocation(400, 50);
@@ -52,37 +47,65 @@ public class Options extends JFrame implements ActionListener {
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setLayout(new GridBagLayout());
-        c.fill = GridBagConstraints.PAGE_START;
-        c.insets = new Insets(18,0,0,100);
-        c.gridy = 2;
-        frame.add(sound,c);
-        c.gridy = 3;
-        c.insets = new Insets(30,0,0,100);
-        frame.add(music,c);
+        JPanel panel1 = new JPanel();
+        JPanel panel2 = new JPanel();
+        JPanel panel3 = new JPanel();
+
+        JLabel sound = new JLabel("Sound");
+        sound.setFont(sound.getFont().deriveFont(24.0f));
+        JLabel music = new JLabel("Music");
+        music.setFont(sound.getFont().deriveFont(24.0f));
+        panel2.add(sound,c);
+        panel3.add(music,c);
+
+        c.gridheight = 2;
+        c.anchor = GridBagConstraints.PAGE_END;
+        frame.add(panel1,c);
+
+        c.gridheight = 1;
+        c.anchor = GridBagConstraints.CENTER;
+        frame.add(panel2,c);
+
+        c.anchor = GridBagConstraints.CENTER;
+        c.fill = GridBagConstraints.RELATIVE;
+        frame.add(panel3,c);
         frame.setVisible(true);
 
-        Options.CreateSkinButtons(frame);
-        Options.CreateSoundButton(frame);
-        Options.CreateMusicButton(frame);
-        //Options.CreateReturnToMenuButton(frame);
+        Options.CreateSkinButtons(panel1);
+        Options.CreateSoundButton(panel2);
+        Options.CreateMusicButton(panel3);
+        Options.CreateReturnToMenuButton(frame);
 
-        //ReturnToMenu.addActionListener(this);
-        //Sound.addActionListener(this);
-        //Music.addActionListener(this);
+        ReturnToMenu.addActionListener(this);
+        Sound.addActionListener(this);
+        Music.addActionListener(this);
         Skin1.addActionListener(this);
         Skin2.addActionListener(this);
         Skin3.addActionListener(this);
         Skin4.addActionListener(this);
+
+        if (Boot.character == Tile.male_orange){
+            Skin1.setSelected(true);
+        }
+        if (Boot.character == Tile.male_stripes){
+            Skin2.setSelected(true);
+        }
+        if (Boot.character == Tile.female_orange){
+            Skin3.setSelected(true);
+        }
+        if (Boot.character == Tile.female_stripes){
+            Skin4.setSelected(true);
+        }
     }
 
-    public static void CreateSkinButtons(JFrame frame){
-        c.gridx = 2;
-        c.insets = new Insets(10, 50,0,0);
-
+    public static void CreateSkinButtons(JPanel panel){
         JRadioButton skin1 = new JRadioButton ("Male orange");
         JRadioButton skin2 = new JRadioButton ("Male stripes");
         JRadioButton skin3 = new JRadioButton ("Female orange");
         JRadioButton skin4 = new JRadioButton ("Female stripes");
+        skin = new JLabel("Character skin");
+
+        panel.setLayout(new GridBagLayout());
         ButtonGroup bg = new ButtonGroup();
         bg.add(skin1);
         bg.add(skin2);
@@ -93,20 +116,25 @@ public class Options extends JFrame implements ActionListener {
         skin2.setFont(new Font("font",Font.PLAIN,25));
         skin3.setFont(new Font("font",Font.PLAIN,25));
         skin4.setFont(new Font("font",Font.PLAIN,25));
+        skin.setFont(new Font("font",Font.BOLD, 30));
 
         Options.Skin1 = skin1;
         Options.Skin2 = skin2;
         Options.Skin3 = skin3;
         Options.Skin4 = skin4;
 
-        c.gridy = 1;
-        frame.add(skin1, c);
+        c.gridx = 2;
         c.gridy = 2;
-        frame.add(skin2, c);
+        c.insets = new Insets(20,0,0,0);
+        panel.add(skin1, c);
         c.gridy = 3;
-        frame.add(skin3, c);
+        panel.add(skin2, c);
         c.gridy = 4;
-        frame.add(skin4, c);
+        panel.add(skin3, c);
+        c.gridy = 5;
+        panel.add(skin4, c);
+        c.gridy = 6;
+        panel.add(skin, c);
     }
 
     /** Function creates the Sound button,
@@ -114,15 +142,14 @@ public class Options extends JFrame implements ActionListener {
      *  Then it adds the button to the window's panel
      *  At last it sets the relative location to other buttons
      */
-    public static void CreateSoundButton(JFrame frame){
-        c.fill = GridBagConstraints.CENTER;
+    public static void CreateSoundButton(JPanel panel){
         JToggleButton Sound = new JToggleButton("On");
-        Sound.setPreferredSize(new Dimension(80,40));
+        Sound.setPreferredSize(new Dimension(60,30));
         Options.Sound = Sound;
-        c.gridy = 2;
+        c.gridy = 1;
         c.gridx = 1;
-        c.insets = new Insets(100,10,0,100);
-        frame.add(Sound,c);
+        c.insets = new Insets(0,10,0,0);
+        panel.add(Sound,c);
     }
 
     /** Function creates the Music button,
@@ -130,15 +157,14 @@ public class Options extends JFrame implements ActionListener {
      *  Then it adds the button to the window's panel
      *  At last it sets the relative location to other buttons
      */
-    public static void CreateMusicButton(JFrame frame){
-        c.fill = GridBagConstraints.CENTER;
+    public static void CreateMusicButton(JPanel panel){
         JToggleButton Music = new JToggleButton("On");
-        Music.setPreferredSize(new Dimension(80,40));
+        Music.setPreferredSize(new Dimension(60,30));
         Options.Music = Music;
-        c.gridy = 3;
+        c.gridy = 2;
         c.gridx = 1;
-        c.insets = new Insets(30,10,0,100);
-        frame.add(Music,c);
+        c.insets = new Insets(0,10,0,50);
+        panel.add(Music,c);
     }
 
     /** Function creates the Return to Menu button,
@@ -147,17 +173,16 @@ public class Options extends JFrame implements ActionListener {
      *  At last it sets the relative location to other buttons
      */
     public static void CreateReturnToMenuButton(JFrame frame){
-        c.fill =GridBagConstraints.PAGE_END;
+        c.anchor = GridBagConstraints.PAGE_END;
         JButton ReturnToMenu = new JButton("Return to menu");
         ReturnToMenu.setFont(new Font("font",Font.PLAIN,25));
         Options.ReturnToMenu = ReturnToMenu;
-        ReturnToMenu.setPreferredSize(new Dimension(400,100));
-        c.gridy = 4;
-        c.insets = new Insets(80,0,0,550);
+        ReturnToMenu.setPreferredSize(new Dimension(250,50));
+        c.gridy = 5;
+        c.gridx = 1;
+        c.insets = new Insets(100,0,0,200);
         frame.add(ReturnToMenu,c);
     }
-
-
 
     /** specifies what action are to be performed during pressing specific buttons */
     public void actionPerformed(ActionEvent ae) {
@@ -171,7 +196,7 @@ public class Options extends JFrame implements ActionListener {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            getDefaultCloseOperation();
+            Menu.frame2.dispose();
         }
 
         else if (o == Sound){
@@ -214,6 +239,18 @@ public class Options extends JFrame implements ActionListener {
                 Sounds.audioClip.close();
                 Sounds.play(Sounds.MenuMusic);
             }
+        }
+        if (Skin1.isSelected()){
+            Boot.character = Tile.male_orange;
+        }
+        if (Skin2.isSelected()){
+            Boot.character = Tile.male_stripes;
+        }
+        if (Skin3.isSelected()){
+            Boot.character = Tile.female_orange;
+        }
+        if (Skin4.isSelected()){
+            Boot.character = Tile.female_stripes;
         }
     }
 

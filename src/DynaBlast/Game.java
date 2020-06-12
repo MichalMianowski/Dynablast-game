@@ -40,6 +40,7 @@ public class Game extends JPanel implements Runnable {
     static boolean Prologue = true;
     static boolean Restart = false;
     static boolean death = false;
+    static boolean Won = false;
     static Thread thread;
     static JFrame frame;
 
@@ -67,7 +68,7 @@ public class Game extends JPanel implements Runnable {
     public void start() {
         new Tile();    //load images
         level = new Level();
-        character = new Character(Tile.male_orange, Configurations.lives);
+        character = new Character(Boot.character, Configurations.lives);
         isRunning = true;
         BeginPoints = Character.score;
         game = true;
@@ -113,7 +114,7 @@ public class Game extends JPanel implements Runnable {
         float sy = (1f + (getSize().height - size.height) / (float) size.height);
         g.scale(sx, sy);
         genBackground(g);
-        if (!Prologue && !Restart && !death) {
+        if (!Prologue && !Restart && !death && !Won) {
             level.render(g);
             Level.bombs.forEach((bomb) -> bomb.render(g));
             Level.enemies.forEach((en) -> en.render(g));
@@ -200,7 +201,21 @@ public class Game extends JPanel implements Runnable {
                 ScoreSubmit submit = new ScoreSubmit();
                 submit.submitScore(frame);
             }
-        } else {
+        }
+        else if (Won){
+            g.setColor(new Color(0, 0, 0));
+            g.fillRect(0, 0, size.width, size.height);
+            g.setColor(new Color(255, 255, 255));
+            g.setFont(new Font("TimesRoman", Font.BOLD, 32));
+            g.drawString("CONGRATULATIONS!", 250, 360);
+            g.drawString("You escaped from prison", 320, 400);
+            if (Level.timeLeft <= -6) {
+                frame = new JFrame();
+                ScoreSubmit submit = new ScoreSubmit();
+                submit.submitScore(frame);
+            }
+        }
+        else {
             if (color == 'G') {
                 g.setColor(new Color(175, 213, 170)); //cool grey color 3x51
             } else if (color == 'Y') {

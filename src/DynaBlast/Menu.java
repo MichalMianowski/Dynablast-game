@@ -25,6 +25,7 @@ public class Menu extends JFrame implements ActionListener{
     private JButton Exit;
     static Game game;
     static JFrame frame1;
+    static JFrame frame2;
     static int levelNumber;
     static int Difficulty;
 
@@ -127,6 +128,7 @@ public class Menu extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent ae) {
         Object o = ae.getSource();
         frame1 = new JFrame();
+        frame2 = new JFrame();
         /** if "New game" is pressed, create gameplay screen */
         if (o == NewGame) {
             if (Menu.sound) {
@@ -147,6 +149,7 @@ public class Menu extends JFrame implements ActionListener{
             frame1.setSize(Game.size);
             frame1.setResizable(true);
             frame1.setLocationRelativeTo(null);
+            frame1.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
             if (Menu.sound) {
                 Sounds.play(Sounds.ButtonClick);
             }
@@ -185,20 +188,20 @@ public class Menu extends JFrame implements ActionListener{
                 Sounds.play(Sounds.ButtonClick);
             }
             setVisible(false);
-            JFrame finalFrame = frame1;
+            JFrame finalFrame = frame2;
             SwingUtilities.invokeLater(() -> Do(finalFrame));
             Options options = new Options();
-            options.create1(frame1);
+            options.create1(frame2);
         }
         else if (o == BestScores) {
             if (Menu.sound) {
                 Sounds.play(Sounds.ButtonClick);
             }
             setVisible(false);
-            JFrame finalFrame = frame1;
+            JFrame finalFrame = frame2;
             SwingUtilities.invokeLater(() -> Do(finalFrame));
             BestScores bestScores = new BestScores();
-            bestScores.frame = frame1;
+            bestScores.frame = frame2;
             bestScores.go();
         }
         /** if "Exit" is pressed, close all windows and exit game */
@@ -235,5 +238,9 @@ public class Menu extends JFrame implements ActionListener{
 
             }
         });
+    }
+
+    public void ReturnToMenu(){
+        setVisible(true);
     }
 }

@@ -153,12 +153,12 @@ public class Configurations {
 
     public static void SubmitScore() {
         try {
-            FileWriter zapis1 = new FileWriter("res/config/BestScores/Score_names.txt");
-            zapis1.write(ScoreSubmit.name);
+            PrintWriter zapis1 = new PrintWriter("res/config/BestScores/Score_names.txt");
+            zapis1.print(ScoreSubmit.name + "\r");
             zapis1.close();
 
-            FileWriter zapis2 = new FileWriter("res/config/BestScores/Score_points.txt");
-            zapis2.write(Integer.toString(Character.score));
+            PrintWriter zapis2 = new PrintWriter("res/config/BestScores/Score_points.txt");
+            zapis2.print(Character.score + "\r");
             zapis2.close();
         } catch (Exception e) {
             System.out.println("Blad wczytywania pliku");

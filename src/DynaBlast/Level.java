@@ -30,9 +30,6 @@ public class Level {
      * should the level will be restarted
      */
     public boolean restart = false;
-    /**
-     * should be begin win procedure
-     */
     public boolean win = false;
 
     /**
@@ -194,35 +191,36 @@ public class Level {
      * procedure after winning the level
      */
     public void win() {
-        int points1 = Game.character.getScore();
-        int points2 = Level.timeLeft*timePoints;
-        points = points1 + points2;
-        live = Game.character.getLives();
-        enemies.clear();
-        bombs.clear();
+        if (!win) {
+            int points1 = Game.character.getScore();
+            int points2 = Level.timeLeft * timePoints;
+            points = points1 + points2;
+            live = Game.character.getLives();
+            enemies.clear();
+            bombs.clear();
 
-        if (Level.level == Level.LevelLocation1) {
-            Level.level = Level.LevelLocation2;
-            Game.level.reset();
+            if (Level.level == Level.LevelLocation1) {
+                Level.level = Level.LevelLocation2;
+                Game.level.reset();
+            } else if (Level.level == Level.LevelLocation2) {
+                Level.level = Level.LevelLocation3;
+                Game.level.reset();
+            } else if (Level.level == Level.LevelLocation3) {
+                Level.level = Level.LevelLocation4;
+                Game.level.reset();
+            } else if (Level.level == Level.LevelLocation4) {
+                Level.level = Level.LevelLocation5;
+                Game.level.reset();
+            } else if (Level.level == Level.LevelLocation5) {
+                win = true;
+                Game.Won = true;
+                Level.timeLeft = -2;
+            }
+            if(!Game.Won) {
+                Game.Prologue = true;
+            }
+                Game.Restart = false;
         }
-        else if (Level.level == Level.LevelLocation2) {
-            Level.level = Level.LevelLocation3;
-            Game.level.reset();
-        }
-        else if (Level.level == Level.LevelLocation3) {
-            Level.level = Level.LevelLocation4;
-            Game.level.reset();
-        }
-        else if (Level.level == Level.LevelLocation4) {
-            Level.level = Level.LevelLocation5;
-            Game.level.reset();
-        }
-        else if (Level.level == Level.LevelLocation5) {
-            System.out.println("You escaped! Hooray!");
-            Game.game = false;
-        }
-        Game.Prologue = true;
-        Game.Restart = false;
     }
 
     public void reset(){
@@ -231,7 +229,7 @@ public class Level {
         Configurations.generateLevel();
         Configurations.loadLevelFromFile(level);
         loadLevel(blockList);
-        Game.character = new Character(Tile.female_stripes, Configurations.lives);
+        Game.character = new Character(Boot.character, Configurations.lives);
         Character.score = points;
         Game.character.setLives(live);
         Level.timeLeft = Configurations.time;
