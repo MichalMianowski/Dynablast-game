@@ -24,13 +24,16 @@ public class BestScores extends JFrame implements ActionListener {
     /** specifies constraints for components that are laid out using the GridBagLayout class */
     static GridBagConstraints c;
 
+    JLabel highScoresLabel = new JLabel();
+
+    BestScoresManager bestScoresManager = new BestScoresManager();
+
     /** basic constructor of the class *
      * sets it's size and location
      */
     public BestScores(){
         setPreferredSize(size);
         setLocation(400, 150);
-
     };
 
     /** main function of the class
@@ -47,12 +50,26 @@ public class BestScores extends JFrame implements ActionListener {
         frame.setName(name);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setLayout(new GridBagLayout());
+        frame.setLayout(new GridLayout(2,1));
         ImageIcon tlo = new ImageIcon("res/Images/background.png");
         //frame.setContentPane(new JLabel(tlo));
+        frame.add(highScoresLabel);
+        highScoresLabel.setFont(new Font("TimesRoman", Font.BOLD, 32));
+        highScoresLabel.setHorizontalAlignment(JLabel.CENTER);
+        highScoresLabel.setVerticalAlignment(JLabel.CENTER);
         BestScores.CreateReturnToMenuButton(frame);
         ReturnToMenu.addActionListener(this);
+        showScores();
         frame.setVisible(true);
+    }
+
+    private void showScores() {
+        int i =0;
+        bestScoresManager.loadHighScores();
+        bestScoresManager.bestScoresList.forEach(record -> {
+            highScoresLabel.setText(highScoresLabel.getText() + "<br/>" + (bestScoresManager.bestScoresList.indexOf(record)+1) + ". " + record.getName() + "....." + record.getScore());
+        });
+        highScoresLabel.setText("<html>" + highScoresLabel.getText() + "</html>");
     }
 
     /** Function creates the Return to menu button,

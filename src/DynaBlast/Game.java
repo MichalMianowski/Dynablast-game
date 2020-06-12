@@ -27,7 +27,6 @@ public class Game extends JPanel implements Runnable {
     private static int pixelSize = 2;
     static char color;
     public static Dimension size = new Dimension(860, 680);
-    public static Dimension pixel = new Dimension(size.width / pixelSize, size.height / pixelSize);
     public static String name = "Dyna Blaster - Escape from jail";
     public static volatile boolean isRunning = false;
     public static boolean music = true;
@@ -198,7 +197,7 @@ public class Game extends JPanel implements Runnable {
             g.drawString("criminal scum", 320, 400);
             if (Level.timeLeft <= -6) {
                 frame = new JFrame();
-                ScoreSubmit submit = new ScoreSubmit();
+                ScoreSubmit submit = new ScoreSubmit(character.getScore());
                 submit.submitScore(frame);
             }
         }
@@ -211,7 +210,7 @@ public class Game extends JPanel implements Runnable {
             g.drawString("You escaped from prison", 320, 400);
             if (Level.timeLeft <= -6) {
                 frame = new JFrame();
-                ScoreSubmit submit = new ScoreSubmit();
+                ScoreSubmit submit = new ScoreSubmit(character.getScore());
                 submit.submitScore(frame);
             }
         }

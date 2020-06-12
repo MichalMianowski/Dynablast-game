@@ -150,19 +150,4 @@ public class Configurations {
             Game.color = 'R';
         }
     }
-
-    public static void SubmitScore() {
-        try {
-            PrintWriter zapis1 = new PrintWriter("res/config/BestScores/Score_names.txt");
-            zapis1.print(ScoreSubmit.name + "\r");
-            zapis1.close();
-
-            PrintWriter zapis2 = new PrintWriter("res/config/BestScores/Score_points.txt");
-            zapis2.print(Character.score + "\r");
-            zapis2.close();
-        } catch (Exception e) {
-            System.out.println("Blad wczytywania pliku");
-            e.printStackTrace();
-        }
-    }
 }

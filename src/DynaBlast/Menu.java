@@ -230,12 +230,6 @@ public class Menu extends JFrame implements ActionListener{
             @Override
             public void windowClosing(WindowEvent e) {
                 setVisible(true);
-                Sounds.audioClip.close();
-                if (Menu.music) {
-                    Sounds.audioClip.close();
-                    Sounds.play(Sounds.MenuMusic);
-                }
-
             }
         });
     }
