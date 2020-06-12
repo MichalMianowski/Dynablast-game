@@ -12,7 +12,16 @@ public class ScoreSubmit extends JFrame implements ActionListener {
     private static JButton button;
     static JTextField field;
 
-    public ScoreSubmit(){}
+    int score;
+    boolean isRanked;
+    BestScoresManager bestScoresManager = new BestScoresManager();
+
+
+    public ScoreSubmit(int newScore){
+        BestScoresManager bestScoresManager = new BestScoresManager();
+        bestScoresManager.loadHighScores();
+        score = newScore;
+    }
 
     public void submitScore(JFrame frame) {
         Game.game = false;
@@ -34,7 +43,7 @@ public class ScoreSubmit extends JFrame implements ActionListener {
         c.insets = new Insets(10, 0, 0, 0);
         panel.add(label2, c);
 
-        field = new JTextField("What's your name?");
+        field = new JTextField(20);
         field.setBounds(50, 100, 200, 30);
         c.gridy = 3;
         c.insets = new Insets(15, 0, 0, 0);
@@ -64,8 +73,19 @@ public class ScoreSubmit extends JFrame implements ActionListener {
                 Sounds.play(Sounds.ButtonClick);
             }
             name = field.getText();
-            Configurations.SubmitScore();
-            System.exit(1);
+            Score newScore = new Score(name, score);
+            isRanked = bestScoresManager.isScoreRanked(newScore);
+            if(isRanked) {
+                bestScoresManager.addNewHighScore(newScore);
+                this.setVisible(false);
+                BestScores endGameBestScores = new BestScores();
+                endGameBestScores.frame = this;
+                endGameBestScores.go();
+                //System.exit(1);
+            }
+
+            //Configurations.SubmitScore();
+            //System.exit(1);
             try {
                 Thread.sleep(50);
             } catch (InterruptedException e) {

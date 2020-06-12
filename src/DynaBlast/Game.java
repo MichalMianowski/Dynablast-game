@@ -197,7 +197,7 @@ public class Game extends JPanel implements Runnable {
             g.drawString("criminal scum", 320, 400);
             if (Level.timeLeft <= -6) {
                 frame = new JFrame();
-                ScoreSubmit submit = new ScoreSubmit();
+                ScoreSubmit submit = new ScoreSubmit(character.getScore());
                 submit.submitScore(frame);
             }
         } else {
