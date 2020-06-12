@@ -36,13 +36,14 @@ public class BestScoresManager {
     void loadHighScores(){
         String name;
         int score;
+        bestScoresList.clear();
 
         try {
             Scanner sc = new Scanner(highScores);
             while (sc.hasNext()) {
                 name = sc.nextLine();
                 score = sc.nextInt();
-                sc.nextLine();
+                sc. nextLine();
                 bestScoresList.add(new Score(name, score));
             }
             sc.close();

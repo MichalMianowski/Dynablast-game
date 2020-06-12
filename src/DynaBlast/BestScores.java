@@ -73,10 +73,8 @@ public class BestScores extends JFrame implements ActionListener {
      * presentation format use html structure to make text with new lines
      */
     private void showScores() {
-        int i =0;
         bestScoresManager.loadHighScores();
         bestScoresManager.bestScoresList.forEach(record -> {
-            System.out.println(record);
             highScoresLabel.setText(highScoresLabel.getText() + "<br/>" + (bestScoresManager.bestScoresList.indexOf(record)+1) + ". " + record.getName() + "....." + record.getScore());
         });
         highScoresLabel.setText("<html>" + highScoresLabel.getText() + "</html>");
