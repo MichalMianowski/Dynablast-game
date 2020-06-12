@@ -197,21 +197,27 @@ public class Character extends Creatures {
     public void die(){
         if (lives == 1){
             Game.death = true;
-            lives--;
+            //lives--;
             Level.timeLeft = -2;
         }
         else {
-            lives--;
+            //lives--;
             Game.level.restart = true;
             Character.score = Game.BeginPoints;
         }
     }
 
+    /** restart position of character to original one */
     public void restartPosition(){
         x = Level.margin + Tile.tileSize;
         y = Level.margin + Tile.tileSize;
         dirX = 0;
         dirY = 0;
+    }
+
+    /** reduce number of player's lives by on */
+    public void reduceLives() {
+        lives--;
     }
 
     /**

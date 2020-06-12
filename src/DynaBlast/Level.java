@@ -178,6 +178,7 @@ public class Level {
         Character.score = points;
         Game.Restart = true;
         Game.character.restartPosition();
+        Game.character.reduceLives();
     }
 
     /**
