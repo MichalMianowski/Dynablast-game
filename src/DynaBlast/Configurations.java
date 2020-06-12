@@ -1,3 +1,6 @@
+/**
+ * Michal Mianowski & Piotr Strzaska
+ */
 package DynaBlast;
 
 import java.awt.*;

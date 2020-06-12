@@ -1,6 +1,6 @@
-Marek
+Tomek
+300
+Romek
 200
-Jacek
-100
 Atomek
-0
+100

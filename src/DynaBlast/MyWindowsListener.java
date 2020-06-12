@@ -1,8 +1,14 @@
+/**
+ * Michal Mianowski & Piotr Strzaska
+ */
 package DynaBlast;
 
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+/**
+ * class to adjust actions after closing window
+ */
 class MyWindowsListener implements WindowListener {
     public void windowClosing(WindowEvent arg0) {
         System.exit(0);

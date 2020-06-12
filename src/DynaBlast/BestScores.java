@@ -1,3 +1,6 @@
+/**
+ * Michal Mianowski & Piotr Strzaska
+ */
 package DynaBlast;
 
 import javax.swing.*;
@@ -24,8 +27,10 @@ public class BestScores extends JFrame implements ActionListener {
     /** specifies constraints for components that are laid out using the GridBagLayout class */
     static GridBagConstraints c;
 
+    /** label to present list of best scores */
     JLabel highScoresLabel = new JLabel();
 
+    /** manager of best scores*/
     BestScoresManager bestScoresManager = new BestScoresManager();
 
     /** basic constructor of the class *
@@ -63,10 +68,15 @@ public class BestScores extends JFrame implements ActionListener {
         frame.setVisible(true);
     }
 
+    /**
+     * Function to present best scores in label highScoresLabel
+     * presentation format use html structure to make text with new lines
+     */
     private void showScores() {
         int i =0;
         bestScoresManager.loadHighScores();
         bestScoresManager.bestScoresList.forEach(record -> {
+            System.out.println(record);
             highScoresLabel.setText(highScoresLabel.getText() + "<br/>" + (bestScoresManager.bestScoresList.indexOf(record)+1) + ". " + record.getName() + "....." + record.getScore());
         });
         highScoresLabel.setText("<html>" + highScoresLabel.getText() + "</html>");
