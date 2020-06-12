@@ -54,26 +54,34 @@ public class ControlModule {
         //akcje wcisniecia klawisza
         action.put("left", new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
-                Character.isMovingX = true;
-                Character.dirX = -Character.movementSpeed;
+                if(thisGame.canUseKeyboard()){
+                    Character.isMovingX = true;
+                    Character.dirX = -Character.movementSpeed;
+                }
             }
         });
         action.put("right", new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
-                Character.isMovingX = true;
-                Character.dirX = Character.movementSpeed;
+                if(thisGame.canUseKeyboard()){
+                    Character.isMovingX = true;
+                    Character.dirX = Character.movementSpeed;
+                }
             }
         });
         action.put("up", new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
-                Character.isMovingY = true;
-                Character.dirY = -Character.movementSpeed;
+                if(thisGame.canUseKeyboard()) {
+                    Character.isMovingY = true;
+                    Character.dirY = -Character.movementSpeed;
+                }
             }
         });
         action.put("down", new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
-                Character.isMovingY = true;
-                Character.dirY = Character.movementSpeed;
+                if(thisGame.canUseKeyboard()){
+                    Character.isMovingY = true;
+                    Character.dirY = Character.movementSpeed;
+                }
             }
         });
 
@@ -122,17 +130,19 @@ public class ControlModule {
         //dodatkowe akcje wcisniecia klawisza
         action.put("place_bomb", new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
-                Game.character.placeBomb();
+                if(thisGame.canUseKeyboard()) {
+                    Game.character.placeBomb();
+                }
             }
         });
 
         action.put("pause", new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
-                //pause
-                Game.pauseGame();
+                if(thisGame.canUseKeyboard()) {
+                    Game.pauseGame();
+                }
             }
         });
-
     }
 }
 

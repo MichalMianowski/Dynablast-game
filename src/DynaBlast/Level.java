@@ -175,6 +175,7 @@ public class Level {
         timeLeft = Configurations.time;
         Character.score = points;
         Game.Restart = true;
+        Game.character.restartPosition();
     }
 
     /**

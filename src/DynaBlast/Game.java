@@ -39,10 +39,10 @@ public class Game extends JPanel implements Runnable {
     static boolean game = true;
     int WhichLevel;
     String WhatDifficulty;
-    static boolean Prologue = true;
-    static boolean Restart = false;
-    static boolean death = false;
-    static boolean Won = false;
+    public static boolean Prologue = true;
+    public static boolean Restart = false;
+    public static boolean death = false;
+    public static boolean Won = false;
     static Thread thread;
     static JFrame frame;
 
@@ -247,4 +247,7 @@ public class Game extends JPanel implements Runnable {
         g.drawString("" + character.getScore() + " points", 660, 280);
     }
 
+    public boolean canUseKeyboard() {
+        return (!Prologue && !Restart && !death && !Won);
+    }
 }

@@ -195,8 +195,6 @@ public class Character extends Creatures {
      * common to exploded and captured
      */
     public void die(){
-        x = Level.margin + Tile.tileSize;
-        y = Level.margin + Tile.tileSize;
         if (lives == 1){
             Game.death = true;
             lives--;
@@ -207,6 +205,13 @@ public class Character extends Creatures {
             Game.level.restart = true;
             Character.score = Game.BeginPoints;
         }
+    }
+
+    public void restartPosition(){
+        x = Level.margin + Tile.tileSize;
+        y = Level.margin + Tile.tileSize;
+        dirX = 0;
+        dirY = 0;
     }
 
     /**
