@@ -18,19 +18,21 @@ public class Options extends JFrame implements ActionListener {
 
     /** buttons existing in options window */
     private static JButton ReturnToMenu;
-    private static JToggleButton Sound;
     private static JToggleButton Music;
     private static JRadioButton Skin1;
     private static JRadioButton Skin2;
     private static JRadioButton Skin3;
     private static JRadioButton Skin4;
     private static JLabel skin;
+    public static JFrame frame;
 
     /** specifies constraints for components that are laid out using the GridBagLayout class */
     static GridBagConstraints c;
 
     /** basic constructor of the class */
-    public Options(){};
+    public Options(JFrame frame){
+        Options.frame = frame;
+    };
 
     /** Main function of the class
      * sets all important parameters like name, size, default close operation
@@ -48,36 +50,30 @@ public class Options extends JFrame implements ActionListener {
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setLayout(new GridBagLayout());
         JPanel panel1 = new JPanel();
-        JPanel panel2 = new JPanel();
         JPanel panel3 = new JPanel();
 
         JLabel sound = new JLabel("Sound");
         sound.setFont(sound.getFont().deriveFont(24.0f));
         JLabel music = new JLabel("Music");
         music.setFont(sound.getFont().deriveFont(24.0f));
-        panel2.add(sound,c);
         panel3.add(music,c);
-
-        c.gridheight = 2;
-        c.anchor = GridBagConstraints.PAGE_END;
-        frame.add(panel1,c);
-
-        c.gridheight = 1;
-        c.anchor = GridBagConstraints.CENTER;
-        frame.add(panel2,c);
 
         c.anchor = GridBagConstraints.CENTER;
         c.fill = GridBagConstraints.RELATIVE;
         frame.add(panel3,c);
         frame.setVisible(true);
 
+        c.gridheight = 1;
+        c.anchor = GridBagConstraints.PAGE_END;
+        frame.add(panel1,c);
+
         Options.CreateSkinButtons(panel1);
-        Options.CreateSoundButton(panel2);
         Options.CreateMusicButton(panel3);
         Options.CreateReturnToMenuButton(frame);
 
+
+
         ReturnToMenu.addActionListener(this);
-        Sound.addActionListener(this);
         Music.addActionListener(this);
         Skin1.addActionListener(this);
         Skin2.addActionListener(this);
@@ -123,7 +119,9 @@ public class Options extends JFrame implements ActionListener {
         Options.Skin3 = skin3;
         Options.Skin4 = skin4;
 
+        c.gridy = 1;
         c.gridx = 2;
+        panel.add(skin, c);
         c.gridy = 2;
         c.insets = new Insets(20,0,0,0);
         panel.add(skin1, c);
@@ -133,23 +131,6 @@ public class Options extends JFrame implements ActionListener {
         panel.add(skin3, c);
         c.gridy = 5;
         panel.add(skin4, c);
-        c.gridy = 6;
-        panel.add(skin, c);
-    }
-
-    /** Function creates the Sound button,
-     *  First, creates new JToggleButton with appropiate name and font
-     *  Then it adds the button to the window's panel
-     *  At last it sets the relative location to other buttons
-     */
-    public static void CreateSoundButton(JPanel panel){
-        JToggleButton Sound = new JToggleButton("On");
-        Sound.setPreferredSize(new Dimension(60,30));
-        Options.Sound = Sound;
-        c.gridy = 1;
-        c.gridx = 1;
-        c.insets = new Insets(0,10,0,0);
-        panel.add(Sound,c);
     }
 
     /** Function creates the Music button,
@@ -197,33 +178,21 @@ public class Options extends JFrame implements ActionListener {
                 e.printStackTrace();
             }
             Menu.frame2.dispose();
+            frame.setVisible(true);
         }
 
-        else if (o == Sound){
-            if(Sound.isSelected()){
-                Sound.setText("Off");
-                Menu.sound = false;
-                Game.sound = false;
-            }
-            else{
-                Sound.setText("On");
-                Menu.sound = true;
-                Game.sound = true;
-                Sounds.play(Sounds.ButtonClick);
-                try {
-                    Thread.sleep(400);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                Sounds.audioClip.close();
-            }
-        }
         else if (o == Music){
             Sounds.audioClip.close();
             if(Music.isSelected()){
                 Sounds.audioClip.close();
                 if (Menu.sound){
                     Sounds.play(Sounds.ButtonClick);
+                    try {
+                        Thread.sleep(400);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    Sounds.audioClip.close();
                 }
                 Music.setText("Off");
                 Game.music = false;

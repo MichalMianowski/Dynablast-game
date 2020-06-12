@@ -78,8 +78,8 @@ public class ScoreSubmit extends JFrame implements ActionListener {
             if(isRanked) {
                 bestScoresManager.addNewHighScore(newScore);
                 this.setVisible(false);
-                BestScores endGameBestScores = new BestScores();
-                BestScores.frame = this;
+                BestScores endGameBestScores = new BestScores(Menu.frame2);
+//                BestScores.frame = this;
                 endGameBestScores.go();
                 //System.exit(1);
             }

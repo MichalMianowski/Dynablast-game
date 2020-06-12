@@ -42,7 +42,6 @@ public class Sounds extends JFrame {
 
             Thread thread = new Thread(() -> {
                 audioClip.start();
-
                 try {
                     audioStream.close();
                 } catch (IOException e) {

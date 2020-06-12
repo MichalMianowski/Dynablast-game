@@ -24,13 +24,11 @@ public class Game extends JPanel implements Runnable {
      * @param music specifies whether the game music should be played or not
      * @param sound specifies whether the game sounds should be played or not
      */
-    private static int pixelSize = 2;
     static char color;
     public static Dimension size = new Dimension(860, 680);
     public static String name = "Dyna Blaster - Escape from jail";
     public static volatile boolean isRunning = false;
     public static boolean music = true;
-    public static boolean sound = true;
     int counter = 0;
     static int BeginPoints;
     static boolean game = true;
