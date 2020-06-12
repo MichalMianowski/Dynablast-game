@@ -28,10 +28,10 @@ public class BestScores extends JFrame implements ActionListener {
     static GridBagConstraints c;
 
     /** label to present list of best scores */
-    JLabel highScoresLabel = new JLabel();
+    private JLabel highScoresLabel = new JLabel();
 
     /** manager of best scores*/
-    BestScoresManager bestScoresManager = new BestScoresManager();
+    private BestScoresManager bestScoresManager = new BestScoresManager();
 
     /** basic constructor of the class *
      * sets it's size and location
@@ -55,16 +55,13 @@ public class BestScores extends JFrame implements ActionListener {
         frame.setName(name);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setLayout(new GridLayout(2,1));
+        frame.setLayout(new GridBagLayout());
         ImageIcon tlo = new ImageIcon("res/Images/background.png");
         //frame.setContentPane(new JLabel(tlo));
-        frame.add(highScoresLabel);
-        highScoresLabel.setFont(new Font("TimesRoman", Font.BOLD, 32));
-        highScoresLabel.setHorizontalAlignment(JLabel.CENTER);
-        highScoresLabel.setVerticalAlignment(JLabel.CENTER);
+
+        showScores();
         BestScores.CreateReturnToMenuButton(frame);
         ReturnToMenu.addActionListener(this);
-        showScores();
         frame.setVisible(true);
     }
 
@@ -73,7 +70,18 @@ public class BestScores extends JFrame implements ActionListener {
      * presentation format use html structure to make text with new lines
      */
     private void showScores() {
+        c.anchor = GridBagConstraints.PAGE_START;
+        highScoresLabel.setFont(new Font("TimesRoman", Font.BOLD, 28));
+        highScoresLabel.setHorizontalAlignment(JLabel.CENTER);
+        c.gridwidth = 3;
+        c.gridheight = 5;
+        c.gridy = 1;
+        c.gridx = 1;
+        c.insets = new Insets(0,0,0, 0);
+        frame.add(highScoresLabel, c);
+
         bestScoresManager.loadHighScores();
+        highScoresLabel.setText("&nbsp;&nbsp;&nbsp;&nbsp; High Scores<br/>");
         bestScoresManager.bestScoresList.forEach(record -> {
             highScoresLabel.setText(highScoresLabel.getText() + "<br/>" + (bestScoresManager.bestScoresList.indexOf(record)+1) + ". " + record.getName() + "....." + record.getScore());
         });
@@ -81,17 +89,20 @@ public class BestScores extends JFrame implements ActionListener {
     }
 
     /** Function creates the Return to menu button,
-     *  First, creates new JButton with appropiate name and font
+     *  First, creates new JButton with appropriate name and font
      *  Then it adds the button to the window's panel
      *  At last it sets its size and makes it response to pressing it
      */
     public static void CreateReturnToMenuButton(JFrame frame){
+        c.anchor = GridBagConstraints.PAGE_END;
         JButton ReturnToMenu = new JButton("Return to menu");
         ReturnToMenu.setFont(new Font("font",Font.PLAIN,25));
         BestScores.ReturnToMenu = ReturnToMenu;
-        c.gridy = 0;
-        c.insets = new Insets(500,0,0,800);
-        frame.add(ReturnToMenu);
+        ReturnToMenu.setPreferredSize(new Dimension(250,30));
+        c.gridy = 5;
+        c.gridx = 3;
+        c.insets = new Insets(100,0,0,0);
+        frame.add(ReturnToMenu,c);
     }
 
     /** specifies what actions are to be performed after pressing buttons */

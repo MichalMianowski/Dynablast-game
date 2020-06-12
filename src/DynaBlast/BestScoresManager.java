@@ -51,6 +51,7 @@ public class BestScoresManager {
             System.out.println("Blad wczytywania pliku High_Scores.txt");
             e.printStackTrace();
         }
+        cutToTenRecords();
     }
 
     /**
@@ -103,18 +104,30 @@ public class BestScoresManager {
      */
     void addNewHighScore(Score score) {
         bestScoresList.add(score);
-        Collections.sort(bestScoresList);
-
-        if (bestScoresList.size() > 10) {
-            for (int i = bestScoresList.size()-1; i > 9; i--) {
-                bestScoresList.remove(i);
-            }
-        }
-
+        cutToTenRecords();
         try {
             saveHighScores();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    /**
+     * cut list of high scores to 10
+     * and if cut save to file updated list
+     * at the beginning of cutting sort list
+     */
+    void cutToTenRecords(){
+        if (bestScoresList.size() > 10) {
+            Collections.sort(bestScoresList);
+            for (int i = bestScoresList.size()-1; i > 9; i--) {
+                bestScoresList.remove(i);
+            }
+            try {
+                saveHighScores();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
