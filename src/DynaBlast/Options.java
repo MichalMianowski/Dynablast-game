@@ -1,3 +1,6 @@
+/**
+ * Michal Mianowski & Piotr Strzaska
+ */
 package DynaBlast;
 
 import javax.swing.*;
@@ -94,6 +97,11 @@ public class Options extends JFrame implements ActionListener {
         }
     }
 
+    /**
+     * function creating buttons to chose skin of character
+     *
+     * @param panel - JPanel where buttons will be placed
+     */
     public static void CreateSkinButtons(JPanel panel){
         JRadioButton skin1 = new JRadioButton ("Male orange");
         JRadioButton skin2 = new JRadioButton ("Male stripes");

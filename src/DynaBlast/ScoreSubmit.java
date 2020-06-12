@@ -1,3 +1,6 @@
+/**
+ * Michal Mianowski & Piotr Strzaska
+ */
 package DynaBlast;
 
 import javax.swing.*;
@@ -5,24 +8,46 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * JFrame class to add Player's name and submit score
+ */
 public class ScoreSubmit extends JFrame implements ActionListener {
+    /** GridBagConstraints to order elements */
     static GridBagConstraints c;
+    /** store name of Player */
     static String name;
 
+    /** Jbutton to submit Player's name */
     private static JButton button;
+    /** field to write down Player's name */
     static JTextField field;
 
+    /** store points of score */
     int score;
+    /** boolean "is score good enough to be added to high scores" */
     boolean isRanked;
-    BestScoresManager bestScoresManager = new BestScoresManager();
+    /** manager of best scores */
+//    BestScoresManager bestScoresManager = new BestScoresManager();
+    BestScoresManager bestScoresManager;
 
-
+    /**
+     * constructor of this JFrame
+     * creates best scores manager
+     *
+     * @param newScore - new score to check and eventually add
+     */
     public ScoreSubmit(int newScore){
-        BestScoresManager bestScoresManager = new BestScoresManager();
+        //BestScoresManager bestScoresManager = new BestScoresManager();
+        bestScoresManager = new BestScoresManager();
         bestScoresManager.loadHighScores();
         score = newScore;
     }
 
+    /**
+     * manage submitting new score
+     *
+     * @param frame
+     */
     public void submitScore(JFrame frame) {
         Game.game = false;
         Menu.frame1.dispose();
@@ -58,6 +83,7 @@ public class ScoreSubmit extends JFrame implements ActionListener {
         frame.setVisible(true);
     }
 
+    /** create button to submit */
     public void createButton(JPanel panel){
         button = new JButton();
         button.setText("Submit");
@@ -66,6 +92,10 @@ public class ScoreSubmit extends JFrame implements ActionListener {
         panel.add(button,c);
     }
 
+    /**
+     * manage reaction to click submit button
+     * check the score and eventually add it to high scores
+     */
     public void actionPerformed(ActionEvent ae) {
         Object o = ae.getSource();
         if (o == button) {
