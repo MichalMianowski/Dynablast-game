@@ -193,7 +193,7 @@ public class Menu extends JFrame implements ActionListener{
             setVisible(false);
             JFrame finalFrame = frame2;
             SwingUtilities.invokeLater(() -> Do(finalFrame));
-            Options options = new Options();
+            Options options = new Options(this);
             options.create1(frame2);
         }
         else if (o == BestScores) {
@@ -203,8 +203,8 @@ public class Menu extends JFrame implements ActionListener{
             setVisible(false);
             JFrame finalFrame = frame2;
             SwingUtilities.invokeLater(() -> Do(finalFrame));
-            BestScores bestScores = new BestScores();
-            bestScores.frame = frame2;
+            BestScores bestScores = new BestScores(this);
+            //bestScores.frame = frame2;
             bestScores.go();
         }
         /** if "Exit" is pressed, close all windows and exit game */
@@ -229,12 +229,14 @@ public class Menu extends JFrame implements ActionListener{
      * @param frame frame to which the action should be applied
      */
     private void Do(JFrame frame) {
-        frame.addWindowListener(new WindowAdapter() {
+        frame.addWindowListener(
+                new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 setVisible(true);
             }
         });
+
     }
 
     public void ReturnToMenu(){

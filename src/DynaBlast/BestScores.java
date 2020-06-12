@@ -22,10 +22,10 @@ public class BestScores extends JFrame implements ActionListener {
 
     /** button, that is set on the window */
     private static JButton ReturnToMenu;
-    /** frame, on which the window is being created */
-    public static JFrame frame;
     /** specifies constraints for components that are laid out using the GridBagLayout class */
     static GridBagConstraints c;
+
+    public static JFrame frame1;
 
     /** label to present list of best scores */
     private JLabel highScoresLabel = new JLabel();
@@ -36,9 +36,10 @@ public class BestScores extends JFrame implements ActionListener {
     /** basic constructor of the class *
      * sets it's size and location
      */
-    public BestScores(){
+    public BestScores(JFrame frame){
         setPreferredSize(size);
         setLocation(400, 150);
+        BestScores.frame1 = frame;
     };
 
     /** main function of the class
@@ -49,20 +50,32 @@ public class BestScores extends JFrame implements ActionListener {
         c = new GridBagConstraints();
         c.weightx = 0.5;
         c.fill = GridBagConstraints.PAGE_END;
-        frame.pack();
-        frame.setSize(1080,640);
-        frame.setLocation(400, 150);
-        frame.setName(name);
-        frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setLayout(new GridBagLayout());
-        ImageIcon tlo = new ImageIcon("res/Images/background.png");
-        //frame.setContentPane(new JLabel(tlo));
-
-        showScores();
-        BestScores.CreateReturnToMenuButton(frame);
+        pack();
+        setSize(1080,640);
+        setLocation(400, 150);
+        setName(name);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setLayout(new GridLayout(2,1));
+        add(highScoresLabel);
+        highScoresLabel.setFont(new Font("TimesRoman", Font.BOLD, 32));
+        highScoresLabel.setHorizontalAlignment(JLabel.CENTER);
+        highScoresLabel.setVerticalAlignment(JLabel.CENTER);
+        BestScores.CreateReturnToMenuButton(this);
         ReturnToMenu.addActionListener(this);
-        frame.setVisible(true);
+        showScores();
+        setVisible(true);
+        pack();
+        setSize(1080,640);
+        setLocation(400, 150);
+        setName(name);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setLayout(new GridBagLayout());
+        showScores();
+        BestScores.CreateReturnToMenuButton(this);
+        ReturnToMenu.addActionListener(this);
+        setVisible(true);
     }
 
     /**
@@ -78,7 +91,7 @@ public class BestScores extends JFrame implements ActionListener {
         c.gridy = 1;
         c.gridx = 1;
         c.insets = new Insets(0,0,0, 0);
-        frame.add(highScoresLabel, c);
+        add(highScoresLabel, c);
 
         bestScoresManager.loadHighScores();
         highScoresLabel.setText("&nbsp;&nbsp;&nbsp;&nbsp; High Scores<br/>");
@@ -109,7 +122,8 @@ public class BestScores extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent ae) {
         Object o = ae.getSource();
         if (o == ReturnToMenu){
-            getDefaultCloseOperation();
+            this.dispose();
+            frame1.setVisible(true);
         }
     }
 }

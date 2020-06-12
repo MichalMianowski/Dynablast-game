@@ -6,6 +6,7 @@ package DynaBlast;
 import java.awt.*;
 import java.util.ArrayList;
 import java.io.File;
+import java.util.Iterator;
 
 /**
  * Class loads level from file to two dimensions char table
@@ -72,6 +73,7 @@ public class Level {
      * ArrayList containing all present explosions
      */
     static ArrayList<Explosion> explosions = new ArrayList();
+
 
     /**
      * Creates object of Level
