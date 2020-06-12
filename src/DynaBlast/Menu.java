@@ -58,7 +58,7 @@ public class Menu extends JFrame implements ActionListener{
     }
 
     /** Function creates the NEW GAME button,
-     *  First, creates new JButton with appropiate name and font
+     *  First, creates new JButton with appropriate name and font
      *  Then it adds the button to the window's panel
      *  At last it sets its size and makes it response to pressing it
      */
@@ -76,7 +76,7 @@ public class Menu extends JFrame implements ActionListener{
     }
 
     /** Function creates the OPTIONS button,
-     *  First, creates new JButton with appropiate name and font
+     *  First, creates new JButton with appropriate name and font
      *  Then it adds the button to the window's panel
      *  At last it sets its size and makes it response to pressing it
      */
@@ -94,7 +94,7 @@ public class Menu extends JFrame implements ActionListener{
     }
 
     /** Function creates the BEST SCORES button,
-     *  First, creates new JButton with appropiate name and font
+     *  First, creates new JButton with appropriate name and font
      *  Then it adds the button to the window's panel
      *  At last it sets its size and makes it response to pressing it
      */
@@ -111,7 +111,7 @@ public class Menu extends JFrame implements ActionListener{
     }
 
     /** Function creates the EXIT button,
-     *  First, creates new JButton with appropiate name and font
+     *  First, creates new JButton with appropriate name and font
      *  Then it adds the button to the window's panel
      *  At last it sets its size and makes it response to pressing it
      */
@@ -159,29 +159,36 @@ public class Menu extends JFrame implements ActionListener{
             Object[] difficulty = {"Easy",
                     "Medium",
                     "Hard"};
-            int a = JOptionPane.showOptionDialog(frame1,
-                    "Choose difficulty level",
-                    "Difficulty",
-                    JOptionPane.YES_NO_CANCEL_OPTION,
-                    JOptionPane.QUESTION_MESSAGE,
-                    null,
-                    difficulty,
-                    difficulty[2]);
-            levelNumber = 1;
-            Level.enemies.clear();
-            Level.level = Level.LevelLocation1;
-            if (a == JOptionPane.YES_OPTION) {
-                Configurations.loadDifficulty(Configurations.Difficulty1);
-                Difficulty = 1;
-            }
-            else if (a == JOptionPane.NO_OPTION) {
-                Configurations.loadDifficulty(Configurations.Difficulty2);
-                Difficulty = 2;
-            }
-            else if (a == JOptionPane.CANCEL_OPTION) {
-                Configurations.loadDifficulty(Configurations.Difficulty3);
-                Difficulty = 3;
-            }
+            boolean mustRepeat = false;
+            do {
+                int a = JOptionPane.showOptionDialog(frame1,
+                        "Choose difficulty level",
+                        "Difficulty",
+                        JOptionPane.YES_NO_CANCEL_OPTION,
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,
+                        difficulty,
+                        difficulty[2]);
+                levelNumber = 1;
+                Level.enemies.clear();
+                Level.level = Level.LevelLocation1;
+                if (a == JOptionPane.YES_OPTION) {
+                    Configurations.loadDifficulty(Configurations.Difficulty1);
+                    Difficulty = 1;
+                    mustRepeat = false;
+                } else if (a == JOptionPane.NO_OPTION) {
+                    Configurations.loadDifficulty(Configurations.Difficulty2);
+                    Difficulty = 2;
+                    mustRepeat = false;
+                } else if (a == JOptionPane.CANCEL_OPTION) {
+                    Configurations.loadDifficulty(Configurations.Difficulty3);
+                    Difficulty = 3;
+                    mustRepeat = false;
+                } else {
+                    mustRepeat = true;
+                }
+            } while (mustRepeat);
+
             game.start();
             frame1.setVisible(true);
             frame1.addWindowListener(new MyWindowsListener());
