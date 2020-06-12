@@ -55,26 +55,14 @@ public class BestScores extends JFrame implements ActionListener {
         setLocation(400, 150);
         setName(name);
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setLayout(new GridLayout(2,1));
-        add(highScoresLabel);
-        highScoresLabel.setFont(new Font("TimesRoman", Font.BOLD, 32));
-        highScoresLabel.setHorizontalAlignment(JLabel.CENTER);
-        highScoresLabel.setVerticalAlignment(JLabel.CENTER);
-        BestScores.CreateReturnToMenuButton(this);
-        ReturnToMenu.addActionListener(this);
-        showScores();
-        setVisible(true);
-        pack();
-        setSize(1080,640);
-        setLocation(400, 150);
-        setName(name);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setLayout(new GridBagLayout());
+
         showScores();
         BestScores.CreateReturnToMenuButton(this);
         ReturnToMenu.addActionListener(this);
+
         setVisible(true);
     }
 
@@ -90,7 +78,7 @@ public class BestScores extends JFrame implements ActionListener {
         c.gridheight = 5;
         c.gridy = 1;
         c.gridx = 1;
-        c.insets = new Insets(0,0,0, 0);
+        c.insets = new Insets(0,0,0,0);
         add(highScoresLabel, c);
 
         bestScoresManager.loadHighScores();
@@ -112,7 +100,7 @@ public class BestScores extends JFrame implements ActionListener {
         ReturnToMenu.setFont(new Font("font",Font.PLAIN,25));
         BestScores.ReturnToMenu = ReturnToMenu;
         ReturnToMenu.setPreferredSize(new Dimension(250,30));
-        c.gridy = 5;
+        c.gridy = 9;
         c.gridx = 3;
         c.insets = new Insets(100,0,0,0);
         frame.add(ReturnToMenu,c);

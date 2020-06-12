@@ -211,7 +211,6 @@ public class Menu extends JFrame implements ActionListener{
             JFrame finalFrame = frame2;
             SwingUtilities.invokeLater(() -> Do(finalFrame));
             BestScores bestScores = new BestScores(this);
-            //bestScores.frame = frame2;
             bestScores.go();
         }
         /** if "Exit" is pressed, close all windows and exit game */

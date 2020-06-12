@@ -1,6 +1,6 @@
-Tomek
-300
 Romek
+300
+Tomek
 200
 Atomek
 100

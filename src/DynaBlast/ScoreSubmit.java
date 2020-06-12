@@ -27,7 +27,6 @@ public class ScoreSubmit extends JFrame implements ActionListener {
     /** boolean "is score good enough to be added to high scores" */
     boolean isRanked;
     /** manager of best scores */
-//    BestScoresManager bestScoresManager = new BestScoresManager();
     BestScoresManager bestScoresManager;
 
     /**
@@ -37,7 +36,6 @@ public class ScoreSubmit extends JFrame implements ActionListener {
      * @param newScore - new score to check and eventually add
      */
     public ScoreSubmit(int newScore){
-        //BestScoresManager bestScoresManager = new BestScoresManager();
         bestScoresManager = new BestScoresManager();
         bestScoresManager.loadHighScores();
         score = newScore;
@@ -108,19 +106,17 @@ public class ScoreSubmit extends JFrame implements ActionListener {
             if(isRanked) {
                 bestScoresManager.addNewHighScore(newScore);
                 this.setVisible(false);
-                BestScores endGameBestScores = new BestScores(Menu.frame2);
-//                BestScores.frame = this;
-                endGameBestScores.go();
-                //System.exit(1);
             }
 
-            //Configurations.SubmitScore();
-            //System.exit(1);
             try {
                 Thread.sleep(50);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
+            BestScores endGameBestScores = new BestScores(this);
+//                BestScores.frame = this;
+            endGameBestScores.go();
         }
     }
 }
