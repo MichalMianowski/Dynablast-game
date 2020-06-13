@@ -85,7 +85,7 @@ public class Game extends JPanel implements Runnable {
      * function that makes clock tick and therefore change the state of every enemy, character and for the level itself
      */
     public void tick() {
-        Level.enemies.forEach(Enemy::tick);
+//        Level.enemies.forEach(Enemy::tick);
         character.tick();
         level.tick();
         counter++;
@@ -116,10 +116,10 @@ public class Game extends JPanel implements Runnable {
         genBackground(g);
         if (!Prologue && !Restart && !death && !Won) {
             level.render(g);
-            Level.bombs.forEach((bomb) -> bomb.render(g));
-            Level.enemies.forEach((en) -> en.render(g));
+            level.bombs.forEach((bomb) -> bomb.render(g));
+            level.enemies.forEach((en) -> en.render(g));
             character.render(g);
-            Level.explosions.forEach((explosion) -> explosion.render(g));
+            level.explosions.forEach((explosion) -> explosion.render(g));
         }
 
         gameplayInfo(g);

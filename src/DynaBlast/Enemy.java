@@ -164,6 +164,11 @@ public class Enemy extends Creatures {
         }
     }
 
+    /**
+     * grant points for killing enemy
+     *
+     * @param enemy - which is killed
+     */
     public static void grantPoints(Enemy enemy) {
         if (enemy.dead) {
             if (enemy.type == Tile.army_man) {

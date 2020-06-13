@@ -131,6 +131,7 @@ public class Level {
 
         enemies.forEach(Enemy::grantPoints);
         enemies.removeIf(enemy -> enemy.dead);
+        enemies.forEach(Enemy::tick);
         escapeVisibility();
     }
 
