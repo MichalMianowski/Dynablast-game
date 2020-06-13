@@ -9,10 +9,14 @@ import java.awt.*;
  * parent class for all 'alive' objects such as character and enemies
  * stores information about dimensions of creature and his localisation (in double)
  */
-public class Creatures {
+public abstract class Creatures {
     double margin = 1;
     /** localisation and dimensions of the creature */
     public double x, y, width, height;
+    /** is this creature dying if yes play animation of death and turn dead to value true */
+    boolean dying = false;
+    /** is this creature dead if yes he will be removed from enemies list */
+    boolean dead = false;
 
     /**
      * default creator of creature object, all parameters set to 0
@@ -99,5 +103,7 @@ public class Creatures {
 
         return new int[] {x1, x2, y};
     }
+
+    public abstract void loadSkin(float FACTOR);
 
 }

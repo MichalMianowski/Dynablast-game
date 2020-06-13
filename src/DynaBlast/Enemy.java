@@ -27,16 +27,12 @@ public class Enemy extends Creatures {
      * may be eddited by points factor depending of difficulty level
       */
     float points;
-    /** is this enemy dead if yes he will be removed from enemies list */
-    boolean dead = false;
-    /** is he dying if yes play animation of death and turn dead to value true */
-    boolean dying = false;
     /** should he change direction (because of collision with wall) */
     boolean turn = false;
 
     /** graphics needed to animations */
 
-    Graphic graph1, graph2, graph3;
+    Animation animAlive, animDying;
 
     /**
      *  creates object of the enemy with @Tile size
@@ -53,6 +49,13 @@ public class Enemy extends Creatures {
     public Enemy(char type, int x0, int y0){
         setBounds(x0, y0, Tile.tileSize, Tile.tileSize);
         this.type = type;
+        loadSkin(2f);
+        loadSpeed();
+        x = x0;
+        y = y0;
+    }
+
+    private void loadSpeed() {
         if (this.type == Tile.army_man){
             this.HorizontalSpeed = 0.5 * Configurations.speedMultiplier;
             this.VerticalSpeed = 0.5 * Configurations.speedMultiplier;
@@ -71,27 +74,34 @@ public class Enemy extends Creatures {
             this.lives = 1;
             this.points = 100;
         }
-        x = x0;
-        y = y0;
+    }
 
-        graph1 = new Graphic(10, Tile.tileset_guard[0], Tile.tileset_guard[1], Tile.tileset_guard[2], Tile.tileset_guard[3]);
-        graph2 = new Graphic(10, Tile.tileset_swat[0], Tile.tileset_swat[1], Tile.tileset_swat[2], Tile.tileset_swat[3]);
-        graph3 = new Graphic(10, Tile.tileset_army_man[0], Tile.tileset_army_man[1], Tile.tileset_army_man[2], Tile.tileset_army_man[3]);
+
+    @Override
+    public void loadSkin(float FACTOR) {
+        if(type == Tile.guard) {
+            animAlive = new Animation(10, Tile.tileset_guard);
+            animDying = new Animation(10, Tile.tileset_guard_death);
+        }
+        else if(type == Tile.swat) {
+            animAlive = new Animation(10, Tile.tileset_swat);
+            animDying = new Animation(10, Tile.tileset_swat_death);
+        }
+        else if(type == Tile.army_man) {
+            animAlive = new Animation(10, Tile.tileset_army_man);
+            animDying = new Animation(10, Tile.tileset_army_man_death);
+        }
     }
 
     /** changes the location of every enemy depending on its type
      * as well as making the animation for every type change with every clock tick
      */
     public void tick(){
-        if (!dying) {
-            graph1.runAnimation();
-            graph2.runAnimation();
-            graph3.runAnimation();
+        if (dying){
+            animDying.tickDeathAnimation(this);
         }
-        else if (dying){
-            graph1.runAnimationOnce(this);
-            graph2.runAnimationOnce(this);
-            graph3.runAnimationOnce(this);
+        else if (!dead) {
+            animAlive.tickAnimation(this);
         }
 
         if (this.type == Tile.guard) {
@@ -153,14 +163,11 @@ public class Enemy extends Creatures {
      * @param g Graphic to which render images and draw animations
      */
     public void render(Graphics g){
-        if (type == Tile.army_man){
-            graph3.drawAnimation(g, x, y);
+        if (dying) {
+            animDying.drawAnimation(g, x, y);
         }
-        else if (type == Tile.swat){
-            graph2.drawAnimation(g, x, y);
-        }
-        else if (type == Tile.guard) {
-            graph1.drawAnimation(g, x, y);
+        else if (!dead) {
+            animAlive.drawAnimation(g, x, y);
         }
     }
 
@@ -180,4 +187,4 @@ public class Enemy extends Creatures {
             }
         }
     }
-    }
+}

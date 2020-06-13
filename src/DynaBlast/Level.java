@@ -160,6 +160,9 @@ public class Level {
         } else if (escapeVisible == 2) {
             block[cellOfEscape[0]][cellOfEscape[1]].render(g, Tile.escape_2);
         }
+        bombs.forEach((bomb) -> bomb.render(g));
+        explosions.forEach((explosion) -> explosion.render(g));
+        enemies.forEach((en) -> en.render(g));
     }
 
     /**
@@ -228,6 +231,9 @@ public class Level {
         }
     }
 
+    /**
+     * reset state of the level
+     */
     public void reset(){
         bombs.clear();
         Level.enemies.clear();

@@ -5,7 +5,6 @@ package DynaBlast;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.sql.SQLOutput;
 
 /**
  *  Class representing player's character
@@ -36,12 +35,11 @@ public class Character extends Creatures {
     /** amount of distance to move vertical */
     public static double dirY = 0;
 
-    boolean ifWon = false;
     static boolean scaled1 = false;
     static boolean scaled2 = false;
 
     /** graphics needed to animations */
-    Graphic graph1, graph2, graph3, graph4;
+    Animation walkFront, walkBack, walkRight, walkLeft;
 
     /**
      * creates object of character with skin chosen by player
@@ -56,54 +54,7 @@ public class Character extends Creatures {
         final float FACTOR  = 2f;
         this.type = type;
         setBounds(x = Level.margin + Tile.tileSize, y = Level.margin + Tile.tileSize, Tile.tileSize, Tile.tileSize);
-        if (type == Tile.female_orange){
-            graph1 = new Graphic(15, Tile.tileset_fem_orange_front[0], Tile.tileset_fem_orange_front[1], Tile.tileset_fem_orange_front[2], Tile.tileset_fem_orange_front[3]);
-            graph2 = new Graphic(15, Tile.tileset_fem_orange_back[0], Tile.tileset_fem_orange_back[1], Tile.tileset_fem_orange_back[2], Tile.tileset_fem_orange_back[3]);
-            graph3 = new Graphic(15, Tile.tileset_fem_orange_right[0], Tile.tileset_fem_orange_right[1], Tile.tileset_fem_orange_right[2], Tile.tileset_fem_orange_right[3]);
-            graph4 = new Graphic(15, Tile.tileset_fem_orange_left[0], Tile.tileset_fem_orange_left[1], Tile.tileset_fem_orange_left[2], Tile.tileset_fem_orange_left[3]);
-            img = Tile.tileset_fem_orange_front[0];
-            int ScaleX1 = (int) (img.getWidth()*FACTOR);
-            int ScaleY1 = (int) (img.getHeight()*FACTOR);
-            Image img1 = img.getScaledInstance(ScaleX1,ScaleY1,Image.SCALE_SMOOTH);
-            img = new BufferedImage(ScaleX1,ScaleY1,BufferedImage.TYPE_INT_ARGB);
-            img.getGraphics().drawImage(img1,0,0,null);
-        }
-        else if (type == Tile.female_stripes){
-            graph1 = new Graphic(15, Tile.tileset_fem_stripes_front[0], Tile.tileset_fem_stripes_front[1], Tile.tileset_fem_stripes_front[2], Tile.tileset_fem_stripes_front[3]);
-            graph2 = new Graphic(15, Tile.tileset_fem_stripes_back[0], Tile.tileset_fem_stripes_back[1], Tile.tileset_fem_stripes_back[2], Tile.tileset_fem_stripes_back[3]);
-            graph3 = new Graphic(15, Tile.tileset_fem_stripes_right[0], Tile.tileset_fem_stripes_right[1], Tile.tileset_fem_stripes_right[2], Tile.tileset_fem_stripes_right[3]);
-            graph4 = new Graphic(15, Tile.tileset_fem_stripes_left[0], Tile.tileset_fem_stripes_left[1], Tile.tileset_fem_stripes_left[2], Tile.tileset_fem_stripes_left[3]);
-            img = Tile.tileset_fem_stripes_front[0];
-            int ScaleX1 = (int) (img.getWidth()*FACTOR);
-            int ScaleY1 = (int) (img.getHeight()*FACTOR);
-            Image img1 = img.getScaledInstance(ScaleX1,ScaleY1,Image.SCALE_SMOOTH);
-            img = new BufferedImage(ScaleX1,ScaleY1,BufferedImage.TYPE_INT_ARGB);
-            img.getGraphics().drawImage(img1,0,0,null);
-        }
-        else if (type == Tile.male_orange){
-            graph1 = new Graphic(15, Tile.tileset_m_orange_front[0], Tile.tileset_m_orange_front[1], Tile.tileset_m_orange_front[2], Tile.tileset_m_orange_front[3]);
-            graph2 = new Graphic(15, Tile.tileset_m_orange_back[0], Tile.tileset_m_orange_back[1], Tile.tileset_m_orange_back[2], Tile.tileset_m_orange_back[3]);
-            graph3 = new Graphic(15, Tile.tileset_m_orange_right[0], Tile.tileset_m_orange_right[1], Tile.tileset_m_orange_right[2], Tile.tileset_m_orange_right[3]);
-            graph4 = new Graphic(15, Tile.tileset_m_orange_left[0], Tile.tileset_m_orange_left[1], Tile.tileset_m_orange_left[2], Tile.tileset_m_orange_left[3]);
-            img = Tile.tileset_m_orange_front[0];
-            int ScaleX1 = (int) (img.getWidth()*FACTOR);
-            int ScaleY1 = (int) (img.getHeight()*FACTOR);
-            Image img1 = img.getScaledInstance(ScaleX1,ScaleY1,Image.SCALE_SMOOTH);
-            img = new BufferedImage(ScaleX1,ScaleY1,BufferedImage.TYPE_INT_ARGB);
-            img.getGraphics().drawImage(img1,0,0,null);
-        }
-        else if (type == Tile.male_stripes){
-            graph1 = new Graphic(15, Tile.tileset_m_stripes_front[0], Tile.tileset_m_stripes_front[1], Tile.tileset_m_stripes_front[2], Tile.tileset_m_stripes_front[3]);
-            graph2 = new Graphic(15, Tile.tileset_m_stripes_back[0], Tile.tileset_m_stripes_back[1], Tile.tileset_m_stripes_back[2], Tile.tileset_m_stripes_back[3]);
-            graph3 = new Graphic(15, Tile.tileset_m_stripes_right[0], Tile.tileset_m_stripes_right[1], Tile.tileset_m_stripes_right[2], Tile.tileset_m_stripes_right[3]);
-            graph4 = new Graphic(15, Tile.tileset_m_stripes_left[0], Tile.tileset_m_stripes_left[1], Tile.tileset_m_stripes_left[2], Tile.tileset_m_stripes_left[3]);
-            img = Tile.tileset_m_stripes_front[0];
-            int ScaleX1 = (int) (img.getWidth()*FACTOR);
-            int ScaleY1 = (int) (img.getHeight()*FACTOR);
-            Image img1 = img.getScaledInstance(ScaleX1,ScaleY1,Image.SCALE_SMOOTH);
-            img = new BufferedImage(ScaleX1,ScaleY1,BufferedImage.TYPE_INT_ARGB);
-            img.getGraphics().drawImage(img1,0,0,null);
-        }
+        loadSkin(FACTOR);
 
         Character.lives = lives;
         Character.score = 0;
@@ -121,6 +72,58 @@ public class Character extends Creatures {
     /** @return player's score */
     public int getScore(){
         return score;
+    }
+
+    @Override
+    public void loadSkin(float FACTOR) {
+        if (type == Tile.female_orange){
+            walkFront = new Animation(15, Tile.tileset_fem_orange_front);
+            walkBack = new Animation(15, Tile.tileset_fem_orange_back);
+            walkRight = new Animation(15, Tile.tileset_fem_orange_right);
+            walkLeft = new Animation(15, Tile.tileset_fem_orange_left);
+            img = Tile.tileset_fem_orange_front[0];
+            int ScaleX1 = (int) (img.getWidth()*FACTOR);
+            int ScaleY1 = (int) (img.getHeight()*FACTOR);
+            Image img1 = img.getScaledInstance(ScaleX1,ScaleY1,Image.SCALE_SMOOTH);
+            img = new BufferedImage(ScaleX1,ScaleY1,BufferedImage.TYPE_INT_ARGB);
+            img.getGraphics().drawImage(img1,0,0,null);
+        }
+        else if (type == Tile.female_stripes){
+            walkFront = new Animation(15, Tile.tileset_fem_stripes_front);
+            walkBack = new Animation(15, Tile.tileset_fem_stripes_back);
+            walkRight = new Animation(15, Tile.tileset_fem_stripes_right);
+            walkLeft = new Animation(15, Tile.tileset_fem_stripes_left);
+            img = Tile.tileset_fem_stripes_front[0];
+            int ScaleX1 = (int) (img.getWidth()*FACTOR);
+            int ScaleY1 = (int) (img.getHeight()*FACTOR);
+            Image img1 = img.getScaledInstance(ScaleX1,ScaleY1,Image.SCALE_SMOOTH);
+            img = new BufferedImage(ScaleX1,ScaleY1,BufferedImage.TYPE_INT_ARGB);
+            img.getGraphics().drawImage(img1,0,0,null);
+        }
+        else if (type == Tile.male_orange){
+            walkFront = new Animation(15, Tile.tileset_m_orange_front);
+            walkBack = new Animation(15, Tile.tileset_m_orange_back);
+            walkRight = new Animation(15, Tile.tileset_m_orange_right);
+            walkLeft = new Animation(15, Tile.tileset_m_orange_left);
+            img = Tile.tileset_m_orange_front[0];
+            int ScaleX1 = (int) (img.getWidth()*FACTOR);
+            int ScaleY1 = (int) (img.getHeight()*FACTOR);
+            Image img1 = img.getScaledInstance(ScaleX1,ScaleY1,Image.SCALE_SMOOTH);
+            img = new BufferedImage(ScaleX1,ScaleY1,BufferedImage.TYPE_INT_ARGB);
+            img.getGraphics().drawImage(img1,0,0,null);
+        }
+        else if (type == Tile.male_stripes){
+            walkFront = new Animation(15, Tile.tileset_m_stripes_front);
+            walkBack = new Animation(15, Tile.tileset_m_stripes_back);
+            walkRight = new Animation(15, Tile.tileset_m_stripes_right);
+            walkLeft = new Animation(15, Tile.tileset_m_stripes_left);
+            img = Tile.tileset_m_stripes_front[0];
+            int ScaleX1 = (int) (img.getWidth()*FACTOR);
+            int ScaleY1 = (int) (img.getHeight()*FACTOR);
+            Image img1 = img.getScaledInstance(ScaleX1,ScaleY1,Image.SCALE_SMOOTH);
+            img = new BufferedImage(ScaleX1,ScaleY1,BufferedImage.TYPE_INT_ARGB);
+            img.getGraphics().drawImage(img1,0,0,null);
+        }
     }
 
     /** function that updates the character,
@@ -231,7 +234,6 @@ public class Character extends Creatures {
         }
     }
 
-
     /** render character's image on map
      *
      * @param g Graphic to which render images and draw animations
@@ -241,16 +243,16 @@ public class Character extends Creatures {
                 g.drawImage(img, (int) x, (int) y, null);
             }
             else if (dirY > 0) {
-                graph1.drawAnimation(g, x, y);
+                walkFront.drawAnimation(g, x, y);
             }
             else if (dirY < 0) {
-                graph2.drawAnimation(g, x, y);
+                walkBack.drawAnimation(g, x, y);
             }
             else if (dirX > 0) {
-                graph3.drawAnimation(g, x, y);
+                walkRight.drawAnimation(g, x, y);
             }
             else if (dirX < 0) {
-                graph4.drawAnimation(g, x, y);
+                walkLeft.drawAnimation(g, x, y);
             }
         }
 
@@ -259,16 +261,16 @@ public class Character extends Creatures {
      */
     private void moveAnimation(){
         if (dirY > 0) {
-            graph1.runAnimation();
+            walkFront.tickAnimation(this);
         }
         else if (dirY < 0){
-            graph2.runAnimation();
+            walkBack.tickAnimation(this);
         }
         else if (dirX > 0){
-            graph3.runAnimation();
+            walkRight.tickAnimation(this);
         }
         else if (dirX < 0){
-            graph4.runAnimation();
+            walkLeft.tickAnimation(this);
         }
     }
 }

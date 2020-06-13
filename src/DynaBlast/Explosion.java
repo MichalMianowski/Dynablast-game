@@ -5,9 +5,7 @@ package DynaBlast;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  * class to service explosions caused by bombs
@@ -47,7 +45,7 @@ public class Explosion {
      * @param cell cell of the center of explosion
      */
 
-    Graphic graph = new Graphic(50, Tile.tileset_bars_death[0], Tile.tileset_bars_death[1], Tile.tileset_bars_death[2], Tile.tileset_bars_death[3]);
+    Animation graph = new Animation(50, Tile.tileset_bars_death);
 
     public Explosion(int[] cell){
         final float FACTOR  = 2f;
@@ -232,15 +230,7 @@ public class Explosion {
                 if((reach[0] == enemy.getCellAtMap()[0])&&(reach[1] == enemy.getCellAtMap()[1])) {
                     enemy.VerticalSpeed = 0;
                     enemy.HorizontalSpeed = 0;
-                    if (enemy.type == Tile.guard) {
-                        enemy.graph1 = new Graphic(10, Tile.tileset_guard_death[0], Tile.tileset_guard_death[1], Tile.tileset_guard_death[2], Tile.tileset_guard_death[3]);
-                    } else if (enemy.type == Tile.swat) {
-                        enemy.graph2 = new Graphic(10, Tile.tileset_swat_death[0], Tile.tileset_swat_death[1], Tile.tileset_swat_death[2], Tile.tileset_swat_death[3]);
-                    } else if (enemy.type == Tile.army_man) {
-                        enemy.graph3 = new Graphic(10, Tile.tileset_army_man_death[0], Tile.tileset_army_man_death[1], Tile.tileset_army_man_death[2], Tile.tileset_army_man_death[3]);
-                    }
                     enemy.dying = true;
-                    enemy.die();
                 }
             });
         });
