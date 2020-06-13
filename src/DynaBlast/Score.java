@@ -26,27 +26,26 @@ public class Score implements Comparable{
         this.score = score;
     }
 
-    /** name getter */
+    /**
+     * name getter
+     * @return - name of Player
+     */
     public String getName() {
         return name;
     }
 
-    /** name setter */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /** score getter */
+    /**
+     * score getter
+     * @return - points gained by Player
+     */
     public int getScore() {
         return score;
     }
 
-    /** score setter */
-    public void setScore(int score) {
-        this.score = score;
-    }
-
-    /** presentation of score record in String */
+    /**
+     * presentation of score record in String
+     * @return - return String with name nad score of player
+     */
     public String toString(){
         return getName() + "     " + getScore();
     }
@@ -55,6 +54,9 @@ public class Score implements Comparable{
      * rules of comparing records
      * useful to easier sorting (descending)
      * compare values of (int)points in score
+     *
+     * @param o - object
+     * @return - value for comparetion
      */
 
     public int compareTo(Object o) {

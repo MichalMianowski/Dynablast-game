@@ -44,9 +44,6 @@ public class Explosion {
      *
      * @param cell cell of the center of explosion
      */
-
-    Animation graph = new Animation(50, Tile.tileset_bars_death);
-
     public Explosion(int[] cell){
         final float FACTOR  = 2f;
         if (!Character.scaled2) {
@@ -104,7 +101,6 @@ public class Explosion {
      * saving data to explosionReach list
      * making destruction
      */
-
     public void go(){
         goLeft();
         goRight();
@@ -117,14 +113,13 @@ public class Explosion {
     /** going to left
      * discover range and making bars destruction
      */
-
     public void goLeft(){
         lengthL = length;
         for(int i = 1; i <= length; i++){
             if(!(Level.block[cellLoc[0]-i][cellLoc[1]].id == Tile.empty)){
                 lengthL = i-1;
                 if(Level.block[cellLoc[0]-i][cellLoc[1]].id == Tile.bars) {
-                    Level.block[cellLoc[0] - i][cellLoc[1]].destroy();
+                    Level.block[cellLoc[0] - i][cellLoc[1]].explode((cellLoc[0] - i), cellLoc[1]);
                 }
                 break;
             }
@@ -140,7 +135,7 @@ public class Explosion {
             if(!(Level.block[cellLoc[0]+i][cellLoc[1]].id == Tile.empty)){
                 lengthR = i-1;
                 if(Level.block[cellLoc[0]+i][cellLoc[1]].id == Tile.bars) {
-                    Level.block[cellLoc[0]+i][cellLoc[1]].destroy();
+                    Level.block[cellLoc[0]+i][cellLoc[1]].explode(cellLoc[0]+i, cellLoc[1]);
                 }
                 break;
             }
@@ -156,7 +151,7 @@ public class Explosion {
             if(!(Level.block[cellLoc[0]][cellLoc[1]-i].id == Tile.empty)){
                 lengthU = i-1;
                 if(Level.block[cellLoc[0]][cellLoc[1]-i].id == Tile.bars) {
-                    Level.block[cellLoc[0]][cellLoc[1]-i].destroy();
+                    Level.block[cellLoc[0]][cellLoc[1]-i].explode(cellLoc[0], cellLoc[1]-i);
                 }
                 break;
             }
@@ -172,7 +167,7 @@ public class Explosion {
             if(!(Level.block[cellLoc[0]][cellLoc[1]+i].id == Tile.empty)){
                 lengthD = i-1;
                 if(Level.block[cellLoc[0]][cellLoc[1]+i].id == Tile.bars) {
-                    Level.block[cellLoc[0]][cellLoc[1]+i].destroy();
+                    Level.block[cellLoc[0]][cellLoc[1]+i].explode(cellLoc[0], cellLoc[1]+i);
                 }
                 break;
             }

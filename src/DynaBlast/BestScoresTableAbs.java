@@ -35,8 +35,11 @@ public abstract class BestScoresTableAbs extends JFrame implements ActionListene
     /** manager of best scores*/
     private BestScoresManager bestScoresManager = new BestScoresManager();
 
-    /** basic constructor of the class *
+    /**
+     * basic constructor of the class
      * sets it's size and location
+     *
+     * @param frame - frame to use
      */
     public BestScoresTableAbs(JFrame frame){
         setPreferredSize(size);
@@ -91,10 +94,13 @@ public abstract class BestScoresTableAbs extends JFrame implements ActionListene
         highScoresLabel.setText("<html>" + highScoresLabel.getText() + "</html>");
     }
 
-    /** Function creates the Return to menu button,
-     *  First, creates new JButton with appropriate name and font
-     *  Then it adds the button to the window's panel
-     *  At last it sets its size and makes it response to pressing it
+    /**
+     * Function creates the Return to menu button,
+     * First, creates new JButton with appropriate name and font
+     * Then it adds the button to the window's panel
+     * At last it sets its size and makes it response to pressing it
+     *
+     * @param frame - frame to use
      */
     public void CreateExitButton(JFrame frame){
         c.anchor = GridBagConstraints.PAGE_END;

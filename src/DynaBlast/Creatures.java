@@ -67,7 +67,7 @@ public abstract class Creatures {
     /**
      * getting cells index where is middle point of the creature
      *
-     * @return
+     * @return - index of level table's position
      */
     public int[] getCellAtMap(){
         int x = (int) (((this.x - Level.margin) + width/2)/Tile.tileSize);
@@ -104,6 +104,11 @@ public abstract class Creatures {
         return new int[] {x1, x2, y};
     }
 
+    /**
+     * abstract class to load skin of creature
+     *
+     * @param FACTOR - factor
+     */
     public abstract void loadSkin(float FACTOR);
 
 }

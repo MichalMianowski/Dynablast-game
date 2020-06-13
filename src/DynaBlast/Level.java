@@ -73,6 +73,10 @@ public class Level {
      * ArrayList containing all present explosions
      */
     static ArrayList<Explosion> explosions = new ArrayList();
+    /**
+     * ArrayList containing all present exploding bars
+     */
+    static ArrayList<ExplodingBars> explodingBars = new ArrayList();
 
 
     /**
@@ -129,6 +133,9 @@ public class Level {
         explosions.removeIf(explosion -> explosion.done);
         explosions.forEach(Explosion::tick);
 
+        explodingBars.removeIf(explodingBars -> explodingBars.destroyed);
+        explodingBars.forEach(ExplodingBars::tick);
+
         enemies.forEach(Enemy::grantPoints);
         enemies.removeIf(enemy -> enemy.dead);
         enemies.forEach(Enemy::tick);
@@ -162,6 +169,7 @@ public class Level {
         }
         bombs.forEach((bomb) -> bomb.render(g));
         explosions.forEach((explosion) -> explosion.render(g));
+        explodingBars.forEach((explodingBars) -> explodingBars.render(g));
         enemies.forEach((en) -> en.render(g));
     }
 

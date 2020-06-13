@@ -4,7 +4,6 @@
 package DynaBlast;
 
 import  java.awt.*;
-import java.awt.image.ImageObserver;
 
 /**
  * Class of block building infrastructure of level, such as unbreakable walls
@@ -21,10 +20,9 @@ public class Block extends Rectangle {
      */
     public char id;
 
-    static int stage = 4;
-    static int counter;
+    /** are bars exploding */
+    public boolean destroying = false;
 
-    public boolean destroyed = false;
 
     /**
      * creates elementary object of map, such as unbreakable walls
@@ -37,6 +35,16 @@ public class Block extends Rectangle {
         this.id = id;
     }
 
+    /**
+     * function that starts exploding of bars
+     *
+     * @param tableX - index x in table of blocks
+     * @param tableY - index y in table of blocks
+     */
+    public void explode(int tableX, int tableY) {
+        destroying = true;
+        Game.level.explodingBars.add(new ExplodingBars(x, y, tableX, tableY));
+    }
     /** function that "destroys" the block, therefore changes its type to empty */
     public void destroy() {
         id = Tile.empty;
@@ -54,7 +62,9 @@ public class Block extends Rectangle {
             g.drawImage(Tile.tileset_unbreakable, x, y, width, height, null);
         }
         else if (id == Tile.bars) {
-            g.drawImage(Tile.tileset_bars, x, y, width, height, null);
+            if (!destroying){
+                g.drawImage(Tile.tileset_bars, x, y, width, height, null);
+            }
         }
     }
     /**
@@ -64,7 +74,6 @@ public class Block extends Rectangle {
      * @param g Graphic to which render images
      * @param escapeType ('l') escape_1 - ready to break, ('L') escape_2 - ready to escape
      */
-
     public void render(Graphics g, char escapeType) {
         if (escapeType == Tile.escape_1) {
             g.drawImage(Tile.tileset_escape_1, x, y, width, height, null);

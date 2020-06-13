@@ -19,7 +19,7 @@ public class EndgameBestScores extends BestScoresTableAbs {
      * basic constructor of the class *
      * sets it's size and location
      *
-     * @param frame
+     * @param frame - frame to use
      */
     public EndgameBestScores(JFrame frame) {
         super(frame);

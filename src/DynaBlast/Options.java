@@ -32,15 +32,21 @@ public class Options extends JFrame implements ActionListener {
     /** specifies constraints for components that are laid out using the GridBagLayout class */
     static GridBagConstraints c;
 
-    /** basic constructor of the class */
+    /**
+     * basic constructor of the class
+     * @param frame - to use
+     */
     public Options(JFrame frame){
         Options.frame = frame;
     };
 
-    /** Main function of the class
+    /**
+     * Main function of the class
      * sets all important parameters like name, size, default close operation
      * as well as layout type, creates buttons and makes them respond to pressing them.
      * Also sets gridbag parameters
+     *
+     * @param frame - to use
      */
     public void create1(JFrame frame){
         c = new GridBagConstraints();
@@ -141,10 +147,13 @@ public class Options extends JFrame implements ActionListener {
         panel.add(skin4, c);
     }
 
-    /** Function creates the Music button,
-     *  First, creates new JToggleButton with appropiate name and font
-     *  Then it adds the button to the window's panel
-     *  At last it sets the relative location to other buttons
+    /**
+     * Function creates the Music button,
+     * First, creates new JToggleButton with appropiate name and font
+     * Then it adds the button to the window's panel
+     * At last it sets the relative location to other buttons
+     *
+     * @param panel - to use
      */
     public static void CreateMusicButton(JPanel panel){
         JToggleButton Music = new JToggleButton("On");
@@ -156,10 +165,13 @@ public class Options extends JFrame implements ActionListener {
         panel.add(Music,c);
     }
 
-    /** Function creates the Return to Menu button,
-     *  First, creates new JButton with appropiate name and font
-     *  Then it adds the button to the window's panel
-     *  At last it sets the relative location to other buttons
+    /**
+     * Function creates the Return to Menu button,
+     * First, creates new JButton with appropiate name and font
+     * Then it adds the button to the window's panel
+     * At last it sets the relative location to other buttons
+     *
+     * @param frame - to use
      */
     public static void CreateReturnToMenuButton(JFrame frame){
         c.anchor = GridBagConstraints.PAGE_END;

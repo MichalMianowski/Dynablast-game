@@ -9,7 +9,7 @@ import java.awt.image.ImageObserver;
 
 /**
  * Class of bombs created by main character
- * contains coordinates x & y
+ * contains coordinates x and y
  * stage of counting before explosion
  * counter counting time between stages
  * cellLoc table of index in the map table

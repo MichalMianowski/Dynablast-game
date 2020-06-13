@@ -44,7 +44,7 @@ public class ScoreSubmit extends JFrame implements ActionListener {
     /**
      * manage submitting new score
      *
-     * @param frame
+     * @param frame - to use
      */
     public void submitScore(JFrame frame) {
         Game.game = false;
@@ -82,7 +82,11 @@ public class ScoreSubmit extends JFrame implements ActionListener {
         frame.setVisible(true);
     }
 
-    /** create button to submit */
+    /**
+     * create button to submit
+     *
+     * @param panel - to use
+     */
     public void createButton(JPanel panel){
         button = new JButton();
         button.setText("Submit");

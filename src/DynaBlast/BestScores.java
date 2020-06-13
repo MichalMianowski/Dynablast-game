@@ -18,7 +18,7 @@ public class BestScores extends BestScoresTableAbs {
      * basic constructor of the class *
      * sets it's size and location
      *
-     * @param frame
+     * @param frame - used frame
      */
     public BestScores(JFrame frame) {
         super(frame);

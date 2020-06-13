@@ -188,6 +188,9 @@ public class Character extends Creatures {
         die();
     }
 
+    /**
+     * instruction after end of time
+     */
     public void TimeRunOut(){
         System.out.println("You didn't manage to escape in time");
         die();
@@ -200,11 +203,9 @@ public class Character extends Creatures {
     public void die(){
         if (lives == 1){
             Game.death = true;
-            //lives--;
             Level.timeLeft = -2;
         }
         else {
-            //lives--;
             Game.level.restart = true;
             Character.score = Game.BeginPoints;
         }

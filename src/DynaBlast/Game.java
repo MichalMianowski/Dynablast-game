@@ -52,6 +52,8 @@ public class Game extends JPanel implements Runnable {
 
     /**
      * Constructor of class, that also sets size of the window
+     *
+     * @param music - should be music played
      */
     public Game(boolean music) {
         if (music) {
@@ -105,7 +107,7 @@ public class Game extends JPanel implements Runnable {
     /**
      * Function that draws the game objects: background, level layout, enemies, bombs, explosions and player
      *
-     * @param 'g' Graphic to which render images
+     * @param g - Graphics2D to which render images
      */
     public void render(Graphics2D g) {
         g.clearRect(0, 0, size.width, size.height);
@@ -148,6 +150,7 @@ public class Game extends JPanel implements Runnable {
 
     /**
      * Functions painting the background of gamescreen
+     * @param g - Graphics to use
      */
     public void genBackground(Graphics g) {
         //general background
@@ -228,6 +231,7 @@ public class Game extends JPanel implements Runnable {
 
     /**
      * Function generating and drawing info about game parameters, such as time left, lives left and current score
+     * @param g - to use
      */
     public void gameplayInfo(Graphics g) {
         g.setColor(new Color(0, 0, 0));
@@ -240,6 +244,10 @@ public class Game extends JPanel implements Runnable {
         g.drawString("" + character.getScore() + " points", 660, 280);
     }
 
+    /**
+     * check if keyboard can be used
+     * @return boolean if can
+     */
     public boolean canUseKeyboard() {
         return (!Prologue && !Restart && !death && !Won);
     }

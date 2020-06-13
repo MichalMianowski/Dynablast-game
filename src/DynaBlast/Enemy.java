@@ -30,8 +30,7 @@ public class Enemy extends Creatures {
     /** should he change direction (because of collision with wall) */
     boolean turn = false;
 
-    /** graphics needed to animations */
-
+    /** graphic sequences needed to animations */
     Animation animAlive, animDying;
 
     /**
@@ -55,6 +54,9 @@ public class Enemy extends Creatures {
         y = y0;
     }
 
+    /**
+     * load speed for each enemy class
+     */
     private void loadSpeed() {
         if (this.type == Tile.army_man){
             this.HorizontalSpeed = 0.5 * Configurations.speedMultiplier;
@@ -154,6 +156,9 @@ public class Enemy extends Creatures {
         }
     }
 
+    /**
+     * make enemy dead
+     */
     public void die() {
         dead = true;
     }

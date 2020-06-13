@@ -61,7 +61,11 @@ public class Animation {
         this.img4.getGraphics().drawImage(image4,0,0,null);
     }
 
-    /** function that runs the animation, therefore makes it move */
+    /**
+     * function that runs the animation, therefore makes it move
+     *
+     * @param creature - affected creature
+     */
     public void tickAnimation(Creatures creature){
         index++;
         if (index > speed){
@@ -70,7 +74,10 @@ public class Animation {
         }
     }
 
-    /** function that changes information about what image should be displayed */
+    /**
+     * function that changes information about what image should be displayed
+     * @param creature - affected creature
+     */
     public void nextFrame(Creatures creature){
         if (count == 0){
             currentImg = img1;
@@ -124,6 +131,41 @@ public class Animation {
         if (index > speed){
             index = 0;
             nextDeathFrame(enemy);
+        }
+    }
+
+    /**
+     * function that changes information about what image should be displayed
+     * @param explodingBars info which  are destroying
+     */
+    public void nextDestroyFrame(ExplodingBars explodingBars){
+        if (count == 0){
+            currentImg = img1;
+        }
+        else if (count == 1){
+            currentImg = img2;
+        }
+        else if (count == 2){
+            currentImg = img3;
+        }
+        else if (count == 3){
+            currentImg = img4;
+        }
+        else {
+            explodingBars.destroy();
+        }
+        count++;
+    }
+
+    /** function that runs the animation of destroying bars
+     *
+     * @param explodingBars which are destroying
+     */
+    public void tickDestroyAnimation(ExplodingBars explodingBars){
+        index++;
+        if (index > speed){
+            index = 0;
+            nextDestroyFrame(explodingBars);
         }
     }
 

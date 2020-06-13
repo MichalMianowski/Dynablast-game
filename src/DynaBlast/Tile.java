@@ -91,10 +91,10 @@ public class Tile {
             Tile.tileset_bars = ImageIO.read(new File("res/Images/bars.png"));
         } catch (Exception e) { }
         try {
-            Tile.tileset_bars_death[0] = ImageIO.read(new File("res/Images/bars_death1.png"));
-            Tile.tileset_bars_death[1] = ImageIO.read(new File("res/Images/bars_death2.png"));
-            Tile.tileset_bars_death[2] = ImageIO.read(new File("res/Images/bars_death3.png"));
-            Tile.tileset_bars_death[3] = ImageIO.read(new File("res/Images/bars_death4.png"));
+            Tile.tileset_bars_death[0] = ImageIO.read(new File("res/Images/bars_death4.png"));
+            Tile.tileset_bars_death[1] = ImageIO.read(new File("res/Images/bars_death3.png"));
+            Tile.tileset_bars_death[2] = ImageIO.read(new File("res/Images/bars_death2.png"));
+            Tile.tileset_bars_death[3] = ImageIO.read(new File("res/Images/bars_death1.png"));
         } catch (Exception e) { }
         try {
             Tile.tileset_escape_1 = ImageIO.read(new File("res/Images/escape_1.png"));
