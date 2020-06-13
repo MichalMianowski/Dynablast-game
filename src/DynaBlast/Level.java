@@ -233,7 +233,7 @@ public class Level {
         Configurations.generateLevel();
         Configurations.loadLevelFromFile(level);
         loadLevel(blockList);
-        Game.character = new Character(Boot.character, Configurations.lives);
+        Game.character.restartPosition();
         Character.score = points;
         Game.character.setLives(live);
         Level.timeLeft = Configurations.time;

@@ -118,8 +118,8 @@ public class BestScoresManager {
      * at the beginning of cutting sort list
      */
     void cutToTenRecords(){
+        Collections.sort(bestScoresList);
         if (bestScoresList.size() > 10) {
-            Collections.sort(bestScoresList);
             for (int i = bestScoresList.size()-1; i > 9; i--) {
                 bestScoresList.remove(i);
             }

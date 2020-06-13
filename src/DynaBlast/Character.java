@@ -205,6 +205,7 @@ public class Character extends Creatures {
             Game.level.restart = true;
             Character.score = Game.BeginPoints;
         }
+        restartPosition();
     }
 
     /** restart position of character to original one */
