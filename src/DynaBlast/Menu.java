@@ -242,10 +242,5 @@ public class Menu extends JFrame implements ActionListener{
                 setVisible(true);
             }
         });
-
-    }
-
-    public void ReturnToMenu(){
-        setVisible(true);
     }
 }
