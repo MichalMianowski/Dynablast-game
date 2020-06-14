@@ -190,7 +190,7 @@ public class Options extends JFrame implements ActionListener {
         Object o = ae.getSource();
         if (o == ReturnToMenu){
             if(Menu.sound){
-                Sounds.play(Sounds.ButtonClick,false);
+                Sounds.play(Sounds.ButtonClick);
             }
             try {
                 Thread.sleep(50);
@@ -206,7 +206,7 @@ public class Options extends JFrame implements ActionListener {
             if(Music.isSelected()){
                 Sounds.audioClip.close();
                 if (Menu.sound){
-                    Sounds.play(Sounds.ButtonClick,false);
+                    Sounds.play(Sounds.ButtonClick);
                     try {
                         Thread.sleep(400);
                     } catch (InterruptedException e) {
@@ -220,13 +220,13 @@ public class Options extends JFrame implements ActionListener {
             }
             else{
                 if (Menu.sound){
-                    Sounds.play(Sounds.ButtonClick,false);
+                    Sounds.play(Sounds.ButtonClick);
                 }
                 Music.setText("On");
                 Game.music = true;
                 Menu.music = true;
                 Sounds.audioClip.close();
-                Sounds.play(Sounds.MenuMusic,false);
+                Sounds.play(Sounds.MenuMusic);
             }
         }
         if (Skin1.isSelected()){

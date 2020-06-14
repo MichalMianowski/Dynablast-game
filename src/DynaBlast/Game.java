@@ -25,6 +25,7 @@ public class Game extends JPanel implements Runnable {
      * @param name name of the game window
      * @param isRunning specifies whether the game is running or not
      * @param music specifies whether the game music should be played or not
+     * @param sound specifies whether the game sounds should be played or not
      */
     static char color;
     public static Dimension size = new Dimension(860, 680);
@@ -56,7 +57,7 @@ public class Game extends JPanel implements Runnable {
      */
     public Game(boolean music) {
         if (music) {
-            Sounds.play(Sounds.GameMusic, true);
+            Sounds.play(Sounds.GameMusic);
         }
         ControlModule.useKeyboard(this);
         thread = new Thread(this);
