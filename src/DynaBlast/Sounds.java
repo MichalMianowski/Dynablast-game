@@ -50,6 +50,9 @@ public class Sounds extends JFrame {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                if(!(soundFile == ButtonClick)) {
+                    audioClip.loop(Clip.LOOP_CONTINUOUSLY);
+                }
             });
             thread.start();
 
