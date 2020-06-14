@@ -34,7 +34,7 @@ public class Sounds extends JFrame {
      *
      * @param soundFile location of audio file, that has to be played
      */
-    public static void play(String soundFile) {
+    public static void play(String soundFile, boolean loop) {
         try {
             audioFile = new File(soundFile);
             audioStream = AudioSystem.getAudioInputStream(audioFile);
@@ -49,6 +49,9 @@ public class Sounds extends JFrame {
                     audioStream.close();
                 } catch (IOException e) {
                     e.printStackTrace();
+                }
+                if (loop){
+                    audioClip.loop(Clip.LOOP_CONTINUOUSLY);
                 }
             });
             thread.start();

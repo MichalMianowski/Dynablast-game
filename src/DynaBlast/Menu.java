@@ -54,7 +54,7 @@ public class Menu extends JFrame implements ActionListener{
         c = new GridBagConstraints();
 
         music = true;
-        Sounds.play(Sounds.MenuMusic);
+        Sounds.play(Sounds.MenuMusic,true);
     }
 
     /** Function creates the NEW GAME button,
@@ -135,7 +135,7 @@ public class Menu extends JFrame implements ActionListener{
         /** if "New game" is pressed, create gameplay screen */
         if (o == NewGame) {
             if (Menu.sound) {
-                Sounds.play(Sounds.ButtonClick);
+                Sounds.play(Sounds.ButtonClick,false);
             }
             setVisible(false);
             Sounds.audioClip.close();
@@ -154,7 +154,7 @@ public class Menu extends JFrame implements ActionListener{
             frame1.setLocationRelativeTo(null);
             frame1.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
             if (Menu.sound) {
-                Sounds.play(Sounds.ButtonClick);
+                Sounds.play(Sounds.ButtonClick,false);
             }
             Object[] difficulty = {"Easy",
                     "Medium",
@@ -195,7 +195,7 @@ public class Menu extends JFrame implements ActionListener{
         }
         else if (o == Options) {
             if (Menu.sound) {
-                Sounds.play(Sounds.ButtonClick);
+                Sounds.play(Sounds.ButtonClick,false);
             }
             setVisible(false);
             JFrame finalFrame = frame2;
@@ -205,7 +205,7 @@ public class Menu extends JFrame implements ActionListener{
         }
         else if (o == BestScores) {
             if (Menu.sound) {
-                Sounds.play(Sounds.ButtonClick);
+                Sounds.play(Sounds.ButtonClick,false);
             }
             setVisible(false);
             JFrame finalFrame = frame2;
@@ -217,14 +217,14 @@ public class Menu extends JFrame implements ActionListener{
         else if (o == Exit) {
             frame1 = new JFrame();
             if (Menu.sound) {
-                Sounds.play(Sounds.ButtonClick);
+                Sounds.play(Sounds.ButtonClick,false);
             }
             int a = JOptionPane.showConfirmDialog(frame1, "            Are you sure?", "Exit", JOptionPane.YES_NO_OPTION);
             if (a == JOptionPane.YES_OPTION) {
                 System.exit(0);
             } else {
                 if (Menu.sound) {
-                    Sounds.play(Sounds.ButtonClick);
+                    Sounds.play(Sounds.ButtonClick,false);
                 }
             }
         }
@@ -243,9 +243,5 @@ public class Menu extends JFrame implements ActionListener{
             }
         });
 
-    }
-
-    public void ReturnToMenu(){
-        setVisible(true);
     }
 }

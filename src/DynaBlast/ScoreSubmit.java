@@ -103,7 +103,7 @@ public class ScoreSubmit extends JFrame implements ActionListener {
         Object o = ae.getSource();
         if (o == button) {
             if (Menu.sound) {
-                Sounds.play(Sounds.ButtonClick);
+                Sounds.play(Sounds.ButtonClick,false);
             }
             name = field.getText();
             Score newScore = new Score(name, score);
