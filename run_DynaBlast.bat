@@ -1,1 +1,1 @@
-java -jar DynaBlast_byMMPS.jar
+java -jar Dynablast.jar

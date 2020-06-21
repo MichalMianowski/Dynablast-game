@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="proze-projekt-strz-ska-i-mianowski:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/proze_projekt_strz_ska_i_mianowski_jar</output-path>
-    <root id="archive" name="proze-projekt-strz-ska-i-mianowski.jar">
-      <element id="module-output" name="proze-projekt-strz-ska-i-mianowski" />
-    </root>
-  </artifact>
-</component>
